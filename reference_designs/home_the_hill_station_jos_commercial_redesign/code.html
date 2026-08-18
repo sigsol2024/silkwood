@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hill Station Jos | Luxury Hospitality</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Montserrat:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "warm-copper": "#994E14",
+                        "golden-ochre": "#C79242",
+                        "peach-cream": "#FFE3BA",
+                        "vanilla-cream": "#FFF1DB",
+                        
+                        "outline": "#737973",
+                        "outline-variant": "#c3c8c1",
+                        "on-primary": "#ffffff",
+                        "on-primary-fixed": "#0b2013",
+                        "secondary-fixed": "#f2e0c3",
+                        "surface-container-low": "#f5f3ee",
+                        "tertiary-fixed": "#ffdea5",
+                        "on-tertiary-fixed-variant": "#5d4201",
+                        "on-background": "#1b1c19",
+                        "error-container": "#ffdad6",
+                        "secondary-container": "#efdec0",
+                        "secondary-fixed-dim": "#d5c5a8",
+                        "on-tertiary": "#ffffff",
+                        "inverse-primary": "#b4cdb8",
+                        "surface-tint": "#4d6453",
+                        "tertiary-fixed-dim": "#e9c176",
+                        "background": "#FFF1DB",
+                        "on-surface": "#1b1c19",
+                        "surface-variant": "#e4e2dd",
+                        "on-secondary-container": "#6d614a",
+                        "primary-container": "#1b3022",
+                        "tertiary": "#211500",
+                        "tertiary-container": "#3a2800",
+                        "on-surface-variant": "#434843",
+                        "on-primary-fixed-variant": "#364c3c",
+                        "surface-container-highest": "#e4e2dd",
+                        "primary": "#994E14",
+                        "surface-container-lowest": "#ffffff",
+                        "error": "#ba1a1a",
+                        "primary-fixed": "#d0e9d4",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#b18d48",
+                        "on-secondary": "#ffffff",
+                        "surface-dim": "#dbdad5",
+                        "inverse-on-surface": "#f2f1ec",
+                        "surface-bright": "#fbf9f4",
+                        "on-secondary-fixed-variant": "#504530",
+                        "on-secondary-fixed": "#231a08",
+                        "secondary": "#C79242",
+                        "surface": "#FFF1DB",
+                        "on-tertiary-fixed": "#261900",
+                        "surface-container-high": "#eae8e3",
+                        "on-error-container": "#93000a",
+                        "surface-container": "#FFE3BA",
+                        "primary-fixed-dim": "#b4cdb8",
+                        "inverse-surface": "#30312e",
+                        "on-primary-container": "#819986"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "80px",
+                        "section-gap": "120px",
+                        "margin-mobile": "24px",
+                        "unit": "8px",
+                        "gutter": "32px",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Playfair Display"],
+                        "headline-lg": ["Playfair Display"],
+                        "headline-md": ["Playfair Display"],
+                        "headline-sm": ["Playfair Display"],
+                        "body-md": ["Montserrat"],
+                        "label-caps": ["Montserrat"],
+                        "body-lg": ["Montserrat"],
+                        "headline-lg-mobile": ["Playfair Display"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .btn-primary {
+            background-color: theme('colors.warm-copper');
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: theme('colors.golden-ochre');
+        }
+        .btn-outline {
+            border: 1px solid white;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .btn-outline:hover {
+            background-color: white;
+            color: theme('colors.warm-copper');
+        }
+        .nav-scrolled {
+            background-color: theme('colors.vanilla-cream');
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .nav-scrolled .nav-link {
+            color: theme('colors.on-surface');
+        }
+        .nav-scrolled .logo-text {
+            color: theme('colors.warm-copper');
+        }
+    </style>
+</head>
+<body class="bg-vanilla-cream text-on-surface font-body-md selection:bg-peach-cream selection:text-warm-copper">
+<!-- Top Navigation -->
+<header class="flex justify-between items-center w-full px-margin-desktop py-4 max-w-container-max mx-auto z-50 fixed docked full-width top-0 bg-transparent transition-all duration-300" id="top-nav">
+<div class="font-display-lg text-headline-sm font-normal text-white uppercase tracking-widest logo-text transition-colors duration-300">
+        Hill Station Jos
+    </div>
+<nav class="hidden lg:flex items-center gap-8">
+<a class="font-label-caps text-sm uppercase tracking-widest text-white/90 hover:text-white transition-opacity duration-300 nav-link" href="#">Rooms &amp; Suites</a>
+<a class="font-label-caps text-sm uppercase tracking-widest text-white/90 hover:text-white transition-opacity duration-300 nav-link" href="#">Dining</a>
+<a class="font-label-caps text-sm uppercase tracking-widest text-white/90 hover:text-white transition-opacity duration-300 nav-link" href="#">Facilities</a>
+<a class="font-label-caps text-sm uppercase tracking-widest text-white/90 hover:text-white transition-opacity duration-300 nav-link" href="#">Experiences</a>
+<a class="font-label-caps text-sm uppercase tracking-widest text-white/90 hover:text-white transition-opacity duration-300 nav-link" href="#">Events</a>
+<a class="font-label-caps text-sm uppercase tracking-widest text-white/90 hover:text-white transition-opacity duration-300 nav-link" href="#">About</a>
+</nav>
+<button class="bg-warm-copper text-white px-8 py-3 font-label-caps uppercase tracking-widest hover:bg-golden-ochre transition-colors duration-300">
+        Book Now
+    </button>
+</header>
+<!-- Hero Section -->
+<section class="relative h-[90vh] w-full overflow-hidden flex items-center justify-center">
+<div class="absolute inset-0 z-0">
+<img alt="Luxury Boutique Hotel Exterior" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBy8Ef6kI4LzuI8StMaJfvAofNQOptspX78hsAyH5uAbg127pNHTdKDtAw_Q2ZoDDyx9g4imYOXu5gRuCB59INbMHxyl-gT5QuAAQpW8epL8_eFfzdGgv5yTP2LRfbLTMizUxq8gJlg6bBGnRL3EREEdsUas5CSMDI10bCkhuZC-xgEPS1HFfxqBIs1dNWdep8St65UgHimaCdAYpIsLhJfQVEO_Lt6Pszlky4QOSPb3uWjQGGfLfWa"/>
+<div class="absolute inset-0 bg-black/40"></div>
+</div>
+<div class="relative z-10 text-center px-6 max-w-4xl mx-auto flex flex-col items-center mt-16">
+<h1 class="font-display-lg text-5xl md:text-7xl text-white mb-6 leading-tight">
+            A Stay Worth Remembering
+        </h1>
+<p class="font-body-lg text-white/90 text-lg md:text-xl mb-10 max-w-2xl mx-auto">
+            Thoughtfully designed rooms, warm hospitality and everything you need for an exceptional stay.
+        </p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center">
+<button class="bg-warm-copper text-white px-10 py-4 font-label-caps uppercase tracking-widest hover:bg-golden-ochre transition-colors duration-300">
+                Book Your Stay
+            </button>
+<button class="border border-white text-white px-10 py-4 font-label-caps uppercase tracking-widest hover:bg-white hover:text-warm-copper transition-colors duration-300">
+                Explore The Hotel
+            </button>
+</div>
+</div>
+</section>
+<!-- Booking Bar -->
+<section class="relative z-20 -mt-12 max-w-6xl mx-auto px-6">
+<div class="bg-white shadow-xl flex flex-wrap md:flex-nowrap items-center p-2">
+<div class="flex-1 min-w-[200px] border-r border-gray-200 p-4">
+<label class="block font-label-caps text-xs text-gray-500 mb-1">Check-in</label>
+<input class="w-full border-none p-0 focus:ring-0 text-on-surface font-body-md" type="date"/>
+</div>
+<div class="flex-1 min-w-[200px] border-r border-gray-200 p-4">
+<label class="block font-label-caps text-xs text-gray-500 mb-1">Check-out</label>
+<input class="w-full border-none p-0 focus:ring-0 text-on-surface font-body-md" type="date"/>
+</div>
+<div class="flex-1 min-w-[150px] border-r border-gray-200 p-4">
+<label class="block font-label-caps text-xs text-gray-500 mb-1">Guests</label>
+<select class="w-full border-none p-0 focus:ring-0 text-on-surface font-body-md bg-transparent">
+<option>2 Adults</option>
+<option>1 Adult</option>
+<option>2 Adults, 1 Child</option>
+</select>
+</div>
+<div class="flex-1 min-w-[150px] p-4">
+<label class="block font-label-caps text-xs text-gray-500 mb-1">Rooms</label>
+<select class="w-full border-none p-0 focus:ring-0 text-on-surface font-body-md bg-transparent">
+<option>1 Room</option>
+<option>2 Rooms</option>
+<option>3+ Rooms</option>
+</select>
+</div>
+<button class="w-full md:w-auto bg-warm-copper text-white px-8 py-6 font-label-caps uppercase tracking-widest hover:bg-golden-ochre transition-colors m-2 md:m-0">
+            Check Availability
+        </button>
+</div>
+</section>
+<!-- Introduction Section -->
+<section class="py-section-gap max-w-container-max mx-auto px-margin-desktop grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div>
+<span class="font-label-caps text-golden-ochre mb-4 block tracking-widest">WELCOME</span>
+<h2 class="font-headline-lg text-4xl md:text-5xl text-on-surface mb-8">Your Home Away From Home</h2>
+<p class="font-body-md text-on-surface-variant mb-6 leading-relaxed">
+            Situated in a prime location, our hotel offers a seamless blend of modern comfort and classic elegance. We pride ourselves on delivering a personalized experience tailored to meet the needs of every guest.
+        </p>
+<p class="font-body-md text-on-surface-variant leading-relaxed">
+            From our thoughtfully appointed spaces to our dedicated staff, every detail has been curated to ensure your stay is relaxing, productive, and truly memorable. Whether you are visiting for business or leisure, discover a sanctuary designed just for you.
+        </p>
+</div>
+<div class="aspect-[4/3] overflow-hidden rounded-sm">
+<img alt="Luxury Hotel Lobby" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWl1IFdGAXSQq4m_7xxN0L3o1ncY6XtrpcfEP-1J0KD9gpUgbZVNuOiiDZL-AZTx5GI7tzDYrNuwu3ap8E-BImpvZlJQ7wPe1CYvXmhKTlrTe1EuFvRuH25zlFb_ytUlX69uGB_8lWmzmnx99KhrbGEVUyKeMQO7Oes2EJ19xVnr_1p46_xDKCWEbsu0up8E6HDLqTud5IMkn83ACy5hiIRrRKTdQNXSdVAz4QsNMCNav_PE-xvvWW"/>
+</div>
+</section>
+<!-- Rooms & Suites -->
+<section class="bg-peach-cream/30 py-section-gap">
+<div class="max-w-container-max mx-auto px-margin-desktop">
+<div class="text-center mb-16">
+<span class="font-label-caps text-golden-ochre mb-4 block tracking-widest">ACCOMMODATIONS</span>
+<h2 class="font-headline-lg text-4xl md:text-5xl text-on-surface">Rooms &amp; Suites</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Suite 1 -->
+<div class="bg-white group cursor-pointer shadow-sm hover:shadow-md transition-shadow">
+<div class="aspect-[4/3] overflow-hidden">
+<img alt="The Plateau Vista Suite" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYgmCbJz2-_ZnNBVKGmFe5zOqcXr1dhDVaWCyqITe9kDjKPAJ754FVIBe18gNe_rEUyL9gezR4PoJOzTJKKgneNYeN_SjpFvpfDgsE6UmiUOyAJDF7V8iKjfHSJIRT0OsVRSQo2eyJXDpV3OE5LYOi02g_zO7xTTC3BJ87z520BWBZRgQ3_031AFoZWiKQO5nn7Hohew_lr6jpnloMH5LImqgr9umex9VOpqvMViHrhF4dn4qWOuvM"/>
+</div>
+<div class="p-8">
+<h3 class="font-headline-sm text-2xl mb-2">The Plateau Vista Suite</h3>
+<div class="flex gap-4 text-sm text-gray-500 mb-6 font-body-md">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[18px]">aspect_ratio</span> 65 sqm</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[18px]">person</span> Up to 3 guests</span>
+</div>
+<a class="inline-block border-b border-warm-copper text-warm-copper font-label-caps text-sm tracking-widest pb-1 hover:text-golden-ochre hover:border-golden-ochre transition-colors" href="#">View Room</a>
+</div>
+</div>
+<!-- Room 2 -->
+<div class="bg-white group cursor-pointer shadow-sm hover:shadow-md transition-shadow">
+<div class="aspect-[4/3] overflow-hidden">
+<img alt="Heritage Executive Room" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCiMpdffkAm3zzDzTFHJv3Vii5m4BGkCQFq3lkx5pLomR12KpHP9FfxYApncDdTtlSSfanaiz7JO1Gr6eMSJx9wKGxIDmiluLqFIFZoawR9iSBbujgDh0UGvB6ooeA6LjnZAMis9d2XwUpz3gK7c0GACPhUnFMC77vUY8fyBluy1i_JDD3v7ZoYhaRnldf58tp_822-ClRNn-sX8UfdtalFERFvzEubknWU82vqbnxemtSCTu_ZctuC"/>
+</div>
+<div class="p-8">
+<h3 class="font-headline-sm text-2xl mb-2">Heritage Executive Room</h3>
+<div class="flex gap-4 text-sm text-gray-500 mb-6 font-body-md">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[18px]">aspect_ratio</span> 45 sqm</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[18px]">person</span> 2 guests</span>
+</div>
+<a class="inline-block border-b border-warm-copper text-warm-copper font-label-caps text-sm tracking-widest pb-1 hover:text-golden-ochre hover:border-golden-ochre transition-colors" href="#">View Room</a>
+</div>
+</div>
+<!-- Room 3 -->
+<div class="bg-white group cursor-pointer shadow-sm hover:shadow-md transition-shadow">
+<div class="aspect-[4/3] overflow-hidden">
+<img alt="Deluxe Garden Room" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwkUr1lMlVhvPlvyNOTIkZY19figZQ8rMbemtJ0jZ1Ub-4Ss2am5iESnral8Um7x3D-1BzOCcgF2lU_aNRkrl0ZIMP2Gc5gjP9Jeqqzs2Bf9SOKUDgdAUWRcobcSg4EvNoitpAb4B9oUyxtOiS1Uh4KBvXIwik61NIjpJTFOr293AjKRjgNZJf4XbxPDH7gDb26ELtMfSil7KMZ8ZPZchyoFtGU0jrom2uFjDRvg7_nrM_Ajt_gkKy"/>
+</div>
+<div class="p-8">
+<h3 class="font-headline-sm text-2xl mb-2">Deluxe Garden Room</h3>
+<div class="flex gap-4 text-sm text-gray-500 mb-6 font-body-md">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[18px]">aspect_ratio</span> 38 sqm</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[18px]">person</span> 2 guests</span>
+</div>
+<a class="inline-block border-b border-warm-copper text-warm-copper font-label-caps text-sm tracking-widest pb-1 hover:text-golden-ochre hover:border-golden-ochre transition-colors" href="#">View Room</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Facilities -->
+<section class="py-section-gap max-w-container-max mx-auto px-margin-desktop">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<div class="lg:col-span-5 order-2 lg:order-1">
+<span class="font-label-caps text-golden-ochre mb-4 block tracking-widest">FACILITIES</span>
+<h2 class="font-headline-lg text-4xl md:text-5xl text-on-surface mb-8">Wellness &amp; Leisure</h2>
+<p class="font-body-md text-on-surface-variant mb-8 leading-relaxed">
+                Maintain your wellness routine or simply unwind in our premium facilities. Enjoy a refreshing swim, an invigorating workout, or a tranquil moment of relaxation.
+            </p>
+<ul class="space-y-6 mb-10">
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-warm-copper mt-1">pool</span>
+<div>
+<h4 class="font-headline-sm text-lg mb-1">Infinity Pool</h4>
+<p class="text-sm text-gray-600">Temperature-controlled with sweeping views.</p>
+</div>
+</li>
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-warm-copper mt-1">spa</span>
+<div>
+<h4 class="font-headline-sm text-lg mb-1">Tranquility Spa</h4>
+<p class="text-sm text-gray-600">Rejuvenating treatments in a serene environment.</p>
+</div>
+</li>
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-warm-copper mt-1">fitness_center</span>
+<div>
+<h4 class="font-headline-sm text-lg mb-1">Fitness Center</h4>
+<p class="text-sm text-gray-600">State-of-the-art equipment available 24/7.</p>
+</div>
+</li>
+</ul>
+<a class="inline-block border border-warm-copper text-warm-copper px-8 py-3 font-label-caps uppercase tracking-widest hover:bg-warm-copper hover:text-white transition-colors" href="#">Explore Facilities</a>
+</div>
+<div class="lg:col-span-7 order-1 lg:order-2">
+<div class="aspect-[4/3] overflow-hidden">
+<img alt="Infinity Pool" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjTUXamHjcB9SdMrcHDauXmyj1yXtIMJQMB4VYBGtM-mwN0L2rfJ7opkdcEtHRi8YIi4pWTRfDkP8Yw57GzlP9mRWOqI9dzL5qjpCg_BgcaNtem8kPZpMyd17xxM3J1q1KZZE0nUJiK_aOL41SurIyOXSaf2Q34DteV7gOIxeRY3is2vKEzslzatEW9p63m7uH-GCiyHFael6W0CLEGX2Kz2y5p7SGfCVxtwafw0cUBGyX55OTSbqm"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Dining -->
+<section class="bg-on-surface text-vanilla-cream py-section-gap">
+<div class="max-w-container-max mx-auto px-margin-desktop grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div class="aspect-[4/3] overflow-hidden">
+<img alt="Fine Dining Restaurant" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_ACHEdMMD2VEW52RcpbbcvMKaukY1t20mkNm-BcDjpPxMSXjLQOfuTSf_jtmDRaoS6_H6pNAZ-B5kMfcTwrRqkp5CmPrZz2jsnCFiIrMxaH4-u-06Lxc6Ci33xfUV36f1TcS24d6MWZm5JWffL6cqNBKonyoyfpTq0mRfcAzAA5Ws_aduVAufyeExMx7dw5dFXeL1FW7K-9T7ZuwOcech7ycTOdX2xa2SwNnEt26-qwAwXaVeMVqs"/>
+</div>
+<div>
+<span class="font-label-caps text-golden-ochre mb-4 block tracking-widest">DINING</span>
+<h2 class="font-headline-lg text-4xl md:text-5xl mb-8 text-white">Gather, Dine &amp; Unwind</h2>
+<p class="font-body-md text-vanilla-cream/80 mb-8 leading-relaxed">
+                Experience exceptional culinary offerings in an elegant setting. Our menus are thoughtfully crafted using premium ingredients, offering a sophisticated blend of classic and contemporary dishes to satisfy every palate.
+            </p>
+<a class="inline-block bg-warm-copper text-white px-8 py-3 font-label-caps uppercase tracking-widest hover:bg-golden-ochre transition-colors" href="#">View Menus &amp; Reserve</a>
+</div>
+</div>
+</section>
+<!-- Destination -->
+<section class="py-section-gap max-w-container-max mx-auto px-margin-desktop text-center">
+<span class="font-label-caps text-golden-ochre mb-4 block tracking-widest">THE DESTINATION</span>
+<h2 class="font-headline-lg text-4xl md:text-5xl text-on-surface mb-6">Discover the Jos Plateau</h2>
+<p class="font-body-md text-on-surface-variant mb-12 max-w-2xl mx-auto leading-relaxed">
+        Explore the unique landscapes, temperate climate, and rich cultural heritage of the surrounding region during your stay.
+    </p>
+<div class="aspect-[21/9] w-full overflow-hidden">
+<img alt="Jos Plateau Landscape" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkxvTzpG0rV_g7ITyKgPsmFitEbzya7N_8MI71gMzqTpxVjcWxCzHDTjhp1j0M8u2tM2CcaLG6UC2gBHvO5M1FKGnIdRTP7mq7ctKb4i9CQ61wz0dHVkVlX8bEsr56QMvx-I0dX_FNsHt5xitoizY5EijiBCmyNFgERTl2c7wngpW76oUbTV3Gi_AI0MiQNo_Uz1IWI3aMwd2FpIkatet3hAAN-auxpbuDMZsL3s8fdSnHI-Rk3VFQ"/>
+</div>
+</section>
+<!-- Reviews -->
+<section class="bg-peach-cream/20 py-24">
+<div class="max-w-4xl mx-auto px-6 text-center">
+<span class="material-symbols-outlined text-warm-copper text-4xl mb-6">format_quote</span>
+<p class="font-display-lg text-2xl md:text-3xl leading-relaxed text-on-surface italic mb-8">
+            "An absolutely flawless experience from check-in to departure. The attention to detail in the suite was remarkable, and the dining exceeded all expectations. A true luxury standard."
+        </p>
+<p class="font-label-caps text-sm text-gray-500 tracking-widest">M. Anderson, Global Traveler</p>
+<div class="flex justify-center gap-2 mt-8">
+<button class="w-2 h-2 rounded-full bg-warm-copper"></button>
+<button class="w-2 h-2 rounded-full bg-gray-300"></button>
+<button class="w-2 h-2 rounded-full bg-gray-300"></button>
+</div>
+</div>
+</section>
+<!-- Final CTA -->
+<section class="relative h-[60vh] w-full flex items-center justify-center">
+<div class="absolute inset-0 z-0">
+<img alt="Hotel Terrace Evening" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDeumOWlD5zqUMzL-fQudL3VSzMO5komYQn7qgf_eJtNEAmz_c-yMVdXEenRQ-RHVwayiU7R3sm-n7w7H23Wn8hzd5nOLEJftQZskUwIvoJ3blELFxbgqpm84xWby33TKRUY4F531PQO_foNQFlJusbV0CAGKSSu2Y6LDq7X1EQ-lPUNMZ-19x18j4UlAAR8yk1t8a6F4YeJpXJVkfwaaugc5-qJs3Yw9ZnIuHanXcPRlmGshCT06bZ"/>
+<div class="absolute inset-0 bg-black/50"></div>
+</div>
+<div class="relative z-10 text-center px-6">
+<h2 class="font-display-lg text-4xl md:text-6xl text-white mb-8">Your Stay Starts Here.</h2>
+<button class="bg-warm-copper text-white px-10 py-4 font-label-caps uppercase tracking-widest hover:bg-golden-ochre transition-colors duration-300">
+            Book Now
+        </button>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-on-surface text-white py-16">
+<div class="max-w-container-max mx-auto px-margin-desktop grid grid-cols-1 md:grid-cols-4 gap-12">
+<div class="md:col-span-1">
+<div class="font-display-lg text-2xl text-white mb-6">Hill Station Jos</div>
+<p class="font-body-md text-gray-400 text-sm">
+                Luxury hospitality offering an exceptional stay with premium amenities and service.
+            </p>
+</div>
+<div>
+<h4 class="font-label-caps text-golden-ochre mb-6 tracking-widest">Explore</h4>
+<ul class="space-y-3 font-body-md text-sm text-gray-300">
+<li><a class="hover:text-white transition-colors" href="#">Rooms &amp; Suites</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Dining</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Facilities</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Offers</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-caps text-golden-ochre mb-6 tracking-widest">Information</h4>
+<ul class="space-y-3 font-body-md text-sm text-gray-300">
+<li><a class="hover:text-white transition-colors" href="#">Contact Us</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Location</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Terms of Service</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-caps text-golden-ochre mb-6 tracking-widest">Newsletter</h4>
+<p class="font-body-md text-gray-400 text-sm mb-4">Subscribe for exclusive offers and updates.</p>
+<form class="flex">
+<input class="bg-transparent border-b border-gray-500 focus:border-white outline-none py-2 text-sm w-full text-white" placeholder="Email address" type="email"/>
+<button class="border-b border-gray-500 py-2 px-2 hover:text-golden-ochre transition-colors" type="submit">
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</form>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-desktop mt-16 pt-8 border-t border-gray-800 text-center text-xs text-gray-500 font-body-md">
+        © 2024 Hill Station Jos. All rights reserved.
+    </div>
+</footer>
+<script>
+    // Header scroll behavior
+    window.addEventListener('scroll', () => {
+        const nav = document.getElementById('top-nav');
+        if (window.scrollY > 50) {
+            nav.classList.add('nav-scrolled');
+            nav.classList.remove('py-4');
+            nav.classList.add('py-2');
+            nav.querySelectorAll('.nav-link').forEach(el => {
+                el.classList.remove('text-white/90', 'hover:text-white');
+                el.classList.add('text-on-surface', 'hover:text-warm-copper');
+            });
+            nav.querySelector('.logo-text').classList.remove('text-white');
+            nav.querySelector('.logo-text').classList.add('text-warm-copper');
+        } else {
+            nav.classList.remove('nav-scrolled');
+            nav.classList.remove('py-2');
+            nav.classList.add('py-4');
+            nav.querySelectorAll('.nav-link').forEach(el => {
+                el.classList.add('text-white/90', 'hover:text-white');
+                el.classList.remove('text-on-surface', 'hover:text-warm-copper');
+            });
+            nav.querySelector('.logo-text').classList.add('text-white');
+            nav.querySelector('.logo-text').classList.remove('text-warm-copper');
+        }
+    });
+</script>
+</body></html>

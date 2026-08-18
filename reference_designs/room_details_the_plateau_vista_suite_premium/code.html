@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Plateau Vista Suite - Hill Station Jos</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&amp;family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-dim": "#dbdad5",
+                        "on-surface": "#1b1c19",
+                        "on-tertiary-fixed-variant": "#5d4201",
+                        "outline-variant": "#c3c8c1",
+                        "surface-container": "#f0eee9",
+                        "secondary": "#695d46",
+                        "on-secondary-fixed": "#231a08",
+                        "background": "#fbf9f4",
+                        "on-secondary": "#ffffff",
+                        "primary-container": "#1b3022",
+                        "on-error-container": "#93000a",
+                        "primary": "#061b0e",
+                        "tertiary-fixed": "#ffdea5",
+                        "surface-container-highest": "#e4e2dd",
+                        "surface-bright": "#fbf9f4",
+                        "tertiary-fixed-dim": "#e9c176",
+                        "on-tertiary-container": "#b18d48",
+                        "inverse-surface": "#30312e",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed-variant": "#504530",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-high": "#eae8e3",
+                        "surface": "#fbf9f4",
+                        "inverse-on-surface": "#f2f1ec",
+                        "surface-variant": "#e4e2dd",
+                        "on-primary-fixed-variant": "#364c3c",
+                        "surface-tint": "#4d6453",
+                        "on-tertiary-fixed": "#261900",
+                        "inverse-primary": "#b4cdb8",
+                        "surface-container-low": "#f5f3ee",
+                        "primary-fixed-dim": "#b4cdb8",
+                        "secondary-container": "#efdec0",
+                        "on-error": "#ffffff",
+                        "tertiary-container": "#3a2800",
+                        "on-secondary-container": "#6d614a",
+                        "on-primary-fixed": "#0b2013",
+                        "on-primary-container": "#819986",
+                        "secondary-fixed": "#f2e0c3",
+                        "primary-fixed": "#d0e9d4",
+                        "on-surface-variant": "#434843",
+                        "outline": "#737973",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed-dim": "#d5c5a8",
+                        "error": "#ba1a1a",
+                        "surface-container-lowest": "#ffffff",
+                        "on-background": "#1b1c19",
+                        "tertiary": "#211500"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "container-max": "1440px",
+                        "gutter": "32px",
+                        "section-gap": "160px",
+                        "margin-desktop": "80px",
+                        "unit": "8px",
+                        "margin-mobile": "24px"
+                    },
+                    fontFamily: {
+                        "label-caps": ["Montserrat"],
+                        "display-lg": ["Playfair Display"],
+                        "headline-lg": ["Playfair Display"],
+                        "body-md": ["Montserrat"],
+                        "headline-sm": ["Playfair Display"],
+                        "body-lg": ["Montserrat"],
+                        "headline-md": ["Playfair Display"],
+                        "headline-lg-mobile": ["Playfair Display"]
+                    },
+                    fontSize: {
+                        "label-caps": ["12px", { lineHeight: "16px", letterSpacing: "0.15em", fontWeight: "600" }],
+                        "display-lg": ["84px", { lineHeight: "92px", letterSpacing: "-0.02em", fontWeight: "400" }],
+                        "headline-lg": ["48px", { lineHeight: "56px", fontWeight: "400" }],
+                        "body-md": ["16px", { lineHeight: "26px", fontWeight: "400" }],
+                        "headline-sm": ["24px", { lineHeight: "32px", fontWeight: "500" }],
+                        "body-lg": ["18px", { lineHeight: "30px", letterSpacing: "0.01em", fontWeight: "300" }],
+                        "headline-md": ["32px", { lineHeight: "40px", fontWeight: "400" }],
+                        "headline-lg-mobile": ["36px", { lineHeight: "44px", fontWeight: "400" }]
+                    }
+                }
+            }
+        };
+    </script>
+<style>
+        .parallax-bg {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+        
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .nav-scrolled {
+            background-color: theme('colors.secondary-container');
+            color: theme('colors.primary');
+        }
+        
+        .nav-scrolled .text-on-primary {
+             color: theme('colors.primary');
+        }
+        
+        /* Custom date picker styling */
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            cursor: pointer;
+        }
+
+        /* Lightbox styles */
+        #lightbox {
+            transition: opacity 0.3s ease;
+        }
+        #lightbox.hidden {
+            display: none;
+        }
+
+        /* Sticky subnav */
+        .sticky-subnav {
+            position: sticky;
+            top: 0; /* Adjust if main nav is fixed and present */
+            z-index: 40;
+            background-color: theme('colors.surface');
+            transition: box-shadow 0.3s ease;
+        }
+        .sticky-subnav.is-pinned {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        /* Hide scrollbar for horizontal scroll on mobile */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden selection:bg-primary-container selection:text-on-primary">
+<!-- TopNavBar -->
+<header class="flex justify-between items-center w-full px-margin-desktop py-unit max-w-container-max mx-auto z-50 fixed top-0 transition-colors duration-500 bg-transparent dark:bg-transparent" id="main-nav">
+<div class="font-display-lg text-headline-sm font-normal text-on-primary dark:text-on-primary-fixed transition-colors duration-300 logo-text">
+        Hill Station Jos
+    </div>
+<nav class="hidden md:flex gap-8 items-center">
+<a class="text-on-primary/80 font-light hover:text-on-primary transition-opacity duration-300 uppercase tracking-widest text-sm nav-link" href="#">Heritage</a>
+<a class="text-on-primary font-medium border-b-2 border-on-primary pb-1 hover:text-on-primary transition-opacity duration-300 uppercase tracking-widest text-sm nav-link" href="#">Suites</a>
+<a class="text-on-primary/80 font-light hover:text-on-primary transition-opacity duration-300 uppercase tracking-widest text-sm nav-link" href="#">The Highlands</a>
+<a class="text-on-primary/80 font-light hover:text-on-primary transition-opacity duration-300 uppercase tracking-widest text-sm nav-link" href="#">Wellness</a>
+<a class="text-on-primary/80 font-light hover:text-on-primary transition-opacity duration-300 uppercase tracking-widest text-sm nav-link" href="#">Journal</a>
+</nav>
+<button class="hidden md:block bg-primary-container text-on-primary px-8 py-3 font-label-caps text-label-caps uppercase tracking-widest hover:bg-primary transition-colors scale-100 hover:scale-105 duration-300">
+        Book Now
+    </button>
+<button class="md:hidden text-on-primary nav-link">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">menu</span>
+</button>
+</header>
+<main>
+<!-- 1. Enhanced Hero Section -->
+<section class="relative h-screen w-full flex flex-col justify-end pb-32">
+<div class="absolute inset-0 z-0">
+<div class="bg-cover bg-center w-full h-full parallax-bg" data-alt="A cinematic, wide-angle shot of a luxurious suite interior at dusk." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDRqug5OsK_iDSPZ3BPjej6wX5YP-62QgSdznsFNZGWPv3tqzVG08sSH6CcqOFBU5VUVNmsnRcSICVj1uganB-saJgyqf8Mds6rw2k_OtGqGixXhSa4J5hgop937wP5ZRpWG4VC7TMOCRy5CJJOzo4RaBNfDNKsmXtJR88AE5Y0rtZK8KSxDfuSj4ecbGYls2Mm9LKHGcCGqeXT9_rLT1yEU63NUp_qbgQvvQIhRlxwNKdtQW1bwZdG')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+</div>
+<div class="relative z-10 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto w-full fade-in-up">
+<div class="max-w-4xl">
+<p class="font-label-caps text-label-caps text-tertiary-fixed-dim uppercase tracking-widest mb-6">Signature Suite Collection</p>
+<h1 class="font-display-lg text-headline-lg-mobile md:text-display-lg text-on-primary mb-6 leading-tight drop-shadow-lg">The Plateau Vista</h1>
+<p class="font-body-lg text-body-lg text-on-primary/90 max-w-2xl font-light drop-shadow-md mb-8">A sanctuary suspended between earth and sky, offering uninterrupted panoramas of the Shere Hills.</p>
+<!-- Compact Quick Facts -->
+<div class="flex flex-wrap gap-6 md:gap-12 mb-10 text-on-primary/90">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm font-light">square_foot</span>
+<span class="font-label-caps tracking-wider text-xs">850 SQ FT</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm font-light">group</span>
+<span class="font-label-caps tracking-wider text-xs">UP TO 3 GUESTS</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm font-light">king_bed</span>
+<span class="font-label-caps tracking-wider text-xs">1 KING BED</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm font-light">landscape</span>
+<span class="font-label-caps tracking-wider text-xs">HILL PANORAMA</span>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row gap-4">
+<button class="bg-primary-container text-on-primary px-10 py-4 font-label-caps text-label-caps uppercase tracking-widest hover:bg-primary transition-colors">
+                        Book This Room
+                    </button>
+<button class="border border-on-primary/50 text-on-primary px-10 py-4 font-label-caps text-label-caps uppercase tracking-widest hover:bg-on-primary hover:text-primary transition-colors flex items-center justify-center gap-2">
+                        Explore Gallery
+                        <span class="material-symbols-outlined text-sm">arrow_downward</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- 2. Sticky Room Navigation -->
+<div class="sticky-subnav border-b-[0.5px] border-outline-variant/30 hidden md:block" id="room-subnav">
+<div class="max-w-container-max mx-auto px-margin-desktop flex justify-between items-center py-4">
+<nav class="flex gap-8">
+<a class="font-label-caps text-label-caps text-primary uppercase tracking-widest border-b border-primary pb-1" href="#about">The Room</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors uppercase tracking-widest pb-1" href="#features">Features</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors uppercase tracking-widest pb-1" href="#gallery">Gallery</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors uppercase tracking-widest pb-1" href="#booking">Booking</a>
+</nav>
+<div class="flex items-center gap-6">
+<p class="font-body-md text-sm text-on-surface-variant"><span class="font-headline-sm text-primary">From ₦450,000</span> / night</p>
+<button class="bg-primary text-on-primary px-6 py-2.5 font-label-caps text-[10px] uppercase tracking-widest hover:bg-primary-container transition-colors">
+                    Check Availability
+                </button>
+</div>
+</div>
+</div>
+<!-- 3. Editorial Introduction -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto" id="about">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<div class="lg:col-span-5 fade-in-up">
+<p class="font-label-caps text-label-caps text-tertiary-container uppercase tracking-widest mb-4">About the Room</p>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary leading-tight sticky top-32">Crafted from the landscape.</h2>
+</div>
+<div class="lg:col-span-6 lg:col-start-7 fade-in-up mt-8 lg:mt-0 space-y-8">
+<p class="font-body-lg text-body-lg text-primary font-light">
+                    The Plateau Vista is an exercise in restraint and material honesty. We sourced native granite from the surrounding hills to anchor the space, balanced by the warmth of reclaimed mahogany.
+                </p>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    Every textile, from the hand-loomed linen drapery to the wool rugs, has been chosen to mirror the organic textures of the highland plateau. It is a space designed not just for shelter, but for profound connection to the environment.
+                </p>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    Wake up to the mist rolling over the Shere Hills from your private balcony, and end the day in a freestanding soaking tub that blurs the line between indoors and out. The architecture defers entirely to the view.
+                </p>
+</div>
+</div>
+</section>
+<!-- 4. Masonry Gallery -->
+<section class="pb-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto" id="gallery">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 auto-rows-[250px] md:auto-rows-[350px]">
+<!-- Hero image spanning 2 rows -->
+<div class="md:col-span-8 md:row-span-2 relative group overflow-hidden fade-in-up cursor-pointer gallery-item">
+<img alt="Main bedroom area" class="object-cover w-full h-full transition-transform duration-1000 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABzywuWfxx4I_vDUb9fJaE1bT3bYWa8SU6D54yzVXx4yT6evslHx92R2Gn-d1_yrVio3jARR62xlWAq-nw8aq4xJ-T9qL9xQD8FWzlBIWFP-vvV1HRDXG4iKvZwH7L8Eg2mc8b2wPkoknYYyHLbYXVOvarjp0BMGx8K5CfQ9w6kSM3elo8TzZ0OrbxbWdjp29C7kfCOtIPYRYKGkRdbQFQhvU97uY-tzlgfLpPbAy8pdm_X4bJLUtF"/>
+<div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-500"></div>
+</div>
+<!-- Side images -->
+<div class="md:col-span-4 relative group overflow-hidden fade-in-up cursor-pointer gallery-item" style="transition-delay: 100ms;">
+<img alt="Deep soaking tub" class="object-cover w-full h-full transition-transform duration-1000 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkv5-yXb7MYuQLwfIXOnWJU5nTyRDAZyDPZqu7vdksS0U0Da0j2xmipC-5vDQDyF4GouEkk-shBqKrggaT30Ui_BNGBHDwePRi0gkMoF4AaY0boh2zgc6G0a3GtBN70lV_sBcdsWJT50ffaUlyW29ck_NShVWC0WrZ3RqLAkF97vQG0sqBYx_Ob6HqDua5bewijsKP2nGxZidIxQWjkGUSQL2BiEUYxzDv7RYPfz05dSYV4ZpCDDbV"/>
+<div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-500"></div>
+</div>
+<div class="md:col-span-4 relative group overflow-hidden fade-in-up cursor-pointer gallery-item" style="transition-delay: 200ms;">
+<img alt="Private balcony view" class="object-cover w-full h-full transition-transform duration-1000 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwB84KOFw6_RKWhA_bYHvXsmrfifSR2vmmcdfeon74gJgQArQ8qNg8aX_W1S6ERnFksTMSgELuFLQ1Fjpq6OBYkSyko0GxPKRmLDvkOeYLnITxVXqQzCGY0eWPftbZoWDUIEOfVcThevUyLJWKlWIU3xH-VjvQdCV-WfUxok6dU8jL82XkCWnUiTMlCcY3LAQ9h5QOb1KwjhF9VkYUVV6g3VP7AWZXBp8NxPLnbq5D5Sazti7gsfgG"/>
+<div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-500"></div>
+</div>
+<!-- Bottom row -->
+<div class="md:col-span-6 relative group overflow-hidden fade-in-up cursor-pointer gallery-item">
+<div class="bg-surface-container-high w-full h-full flex items-center justify-center transition-transform duration-1000 group-hover:scale-105">
+<span class="material-symbols-outlined text-outline-variant text-4xl">weekend</span>
+<span class="sr-only">Seating area details</span>
+</div>
+<div class="absolute inset-0 bg-black/5 group-hover:bg-black/0 transition-colors duration-500"></div>
+</div>
+<div class="md:col-span-6 relative group overflow-hidden fade-in-up cursor-pointer gallery-item flex items-center justify-center bg-secondary-container" style="transition-delay: 100ms;">
+<div class="text-center p-8 z-10">
+<span class="material-symbols-outlined text-primary mb-4">collections</span>
+<p class="font-label-caps text-label-caps text-primary uppercase tracking-widest">View Full Gallery (12)</p>
+</div>
+<div class="absolute inset-0 bg-black/5 group-hover:bg-black/0 transition-colors duration-500"></div>
+</div>
+</div>
+</section>
+<!-- 6. Detailed Information Architecture -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto border-t-[0.5px] border-outline-variant/30" id="features">
+<div class="text-center mb-20 fade-in-up">
+<h2 class="font-headline-lg text-headline-md text-primary">Intelligent Details</h2>
+<p class="font-body-md text-on-surface-variant mt-4 max-w-2xl mx-auto">Every element has been considered to ensure an effortless stay.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-20">
+<!-- Category 1 -->
+<div class="fade-in-up">
+<h3 class="font-label-caps text-label-caps text-tertiary-container uppercase tracking-widest border-b-[0.5px] border-outline-variant/50 pb-4 mb-6">In Your Room</h3>
+<ul class="space-y-4">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-sm mt-1">king_bed</span>
+<span class="font-body-md text-on-surface">Signature King Bed</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-sm mt-1">balcony</span>
+<span class="font-body-md text-on-surface">Furnished Private Balcony</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-sm mt-1">work</span>
+<span class="font-body-md text-on-surface">Executive Writing Desk</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-sm mt-1">iron</span>
+<span class="font-body-md text-on-surface">Iron &amp; Board</span>
+</li>
+</ul>
+</div>
+<!-- Category 2 -->
+<div class="fade-in-up" style="transition-delay: 100ms;">
+<h3 class="font-label-caps text-label-caps text-tertiary-container uppercase tracking-widest border-b-[0.5px] border-outline-variant/50 pb-4 mb-6">Bathroom</h3>
+<ul class="space-y-4">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-sm mt-1">bathtub</span>
+<span class="font-body-md text-on-surface">Deep Soaking Tub</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-sm mt-1">shower</span>
+<span class="font-body-md text-on-surface">Walk-in Rainfall Shower</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-sm mt-1">spa</span>
+<span class="font-body-md text-on-surface">Bespoke Local Toiletries</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-sm mt-1">dry_cleaning</span>
+<span class="font-body-md text-on-surface">Plush Bathrobes &amp; Slippers</span>
+</li>
+</ul>
+</div>
+<!-- Category 3 -->
+<div class="fade-in-up" style="transition-delay: 200ms;">
+<h3 class="font-label-caps text-label-caps text-tertiary-container uppercase tracking-widest border-b-[0.5px] border-outline-variant/50 pb-4 mb-6">Comfort &amp; Tech</h3>
+<ul class="space-y-4">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-sm mt-1">wifi</span>
+<span class="font-body-md text-on-surface">Complimentary Wi-Fi</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-sm mt-1">tv</span>
+<span class="font-body-md text-on-surface">55" Smart TV with Casting</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-sm mt-1">ac_unit</span>
+<span class="font-body-md text-on-surface">Individual Climate Control</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-sm mt-1">lock</span>
+<span class="font-body-md text-on-surface">In-room Safe</span>
+</li>
+</ul>
+</div>
+<!-- Category 4 -->
+<div class="fade-in-up" style="transition-delay: 300ms;">
+<h3 class="font-label-caps text-label-caps text-tertiary-container uppercase tracking-widest border-b-[0.5px] border-outline-variant/50 pb-4 mb-6">Refreshments</h3>
+<ul class="space-y-4">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-sm mt-1">coffee_maker</span>
+<span class="font-body-md text-on-surface">Nespresso Machine</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-sm mt-1">emoji_food_beverage</span>
+<span class="font-body-md text-on-surface">Local Highland Tea Selection</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-sm mt-1">liquor</span>
+<span class="font-body-md text-on-surface">Curated Minibar</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-sm mt-1">room_service</span>
+<span class="font-body-md text-on-surface">24-hour In-Room Dining</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Included & Dimensions -->
+<div class="bg-surface-container-low p-8 md:p-12 border-[0.5px] border-outline-variant/30 grid grid-cols-1 md:grid-cols-2 gap-12 fade-in-up">
+<div>
+<h4 class="font-headline-sm text-primary mb-6">Included With Your Stay</h4>
+<ul class="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8">
+<li class="flex items-center gap-2 text-on-surface-variant font-body-md">
+<span class="material-symbols-outlined text-primary text-sm">check</span>
+                        Artisanal Breakfast
+                    </li>
+<li class="flex items-center gap-2 text-on-surface-variant font-body-md">
+<span class="material-symbols-outlined text-primary text-sm">check</span>
+                        Evening Turn-down Service
+                    </li>
+<li class="flex items-center gap-2 text-on-surface-variant font-body-md">
+<span class="material-symbols-outlined text-primary text-sm">check</span>
+                        Access to Highland Spa
+                    </li>
+<li class="flex items-center gap-2 text-on-surface-variant font-body-md">
+<span class="material-symbols-outlined text-primary text-sm">check</span>
+                        Valet Parking
+                    </li>
+</ul>
+</div>
+<div class="border-t-[0.5px] border-outline-variant/30 md:border-t-0 md:border-l-[0.5px] md:pl-12 pt-8 md:pt-0">
+<h4 class="font-headline-sm text-primary mb-6">Dimensions</h4>
+<div class="flex items-center gap-8 mb-6">
+<div>
+<p class="font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest mb-1">Total Area</p>
+<p class="font-body-md text-primary font-medium">850 sq ft / 79 sq m</p>
+</div>
+<div>
+<p class="font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest mb-1">Exterior</p>
+<p class="font-body-md text-primary font-medium">120 sq ft / 11 sq m</p>
+</div>
+</div>
+<button class="text-primary border-b border-primary pb-1 font-label-caps text-xs uppercase tracking-widest hover:text-primary-container transition-colors inline-flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">floor</span>
+                     View Floor Plan
+                 </button>
+</div>
+</div>
+</section>
+<!-- 7. Refined Booking Experience -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop bg-surface-container-lowest" id="booking">
+<div class="max-w-4xl mx-auto text-center fade-in-up">
+<p class="font-label-caps text-label-caps text-tertiary-container uppercase tracking-widest mb-4">Reserve</p>
+<h2 class="font-headline-lg text-headline-md text-primary mb-12">Plan Your Stay</h2>
+<div class="bg-surface border-[0.5px] border-outline-variant/50 p-6 md:p-8 flex flex-col md:flex-row gap-4 items-end shadow-sm">
+<!-- Check-in -->
+<div class="w-full text-left">
+<label class="block font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest mb-2">Check In</label>
+<div class="relative flex items-center bg-surface-container-low px-4 py-3 border-[0.5px] border-outline-variant/30 group hover:border-outline transition-colors cursor-pointer w-full">
+<span class="material-symbols-outlined font-light text-on-surface-variant mr-3">calendar_today</span>
+<span class="font-body-md text-primary">Select Date</span>
+<input class="absolute inset-0 opacity-0 cursor-pointer w-full" type="date"/>
+</div>
+</div>
+<!-- Check-out -->
+<div class="w-full text-left">
+<label class="block font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest mb-2">Check Out</label>
+<div class="relative flex items-center bg-surface-container-low px-4 py-3 border-[0.5px] border-outline-variant/30 group hover:border-outline transition-colors cursor-pointer w-full">
+<span class="material-symbols-outlined font-light text-on-surface-variant mr-3">calendar_today</span>
+<span class="font-body-md text-primary">Select Date</span>
+<input class="absolute inset-0 opacity-0 cursor-pointer w-full" type="date"/>
+</div>
+</div>
+<!-- Guests -->
+<div class="w-full text-left">
+<label class="block font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest mb-2">Guests</label>
+<div class="relative flex items-center justify-between bg-surface-container-low px-4 py-3 border-[0.5px] border-outline-variant/30 group hover:border-outline transition-colors cursor-pointer w-full">
+<div class="flex items-center">
+<span class="material-symbols-outlined font-light text-on-surface-variant mr-3">person</span>
+<span class="font-body-md text-primary">2 Adults</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-sm">expand_more</span>
+</div>
+</div>
+<button class="w-full md:w-auto bg-primary text-on-primary px-10 py-3.5 font-label-caps text-label-caps uppercase tracking-widest hover:bg-primary-container transition-colors whitespace-nowrap">
+                    Check Availability
+                </button>
+</div>
+<p class="font-body-md text-sm text-on-surface-variant mt-6 text-center">From ₦450,000 per night. Rates may vary based on selected dates.</p>
+</div>
+</section>
+<!-- 8. Discovery & Cross-sell -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto border-t-[0.5px] border-outline-variant/30">
+<div class="flex flex-col md:flex-row justify-between items-baseline mb-12 fade-in-up">
+<h2 class="font-headline-lg text-headline-md text-primary">Continue Exploring</h2>
+<a class="font-label-caps text-label-caps text-primary uppercase tracking-widest border-b border-primary pb-1 hover:text-primary-container mt-4 md:mt-0 inline-block" href="#">View All Suites</a>
+</div>
+<!-- Horizontal scroll on mobile, grid on desktop -->
+<div class="flex overflow-x-auto hide-scrollbar snap-x snap-mandatory gap-6 md:grid md:grid-cols-3 pb-8 md:pb-0">
+<!-- Room Card 1 -->
+<div class="min-w-[85vw] md:min-w-0 snap-start group cursor-pointer fade-in-up">
+<div class="aspect-[4/3] overflow-hidden mb-6 bg-surface-container-high relative">
+<!-- Placeholder color block -->
+<div class="absolute inset-0 bg-[#e4e2dd] transition-transform duration-700 group-hover:scale-105"></div>
+</div>
+<p class="font-label-caps text-[10px] text-tertiary-container uppercase tracking-widest mb-2">Heritage Collection</p>
+<h3 class="font-headline-sm text-xl text-primary mb-2">The Miner's Quarters</h3>
+<p class="font-body-md text-sm text-on-surface-variant mb-4">From ₦350,000 / night</p>
+<span class="font-label-caps text-xs text-primary uppercase tracking-widest border-b border-primary pb-1 group-hover:text-primary-container transition-colors inline-block">View Room</span>
+</div>
+<!-- Room Card 2 -->
+<div class="min-w-[85vw] md:min-w-0 snap-start group cursor-pointer fade-in-up" style="transition-delay: 100ms;">
+<div class="aspect-[4/3] overflow-hidden mb-6 bg-surface-container-high relative">
+<!-- Placeholder color block -->
+<div class="absolute inset-0 bg-[#dbdad5] transition-transform duration-700 group-hover:scale-105"></div>
+</div>
+<p class="font-label-caps text-[10px] text-tertiary-container uppercase tracking-widest mb-2">Signature Suite</p>
+<h3 class="font-headline-sm text-xl text-primary mb-2">The Jos Grand</h3>
+<p class="font-body-md text-sm text-on-surface-variant mb-4">From ₦600,000 / night</p>
+<span class="font-label-caps text-xs text-primary uppercase tracking-widest border-b border-primary pb-1 group-hover:text-primary-container transition-colors inline-block">View Room</span>
+</div>
+<!-- Room Card 3 -->
+<div class="min-w-[85vw] md:min-w-0 snap-start group cursor-pointer fade-in-up" style="transition-delay: 200ms;">
+<div class="aspect-[4/3] overflow-hidden mb-6 bg-surface-container-high relative">
+<!-- Placeholder color block -->
+<div class="absolute inset-0 bg-[#d0e9d4] transition-transform duration-700 group-hover:scale-105"></div>
+</div>
+<p class="font-label-caps text-[10px] text-tertiary-container uppercase tracking-widest mb-2">Private Villa</p>
+<h3 class="font-headline-sm text-xl text-primary mb-2">Highland Retreat</h3>
+<p class="font-body-md text-sm text-on-surface-variant mb-4">From ₦1,200,000 / night</p>
+<span class="font-label-caps text-xs text-primary uppercase tracking-widest border-b border-primary pb-1 group-hover:text-primary-container transition-colors inline-block">View Room</span>
+</div>
+</div>
+<!-- Facilities Cross-sell -->
+<div class="mt-32 fade-in-up">
+<h2 class="font-headline-lg text-headline-md text-primary mb-12 text-center">Beyond Your Room</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="group cursor-pointer relative h-[400px] overflow-hidden flex items-end p-8">
+<!-- Placeholder background -->
+<div class="absolute inset-0 bg-primary-container/90 transition-transform duration-1000 group-hover:scale-105"></div>
+<div class="relative z-10 w-full">
+<h3 class="font-headline-sm text-2xl text-on-primary mb-2">Dining at The Peak</h3>
+<p class="font-body-md text-on-primary/80 mb-6 max-w-sm">Culinary experiences rooted in the plateau's rich agricultural heritage.</p>
+<span class="font-label-caps text-xs text-on-primary uppercase tracking-widest border-b border-on-primary/50 pb-1 group-hover:border-on-primary transition-colors inline-block">Explore Dining</span>
+</div>
+</div>
+<div class="group cursor-pointer relative h-[400px] overflow-hidden flex items-end p-8">
+<!-- Placeholder background -->
+<div class="absolute inset-0 bg-secondary/90 transition-transform duration-1000 group-hover:scale-105"></div>
+<div class="relative z-10 w-full">
+<h3 class="font-headline-sm text-2xl text-on-primary mb-2">The Wellness Sanctuary</h3>
+<p class="font-body-md text-on-primary/80 mb-6 max-w-sm">Restorative treatments inspired by ancient highland traditions.</p>
+<span class="font-label-caps text-xs text-on-primary uppercase tracking-widest border-b border-on-primary/50 pb-1 group-hover:border-on-primary transition-colors inline-block">View Spa Menu</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 9. Final CTA -->
+<section class="relative h-[70vh] w-full flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<!-- Placeholder background color to simulate image -->
+<div class="absolute inset-0 bg-surface-tint"></div>
+<div class="absolute inset-0 bg-black/40"></div>
+</div>
+<div class="relative z-10 text-center px-margin-mobile fade-in-up">
+<h2 class="font-display-lg text-headline-lg-mobile md:text-display-lg text-on-primary mb-8 drop-shadow-md">Your stay begins here.</h2>
+<button class="bg-primary-container text-on-primary px-12 py-4 font-label-caps text-label-caps uppercase tracking-widest hover:bg-primary transition-colors scale-100 hover:scale-105 duration-300">
+                Reserve The Plateau Vista
+            </button>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-secondary-container dark:bg-tertiary-container text-on-secondary-container dark:text-on-tertiary-container grid grid-cols-1 md:grid-cols-3 gap-gutter px-margin-desktop py-section-gap max-w-container-max mx-auto w-full border-t-[0.5px] border-outline-variant">
+<div class="col-span-1">
+<div class="font-display-lg text-headline-md text-primary dark:text-on-primary-fixed mb-6">
+            Hill Station Jos
+        </div>
+<p class="font-body-md text-body-md tracking-tight opacity-70">
+            © 2024 The Hill Station Jos. A Sanctuary in the Shere Hills.
+        </p>
+</div>
+<div class="col-span-1 md:col-span-2 flex flex-col md:flex-row justify-end gap-12 md:gap-24">
+<nav class="flex flex-col gap-4">
+<a class="font-body-md text-body-md tracking-tight text-on-secondary-container/70 dark:text-on-tertiary-container/70 hover:text-primary dark:hover:text-primary-fixed underline underline-offset-8 transition-opacity opacity-100 hover:opacity-80" href="#">Reservations</a>
+<a class="font-body-md text-body-md tracking-tight text-on-secondary-container/70 dark:text-on-tertiary-container/70 hover:text-primary dark:hover:text-primary-fixed underline underline-offset-8 transition-opacity opacity-100 hover:opacity-80" href="#">Curated Experiences</a>
+<a class="font-body-md text-body-md tracking-tight text-on-secondary-container/70 dark:text-on-tertiary-container/70 hover:text-primary dark:hover:text-primary-fixed underline underline-offset-8 transition-opacity opacity-100 hover:opacity-80" href="#">Private Events</a>
+</nav>
+<nav class="flex flex-col gap-4">
+<a class="font-body-md text-body-md tracking-tight text-on-secondary-container/70 dark:text-on-tertiary-container/70 hover:text-primary dark:hover:text-primary-fixed underline underline-offset-8 transition-opacity opacity-100 hover:opacity-80" href="#">Heritage Preservation</a>
+<a class="font-body-md text-body-md tracking-tight text-on-secondary-container/70 dark:text-on-tertiary-container/70 hover:text-primary dark:hover:text-primary-fixed underline underline-offset-8 transition-opacity opacity-100 hover:opacity-80" href="#">Privacy Policy</a>
+</nav>
+</div>
+</footer>
+<!-- 5. Fullscreen Lightbox (Hidden by default) -->
+<div class="fixed inset-0 z-[100] bg-black/95 hidden flex flex-col justify-between" id="lightbox">
+<!-- Top Bar -->
+<div class="flex justify-between items-center p-6 text-on-primary">
+<div class="font-label-caps text-xs tracking-widest"><span id="lightbox-current">1</span> / <span id="lightbox-total">5</span></div>
+<button class="hover:text-on-primary/70 transition-colors" id="lightbox-close">
+<span class="material-symbols-outlined text-3xl font-light">close</span>
+</button>
+</div>
+<!-- Image Container -->
+<div class="flex-grow flex items-center justify-center relative px-12">
+<button class="absolute left-6 text-on-primary hover:text-on-primary/70 transition-colors hidden md:block" id="lightbox-prev">
+<span class="material-symbols-outlined text-4xl font-light">chevron_left</span>
+</button>
+<img alt="Gallery Image" class="max-h-[80vh] max-w-full object-contain select-none" id="lightbox-img" src=""/>
+<button class="absolute right-6 text-on-primary hover:text-on-primary/70 transition-colors hidden md:block" id="lightbox-next">
+<span class="material-symbols-outlined text-4xl font-light">chevron_right</span>
+</button>
+</div>
+<!-- Bottom Bar (Caption) -->
+<div class="p-6 text-center text-on-primary/80 font-body-md text-sm">
+<p id="lightbox-caption">The Plateau Vista Suite</p>
+</div>
+</div>
+<!-- Mobile Sticky Booking CTA -->
+<div class="md:hidden fixed bottom-0 left-0 w-full bg-surface border-t border-outline-variant/30 p-4 z-40 flex justify-between items-center shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]">
+<div>
+<p class="font-body-md text-sm font-medium text-primary">₦450,000 <span class="font-light text-xs text-on-surface-variant">/ night</span></p>
+</div>
+<button class="bg-primary text-on-primary px-6 py-3 font-label-caps text-xs uppercase tracking-widest hover:bg-primary-container transition-colors">
+        Book Room
+    </button>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // Simple scroll observer for fade-in animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('.fade-in-up').forEach((el) => {
+            observer.observe(el);
+        });
+
+        // Main Nav background change on scroll
+        const nav = document.getElementById('main-nav');
+        // Sticky Subnav shadow on scroll
+        const subnav = document.getElementById('room-subnav');
+        
+        window.addEventListener('scroll', () => {
+            // Main nav
+            if (window.scrollY > 50) {
+                nav.classList.add('nav-scrolled');
+                nav.classList.remove('bg-transparent', 'dark:bg-transparent');
+            } else {
+                nav.classList.remove('nav-scrolled');
+                nav.classList.add('bg-transparent', 'dark:bg-transparent');
+            }
+
+            // Subnav shadow
+            if (subnav) {
+                if (window.scrollY > subnav.offsetTop) {
+                    subnav.classList.add('is-pinned');
+                } else {
+                    subnav.classList.remove('is-pinned');
+                }
+            }
+        });
+
+        // Basic Lightbox Implementation
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const closeBtn = document.getElementById('lightbox-close');
+        const galleryItems = document.querySelectorAll('.gallery-item img');
+        
+        if (galleryItems.length > 0 && lightbox) {
+            galleryItems.forEach(img => {
+                img.addEventListener('click', () => {
+                    lightboxImg.src = img.src;
+                    lightbox.classList.remove('hidden');
+                    document.body.style.overflow = 'hidden'; // Prevent scrolling
+                });
+            });
+
+            closeBtn.addEventListener('click', () => {
+                lightbox.classList.add('hidden');
+                document.body.style.overflow = '';
+            });
+
+            // Close on background click
+            lightbox.addEventListener('click', (e) => {
+                if(e.target === lightbox) {
+                    lightbox.classList.add('hidden');
+                    document.body.style.overflow = '';
+                }
+            });
+        }
+    });
+</script>
+</body></html>

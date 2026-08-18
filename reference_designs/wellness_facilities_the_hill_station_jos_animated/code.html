@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Wellness &amp; Facilities | Hill Station Jos</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&amp;family=Montserrat:wght@300;400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-dim": "#dbdad5",
+                    "on-primary-container": "#819986",
+                    "outline": "#737973",
+                    "error": "#ba1a1a",
+                    "secondary-fixed-dim": "#d5c5a8",
+                    "on-tertiary-container": "#b18d48",
+                    "primary": "#061b0e",
+                    "secondary-container": "#efdec0",
+                    "inverse-primary": "#b4cdb8",
+                    "on-secondary-fixed": "#231a08",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "tertiary": "#211500",
+                    "inverse-surface": "#30312e",
+                    "surface-container": "#f0eee9",
+                    "tertiary-container": "#3a2800",
+                    "on-primary-fixed": "#0b2013",
+                    "surface": "#fbf9f4",
+                    "surface-container-highest": "#e4e2dd",
+                    "on-tertiary-fixed-variant": "#5d4201",
+                    "tertiary-fixed-dim": "#e9c176",
+                    "surface-container-high": "#eae8e3",
+                    "tertiary-fixed": "#ffdea5",
+                    "secondary": "#695d46",
+                    "on-primary-fixed-variant": "#364c3c",
+                    "on-primary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "on-background": "#1b1c19",
+                    "on-secondary-container": "#6d614a",
+                    "surface-container-low": "#f5f3ee",
+                    "outline-variant": "#c3c8c1",
+                    "on-tertiary": "#ffffff",
+                    "primary-fixed-dim": "#b4cdb8",
+                    "secondary-fixed": "#f2e0c3",
+                    "on-secondary": "#ffffff",
+                    "on-surface": "#1b1c19",
+                    "inverse-on-surface": "#f2f1ec",
+                    "on-error": "#ffffff",
+                    "primary-container": "#1b3022",
+                    "surface-bright": "#fbf9f4",
+                    "on-tertiary-fixed": "#261900",
+                    "surface-tint": "#4d6453",
+                    "on-secondary-fixed-variant": "#504530",
+                    "surface-variant": "#e4e2dd",
+                    "on-surface-variant": "#434843",
+                    "background": "#fbf9f4",
+                    "primary-fixed": "#d0e9d4"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "80px",
+                    "section-gap": "160px",
+                    "margin-mobile": "24px",
+                    "unit": "8px",
+                    "gutter": "32px",
+                    "container-max": "1440px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Playfair Display"],
+                    "headline-lg": ["Playfair Display"],
+                    "headline-md": ["Playfair Display"],
+                    "headline-sm": ["Playfair Display"],
+                    "body-md": ["Montserrat"],
+                    "label-caps": ["Montserrat"],
+                    "body-lg": ["Montserrat"],
+                    "headline-lg-mobile": ["Playfair Display"]
+            },
+            "fontSize": {
+                    "display-lg": ["84px", {"lineHeight": "92px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                    "headline-lg": ["48px", {"lineHeight": "56px", "fontWeight": "400"}],
+                    "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                    "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "26px", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.15em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "30px", "letterSpacing": "0.01em", "fontWeight": "300"}],
+                    "headline-lg-mobile": ["36px", {"lineHeight": "44px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 100, 'GRAD' 0, 'opsz' 24;
+            font-size: 24px;
+        }
+        body {
+            background-color: #fbf9f4; /* Canvas Background */
+        }
+        .hero-scrim {
+            background: linear-gradient(to bottom, rgba(6, 27, 14, 0.4) 0%, rgba(6, 27, 14, 0) 40%, rgba(6, 27, 14, 0.4) 100%);
+        }
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .reveal-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Slow Zoom Animation for Hero */
+        @keyframes slowZoom {
+            from { transform: scale(1); }
+            to { transform: scale(1.1); }
+        }
+        .animate-slow-zoom {
+            animation: slowZoom 25s ease-out infinite alternate;
+        }
+
+        /* Subtle Mask Reveal for Icons */
+        .icon-mask-reveal {
+            clip-path: inset(0 100% 0 0);
+            transition: clip-path 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .visible .icon-mask-reveal {
+            clip-path: inset(0 0 0 0);
+        }
+
+        /* Conference Card Hover/Transitions */
+        .conference-card {
+            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .conference-card:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-8px);
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface">
+<!-- Top Navigation Bar -->
+<nav class="flex justify-between items-center w-full px-margin-desktop py-unit max-w-container-max mx-auto z-50 fixed transition-colors duration-500 bg-transparent" id="navbar">
+<div class="font-display-lg text-headline-sm font-normal text-on-primary">Hill Station Jos</div>
+<div class="hidden md:flex gap-gutter items-center">
+<a class="font-display-lg text-headline-sm uppercase tracking-widest text-on-primary/80 font-light hover:text-on-primary transition-opacity duration-300" href="#">Heritage</a>
+<a class="font-display-lg text-headline-sm uppercase tracking-widest text-on-primary/80 font-light hover:text-on-primary transition-opacity duration-300" href="#">Suites</a>
+<a class="font-display-lg text-headline-sm uppercase tracking-widest text-on-primary/80 font-light hover:text-on-primary transition-opacity duration-300" href="#">The Highlands</a>
+<a class="font-display-lg text-headline-sm uppercase tracking-widest text-on-primary font-medium border-b-2 border-on-primary pb-1" href="#">Wellness</a>
+<a class="font-display-lg text-headline-sm uppercase tracking-widest text-on-primary/80 font-light hover:text-on-primary transition-opacity duration-300" href="#">Journal</a>
+</div>
+<button class="bg-primary text-on-primary px-8 py-3 font-label-caps uppercase scale-100 hover:scale-105 transition-transform">
+            Book Now
+        </button>
+</nav>
+<!-- Hero Section -->
+<section class="relative h-screen w-full overflow-hidden">
+<img alt="Atmospheric photograph of a luxury infinity pool at dusk" class="absolute inset-0 w-full h-full object-cover animate-slow-zoom" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0GGBxW4M7DjrtIRj7dEZVuDSrWIeCQPvePSJGnvvjStFMsgfZT0tqaoOKU9UTrvDmjJrq-Ec01AnVD8kos3lUvZUua8k3zqO8P1o_jcwMnFcoukl5amkd1VvAuRN3GQF08kQHR1aJaF1lbBJyW6HA1_gt3gwuoTeU6vvUD98T12qilhbdt1HtpcXHnpaPweo8tfGtUux8LProedFGDzmU34Jgj2CaMFmpVAlr7hqn0YchHcB3z-twbQJV7bnC3jEsQPv26KabSnA"/>
+<div class="absolute inset-0 hero-scrim"></div>
+<div class="absolute inset-0 flex flex-col justify-end px-margin-desktop pb-margin-desktop max-w-container-max mx-auto">
+<div class="max-w-2xl reveal-on-scroll visible">
+<span class="font-label-caps text-on-primary uppercase mb-4 block">Refuge &amp; Restoration</span>
+<h1 class="font-display-lg text-display-lg text-on-primary mb-6">Highland Sanctuary</h1>
+<p class="font-body-lg text-on-primary/90 max-w-lg">
+                    Discover tranquility amidst the granite formations. Our wellness experiences are designed to harmonize the spirit with the ancient rhythms of the Shere Hills.
+                </p>
+</div>
+</div>
+</section>
+<!-- Intro Section -->
+<section class="py-section-gap px-margin-desktop max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-12 gap-gutter items-center reveal-on-scroll">
+<div class="md:col-span-5 mb-12 md:mb-0">
+<span class="font-label-caps text-on-tertiary-container uppercase mb-4 block">The Philosophy</span>
+<h2 class="font-headline-lg text-headline-lg text-primary mb-8">Quietude is the ultimate luxury.</h2>
+<p class="font-body-lg text-on-surface-variant mb-10 leading-relaxed">
+                At Hill Station Jos, we believe that true restoration occurs when one disconnects from the digital pulse and reconnects with the earth. Our facilities are built into the very rock of the plateau, offering panoramic views and an atmosphere of profound stillness.
+            </p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-[0.5px] bg-outline-variant"></div>
+<span class="font-label-caps text-secondary italic">A legacy of hospitality since 1938</span>
+</div>
+</div>
+<div class="md:col-start-7 md:col-span-6 relative">
+<div class="bg-secondary-container absolute -inset-4 -z-10 translate-x-8 translate-y-8"></div>
+<img alt="Minimalist architectural shot of the Jos Highland spa treatment room" class="w-full aspect-[4/5] object-cover shadow-2xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGyYKsiGWOR5WrjfJMEbBNj-FARnEHki7cLppH_hpzH2PUPlXCGErSk_FmNux8YBDydPLd9KeB9Aa3J4W49TRZkDIQVu1GHkCYHef8RyLxPfh6Cmeamb1b1__x9b_uXsJWyhoj_fdcZHWk7hSucSnlb5kEuXpQO8LKAKqSrd6vRuQlQVGnEBst2UNmTD2Zy5iQ3tMdLUiAPH0iMUwF8tHYkDubUAnwg-om4p-ktl_YIW0yTSCTF6ZYluchlxemLEw17b3zDxgL2lY"/>
+</div>
+</section>
+<!-- The Spa Section (Asymmetric Bento) -->
+<section class="py-section-gap bg-surface-container-low px-margin-desktop">
+<div class="max-w-container-max mx-auto">
+<div class="mb-20 text-center reveal-on-scroll">
+<span class="material-symbols-outlined text-primary mb-4 icon-mask-reveal" style="font-size: 48px;">spa</span>
+<h2 class="font-headline-lg text-headline-lg text-primary">The Jos Highland Spa</h2>
+<div class="h-1 w-24 bg-tertiary-container mx-auto mt-6"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter items-stretch">
+<!-- Large Feature Card -->
+<div class="md:col-span-2 relative group overflow-hidden bg-white reveal-on-scroll">
+<img alt="Indoor hydrotherapy pool" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnKPXQcW5rVmZL54qNK0K5SWRF_Y26PxRUmGNnMfe5_nruXXUfLyGlaNTEAEF0_KuxbtPUiw_bZlfzGKTkAP9JtTT4NrRZd2HHjB_vqu8bhXgHZvC6iGyiy007F9915OQZxxEfRg1TY8D0PRpz1pou4hgIFZrhIHPaOhxb-0_C42OS7KL0r5fvsbF6B2vBy8Z-tQLkE7ZurfU4A4b6Unjl_O9G2kY1qrvGlKF2Q6FpkPDzujinJER8iFdMXVDR638tXx2q3nazGOk"/>
+<div class="absolute inset-0 bg-primary/20 flex flex-col justify-end p-10">
+<h3 class="font-headline-md text-on-primary mb-2">Granite Hydrotherapy</h3>
+<p class="font-body-md text-on-primary/80 max-w-sm">Immersion pools carved directly into the plateau's natural rock formations.</p>
+</div>
+</div>
+<!-- Side Text Card -->
+<div class="bg-secondary-container p-12 flex flex-col justify-center reveal-on-scroll" style="transition-delay: 150ms;">
+<span class="font-label-caps text-on-secondary-fixed-variant uppercase mb-6 block">Signature Treatment</span>
+<h3 class="font-headline-sm text-primary mb-6">The Shere Stone Ritual</h3>
+<p class="font-body-md text-on-secondary-container mb-8">
+                        A restorative therapy utilizing heated local basalt stones and wild-harvested herbs from our garden to ground the body and clarify the mind.
+                    </p>
+<a class="font-label-caps text-primary border-b border-primary self-start pb-1 hover:border-transparent transition-colors duration-500" href="#">View Treatment Menu</a>
+</div>
+<!-- Small Detail Card -->
+<div class="bg-white p-10 reveal-on-scroll" style="transition-delay: 300ms;">
+<span class="material-symbols-outlined text-on-tertiary-container mb-4 icon-mask-reveal">self_improvement</span>
+<h3 class="font-headline-sm text-primary mb-4">Meditation Altar</h3>
+<p class="font-body-md text-on-surface-variant">A private pavilion facing the sunrise, perfect for dawn mindfulness practices.</p>
+</div>
+<!-- Medium Feature Card -->
+<div class="md:col-span-2 relative group overflow-hidden bg-white reveal-on-scroll" style="transition-delay: 450ms;">
+<img alt="Spa treatment setup" class="w-full h-64 md:h-full object-cover transition-transform duration-1000 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuATOVg5a5Noc9j6VnQeFFDGnPnGmloYEhp0Mh6EqcE06Njld_4zSR8zlSKQjQX0YnOQWDu3qBd_5594MO_jXX29Zjv2-lutrPn0R-wWo6CIkLZe0XpLPDywGKjSxWZnKP4KoCe6t5Eu7sfBn5gvOoF0B3MMQzf5fnNsa6RIDecvT5hiGPw8m1FSNp4IuwxnVDYiqWeFlcOicDIG4buJjOObp6lK4WOneWWbe5dbXSLhs5PJv-4XEOoMdWooATwqZBqWcJP5Ne_J1yM"/>
+<div class="absolute inset-0 bg-gradient-to-r from-primary/40 to-transparent flex items-center p-10">
+<div class="max-w-xs">
+<h3 class="font-headline-sm text-on-primary mb-2">Apothecary Garden</h3>
+<p class="font-body-md text-on-primary/90">Our oils and balms are distilled on-site using indigenous botanicals.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Highland Fitness & Infinity Pool -->
+<section class="py-section-gap px-margin-desktop overflow-hidden">
+<div class="max-w-container-max mx-auto">
+<div class="flex flex-col md:flex-row gap-gutter items-center mb-32 reveal-on-scroll">
+<div class="md:w-1/2 order-2 md:order-1">
+<img alt="Modern fitness studio" class="w-full aspect-video object-cover shadow-xl transition-all duration-1000" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDTy5P378NP4qH0KYJz4YiCZ4X4BOYy2vfq-Hl8Oyu6Bn_jJh8HURsKj3NL6B0QPBemOuAD5AQggTpjXtjVR7vLUCCJbGVaW3p3v5N1WKr0zRsSNDAnhs-4rIwtAFKHfMEfuBD-PXN6Q9OTVXHDK4dB0gkRqHEc1VR9-Jeg7-m5GFYv5BnYNnztGjBEew29auAzuHbg5Z6iN5sKc1VUI4-GA-HJagQJL10zaxMSba3w59C1Z9_vQT9jFJwaeL5Bm6u_wpgz2L7vwo"/>
+</div>
+<div class="md:w-1/2 md:pl-16 order-1 md:order-2 mb-12 md:mb-0">
+<span class="material-symbols-outlined text-primary mb-4 icon-mask-reveal" style="font-size: 32px;">fitness_center</span>
+<h2 class="font-headline-lg text-headline-lg text-primary mb-6">Highland Fitness</h2>
+<p class="font-body-lg text-on-surface-variant mb-8 leading-relaxed">
+                        Achieve your peak in an environment designed for performance. Our fitness center features state-of-the-art equipment with panoramic views of the plateau's ridgeline.
+                    </p>
+<ul class="space-y-4">
+<li class="flex items-center gap-3 font-body-md text-on-surface">
+<span class="material-symbols-outlined text-secondary text-sm">check_circle</span>
+                            Technogym Artis Equipment
+                        </li>
+<li class="flex items-center gap-3 font-body-md text-on-surface">
+<span class="material-symbols-outlined text-secondary text-sm">check_circle</span>
+                            Personal Training Sessions
+                        </li>
+<li class="flex items-center gap-3 font-body-md text-on-surface">
+<span class="material-symbols-outlined text-secondary text-sm">check_circle</span>
+                            Guided Trail Runs
+                        </li>
+</ul>
+</div>
+</div>
+<div class="flex flex-col md:flex-row gap-gutter items-center reveal-on-scroll">
+<div class="md:w-1/2 md:pr-16 mb-12 md:mb-0">
+<span class="material-symbols-outlined text-primary mb-4 icon-mask-reveal" style="font-size: 32px;">pool</span>
+<h2 class="font-headline-lg text-headline-lg text-primary mb-6">The Infinity Pool</h2>
+<p class="font-body-lg text-on-surface-variant mb-8 leading-relaxed">
+                        Where the water meets the sky. Suspended at 1,200 meters above sea level, our heated infinity pool offers a perspective of the Shere Hills that is nothing short of celestial.
+                    </p>
+<div class="grid grid-cols-2 gap-4">
+<div class="border-l border-outline-variant pl-4">
+<span class="font-label-caps text-secondary uppercase block mb-1">Temperature</span>
+<span class="font-headline-sm">28°C Always</span>
+</div>
+<div class="border-l border-outline-variant pl-4">
+<span class="font-label-caps text-secondary uppercase block mb-1">Service</span>
+<span class="font-headline-sm">Poolside Bar</span>
+</div>
+</div>
+</div>
+<div class="md:w-1/2">
+<img alt="Infinity pool at blue hour" class="w-full aspect-video object-cover shadow-xl transition-all duration-1000" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCiMi0YP0echRUrPKpuvYWxD7OkHU9XyWeLf_b8HneD7ApbXhfkRRQcqwp-ilhfAitpJ9UXs7lI2LrFFBbSfmg2zdBCDzW82g25N1kGvtlDl0leAiL3_N3xHQBlfMpIuHnL4IN1Ex-g2P_TRDi6pFKF9ZpjgjepPs_hrYbUzPZ8WboT51RU21Y0ZtvexpI1D8Xw8IriqgzN-PxGCmh4dkDe3ycrdwpvKcyyznuzLXjY2uimouNd98S6SI8HrAt_5qsMo9x_QbszASs"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Conference & Events -->
+<section class="py-section-gap bg-primary-container text-on-primary relative">
+<div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/granite.png')]"></div>
+<div class="max-w-container-max mx-auto px-margin-desktop relative z-10">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 reveal-on-scroll">
+<div class="max-w-xl">
+<span class="font-label-caps text-on-primary-container uppercase mb-4 block">Gatherings of Note</span>
+<h2 class="font-headline-lg text-headline-lg text-on-primary mb-6">Conferences &amp; Private Events</h2>
+<p class="font-body-lg text-on-primary/70">Elevate your next meeting in a space that inspires clarity. Our heritage halls blend colonial charm with modern technology.</p>
+</div>
+<button class="border border-on-primary px-10 py-4 font-label-caps uppercase mt-8 md:mt-0 hover:bg-on-primary hover:text-primary transition-all duration-500">
+                    Inquire Now
+                </button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<div class="conference-card bg-white/5 backdrop-blur-sm p-12 border border-white/10 flex flex-col justify-between reveal-on-scroll">
+<div>
+<span class="material-symbols-outlined text-secondary-fixed mb-6 icon-mask-reveal" style="font-size: 40px;">meeting_room</span>
+<h3 class="font-headline-md mb-4 text-on-primary">The Heritage Hall</h3>
+<p class="font-body-md text-on-primary/60 mb-8">Capacity: up to 150 guests. Featuring original wood paneling and a dedicated reception foyer for gala dinners and large symposiums.</p>
+</div>
+<div class="flex flex-wrap gap-4">
+<span class="px-3 py-1 bg-on-primary-container/20 text-on-primary-container text-[10px] font-label-caps uppercase">Smart AV</span>
+<span class="px-3 py-1 bg-on-primary-container/20 text-on-primary-container text-[10px] font-label-caps uppercase">Climate Control</span>
+</div>
+</div>
+<div class="conference-card bg-white/5 backdrop-blur-sm p-12 border border-white/10 flex flex-col justify-between reveal-on-scroll" style="transition-delay: 200ms;">
+<div>
+<span class="material-symbols-outlined text-secondary-fixed mb-6 icon-mask-reveal" style="font-size: 40px;">groups</span>
+<h3 class="font-headline-md mb-4 text-on-primary">The Plateau Suite</h3>
+<p class="font-body-md text-on-primary/60 mb-8">Capacity: up to 24 guests. An intimate executive boardroom with floor-to-ceiling glass and private terrace access for breaks.</p>
+</div>
+<div class="flex flex-wrap gap-4">
+<span class="px-3 py-1 bg-on-primary-container/20 text-on-primary-container text-[10px] font-label-caps uppercase">Video Conf</span>
+<span class="px-3 py-1 bg-on-primary-container/20 text-on-primary-container text-[10px] font-label-caps uppercase">Catering Service</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Gallery / Aesthetic Transition -->
+<section class="py-section-gap px-margin-desktop bg-surface reveal-on-scroll">
+<div class="max-w-container-max mx-auto text-center mb-16">
+<h2 class="font-display-lg text-headline-md italic text-primary">A Sanctuary in the Shere Hills</h2>
+</div>
+<div class="columns-1 md:columns-3 gap-gutter space-y-gutter">
+<img alt="Infused water editorial" class="w-full shadow-lg transition-transform duration-1000 hover:scale-[1.02]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsjxevwzz1LMrxUGPag5KSCVDIJWNK5YRvPtiwJoNWiSEwD9CR3RdHiAyjX7hAs_JW9L3zTYWEZ5qw6nzxn0ojOZnZ_TFFG1Atn41ie1QqwhcTa_lcedLtVdHon9Z66PbJksWhXnRIDUJM2vRo9vv7VhQZwYzG7ZzBy4wG41FyoXHbCRd5LW6SVHp71-DbEA7pag4opJEhKN2B3JqBWfWYEhi8ayg5Ebckl3NNuzBAlE_dWgI7rC-QQxDaiTGIPAYTDigcRbPPOeA"/>
+<img alt="Shere Hills sunrise" class="w-full shadow-lg transition-transform duration-1000 hover:scale-[1.02]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFiLeScO5sD1n6fF_S_ba8O8kYSz10lSnuXDCzeZAQsKODuazYIisEPNonDiqBtOWfGrXkTferONPlQhsz8gJPn5Qz4T_XlWmtQFpq1h8lglEmVV2DL4XnsXPdjarhU0T6atfF1e_faknGVfL-7IN_jaN9ie1ammhJJUyb-roARFNXPKm05xvsaLWSal6kp8WVLq5Lp4YCGJRakeHBi--BggMNHilC5_qrq-3qzNTzuXW9lia4N1vXzYxdy9_8gJ9Wm2XZF4_1934"/>
+<img alt="Yoga mats in studio" class="w-full shadow-lg transition-transform duration-1000 hover:scale-[1.02]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUyfA3mQzXG36dvdzTkmlgShILIaLHI0tSIvpGP5swlfYTmU-Rrnz8iGbf6OvdUS_kVA97zv_L7P4_iOykl-Kclq4Q3wgIAc0Xj2JlnfuyawPlANuVCqPyTjippufr15GojvmCp8KXxo92Tw-da8YEpRvZEpEWDCfo2K3Ewq2U62Xe9YvXaatbR-M8P27WYwM3cXXpPVP8IzSpXkN48PtFWynWpJCxMU5LyI1nqP219p09a_0yM-vbH7YWqj3ZOLaW8GZDfNV9QXc"/>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-secondary-container dark:bg-tertiary-container border-t-[0.5px] border-outline-variant">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter px-margin-desktop py-section-gap max-w-container-max mx-auto">
+<div class="flex flex-col gap-6">
+<div class="font-display-lg text-headline-md text-primary dark:text-on-primary-fixed">Hill Station Jos</div>
+<p class="font-body-md text-on-secondary-container/70 dark:text-on-tertiary-container/70 max-w-xs">
+                    Tudun Wada, Jos, Plateau State. <br/>
+                    Experience the elevation of luxury.
+                </p>
+</div>
+<div class="flex flex-col gap-4">
+<span class="font-label-caps text-primary uppercase">Explore</span>
+<nav class="flex flex-col gap-2">
+<a class="font-body-md text-on-secondary-container/70 dark:text-on-tertiary-container/70 hover:text-primary dark:hover:text-primary-fixed underline underline-offset-8 transition-opacity" href="#">Reservations</a>
+<a class="font-body-md text-on-secondary-container/70 dark:text-on-tertiary-container/70 hover:text-primary dark:hover:text-primary-fixed underline underline-offset-8 transition-opacity" href="#">Curated Experiences</a>
+<a class="font-body-md text-on-secondary-container/70 dark:text-on-tertiary-container/70 hover:text-primary dark:hover:text-primary-fixed underline underline-offset-8 transition-opacity" href="#">Private Events</a>
+<a class="font-body-md text-on-secondary-container/70 dark:text-on-tertiary-container/70 hover:text-primary dark:hover:text-primary-fixed underline underline-offset-8 transition-opacity" href="#">Heritage Preservation</a>
+<a class="font-body-md text-on-secondary-container/70 dark:text-on-tertiary-container/70 hover:text-primary dark:hover:text-primary-fixed underline underline-offset-8 transition-opacity" href="#">Privacy Policy</a>
+</nav>
+</div>
+<div class="flex flex-col gap-6">
+<span class="font-label-caps text-primary uppercase">Stay Connected</span>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-primary cursor-pointer hover:scale-110 transition-transform">share</span>
+<span class="material-symbols-outlined text-primary cursor-pointer hover:scale-110 transition-transform">mail</span>
+</div>
+<p class="font-body-md text-on-secondary-container dark:text-on-tertiary-container">
+                    © 2024 The Hill Station Jos. A Sanctuary in the Shere Hills.
+                </p>
+</div>
+</div>
+</footer>
+<script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.remove('bg-transparent', 'text-on-primary');
+                nav.classList.add('bg-surface', 'shadow-sm');
+                nav.querySelector('div').classList.replace('text-on-primary', 'text-primary');
+                nav.querySelectorAll('a').forEach(a => {
+                    a.classList.replace('text-on-primary/80', 'text-on-surface-variant');
+                    a.classList.replace('text-on-primary', 'text-primary');
+                    a.classList.replace('border-on-primary', 'border-primary');
+                });
+            } else {
+                nav.classList.add('bg-transparent', 'text-on-primary');
+                nav.classList.remove('bg-surface', 'shadow-sm');
+                nav.querySelector('div').classList.replace('text-primary', 'text-on-primary');
+                nav.querySelectorAll('a').forEach(a => {
+                    a.classList.replace('text-on-surface-variant', 'text-on-primary/80');
+                    a.classList.replace('text-primary', 'text-on-primary');
+                    a.classList.replace('border-primary', 'border-on-primary');
+                });
+            }
+        });
+
+        // Intersection Observer for Reveal on Scroll
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // Optimization: stop observing once triggered
+                    // observer.unobserve(entry.target); 
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+    </script>
+</body></html>

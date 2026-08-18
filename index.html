@@ -1,100 +1,275 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Silkwood Hotel | Coming Soon</title>
-    <meta
-      name="description"
-      content="Silkwood Hotel, Ikeja GRA, Lagos. A four-star stay for business and leisure. Our new website is on its way. Reservations remain open."
-    />
-    <meta property="og:title" content="Silkwood Hotel | Coming Soon" />
-    <meta
-      property="og:description"
-      content="A four-star stay in Ikeja GRA, Lagos. Reservations remain open."
-    />
-    <meta property="og:image" content="images/hero.jpg" />
-    <link rel="icon" href="assets/brand/favicon.ico" sizes="any" />
-    <link rel="icon" type="image/png" href="assets/brand/favicon.png" />
-    <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Outfit:wght@300;400;500;600&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <div class="bg" role="presentation"></div>
-    <div class="veil" role="presentation"></div>
 
-    <div class="page">
-      <header class="top">
-        <img
-          class="logo"
-          src="assets/brand/logo-on-dark.png"
-          alt="Silkwood Hotel"
-        />
-        <p class="location">Ikeja GRA · Lagos</p>
-      </header>
-
-      <main class="hero">
-        <p class="kicker">Website coming soon</p>
-        <h1>A four-star stay<br />in suburbia.</h1>
-        <p class="lede">
-          Set in Ikeja GRA, Silkwood Hotel is made for business and leisure
-          travellers. About 15 minutes from the airport, and close to Ikeja City
-          Mall and Ikeja Secretariat.
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Silkwood Hotel | Ikeja GRA, Lagos</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Montserrat:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="js/tailwind-theme.js"></script>
+<link rel="icon" href="assets/brand/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" href="assets/brand/favicon.png" />
+<link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png" />
+<link rel="stylesheet" href="css/silkwood.css" />
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .btn-primary {
+            background-color: theme('colors.warm-copper');
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: theme('colors.golden-ochre');
+        }
+        .btn-outline {
+            border: 1px solid white;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .btn-outline:hover {
+            background-color: white;
+            color: theme('colors.warm-copper');
+        }
+        .nav-scrolled {
+            background-color: theme('colors.vanilla-cream');
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .nav-scrolled .nav-link {
+            color: theme('colors.on-surface');
+        }
+        .nav-scrolled .logo-text {
+            color: theme('colors.warm-copper');
+        }
+    </style>
+</head>
+<body data-page="home" class="bg-vanilla-cream text-on-surface font-body-md selection:bg-peach-cream selection:text-warm-copper">
+<div id="site-header-root"></div>
+<main id="main">
+<!-- Hero Section -->
+<section class="home-hero relative w-full overflow-hidden flex items-center justify-center">
+<div class="absolute inset-0 z-0">
+<img alt="Silkwood Hotel lobby" class="w-full h-full object-cover" src="images/hero.jpg"/>
+<div class="absolute inset-0 bg-black/40"></div>
+</div>
+<div class="home-hero-inner relative z-10 text-center px-4 md:px-6 max-w-4xl mx-auto flex flex-col items-center">
+<h1 class="font-display-lg text-4xl md:text-7xl text-white mb-6 leading-tight">
+            A Stay Worth Remembering
+        </h1>
+<p class="font-body-lg text-white/90 text-base md:text-xl mb-8 md:mb-10 max-w-2xl mx-auto">
+            106 rooms in Ikeja GRA, about 15 minutes from the airport, with pool, dining, gym, and Strands Spa.
         </p>
-
-        <div class="amenities" aria-label="Hotel facilities">
-          <div class="amenities-track">
-            <ul>
-              <li>Pool</li>
-              <li>Restaurant</li>
-              <li>Bar</li>
-              <li>Gym</li>
-              <li>Meetings</li>
-              <li>Parking</li>
-              <li>Wi-Fi</li>
-              <li>Room service</li>
-            </ul>
-            <ul aria-hidden="true">
-              <li>Pool</li>
-              <li>Restaurant</li>
-              <li>Bar</li>
-              <li>Gym</li>
-              <li>Meetings</li>
-              <li>Parking</li>
-              <li>Wi-Fi</li>
-              <li>Room service</li>
-            </ul>
-          </div>
-        </div>
-      </main>
-
-      <section class="contact" aria-label="Reservations">
-        <p class="contact-label">Reservations remain open</p>
-        <div class="contact-grid">
-          <a href="tel:+2348137519675">
-            <span>Call</span>
-            +234 813 751 9675
-          </a>
-          <a href="https://wa.me/2347072032040" target="_blank" rel="noopener">
-            <span>WhatsApp</span>
-            +234 707 203 2040
-          </a>
-          <a href="mailto:reservations@silkwoodhotels.com">
-            <span>Email</span>
-            reservations@silkwoodhotels.com
-          </a>
-        </div>
-        <p class="address">
-          51 Sobo Ariobiodu Street, GRA Ikeja, Lagos, Nigeria
-          <span>· Check-in 14:00 · Check-out 11:00</span>
+<div class="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
+<a href="contact.html" class="home-hero-cta bg-warm-copper text-white px-8 py-3 md:px-10 md:py-4 font-label-caps uppercase tracking-widest hover:bg-golden-ochre transition-colors duration-300">
+                Book Your Stay
+            </a>
+<a href="rooms.html" class="home-hero-cta border border-white text-white px-8 py-3 md:px-10 md:py-4 font-label-caps uppercase tracking-widest hover:bg-white hover:text-warm-copper transition-colors duration-300">
+                Explore The Hotel
+            </a>
+</div>
+</div>
+</section>
+<!-- Booking Bar -->
+<section class="home-booking-bar relative z-20 mt-4 md:-mt-8 max-w-6xl mx-auto px-4 md:px-6">
+<div class="bg-white shadow-xl flex flex-wrap md:flex-nowrap items-center p-2">
+<div class="flex-1 min-w-[200px] border-r border-gray-200 p-4">
+<label class="block font-label-caps text-xs text-gray-500 mb-1">Check-in</label>
+<input class="w-full border-none p-0 focus:ring-0 text-on-surface font-body-md" type="date"/>
+</div>
+<div class="flex-1 min-w-[200px] border-r border-gray-200 p-4">
+<label class="block font-label-caps text-xs text-gray-500 mb-1">Check-out</label>
+<input class="w-full border-none p-0 focus:ring-0 text-on-surface font-body-md" type="date"/>
+</div>
+<div class="flex-1 min-w-[150px] border-r border-gray-200 p-4">
+<label class="block font-label-caps text-xs text-gray-500 mb-1">Guests</label>
+<select class="w-full border-none p-0 focus:ring-0 text-on-surface font-body-md bg-transparent">
+<option>2 Adults</option>
+<option>1 Adult</option>
+<option>2 Adults, 1 Child</option>
+</select>
+</div>
+<div class="flex-1 min-w-[150px] p-4">
+<label class="block font-label-caps text-xs text-gray-500 mb-1">Rooms</label>
+<select class="w-full border-none p-0 focus:ring-0 text-on-surface font-body-md bg-transparent">
+<option>1 Room</option>
+<option>2 Rooms</option>
+<option>3+ Rooms</option>
+</select>
+</div>
+<a href="contact.html" class="w-full md:w-auto bg-warm-copper text-white px-8 py-6 font-label-caps uppercase tracking-widest hover:bg-golden-ochre transition-colors m-2 md:m-0 text-center">
+            Check Availability
+        </a>
+</div>
+</section>
+<!-- Introduction Section -->
+<section class="py-section-gap max-w-container-max mx-auto px-margin-mobile lg:px-margin-desktop grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div>
+<span class="font-label-caps text-golden-ochre mb-4 block tracking-widest">WELCOME</span>
+<h2 class="font-headline-lg text-4xl md:text-5xl text-on-surface mb-8">Your Home Away From Home</h2>
+<p class="font-body-md text-on-surface-variant mb-6 leading-relaxed">
+            Silkwood Hotel is a four-star stay in Ikeja GRA for business and leisure travellers. About 15 minutes from the airport, and close to Ikeja City Mall and Ikeja Secretariat.
         </p>
-      </section>
-    </div>
-  </body>
-</html>
+<p class="font-body-md text-on-surface-variant leading-relaxed">
+            There are 106 rooms across five types, plus a restaurant, bar, coffee shop, pool, Strands Bar, gym, and Strands Spa. Check-in is from 14:00; check-out is by 11:00.
+        </p>
+</div>
+<div class="aspect-[4/3] overflow-hidden rounded-sm">
+<img alt="Silkwood Hotel exterior" class="w-full h-full object-cover" src="images/hotel/exterior.jpg"/>
+</div>
+</section>
+<!-- Rooms & Suites -->
+<section class="bg-peach-cream/30 py-section-gap">
+<div class="max-w-container-max mx-auto px-margin-mobile lg:px-margin-desktop">
+<div class="text-center mb-16">
+<span class="font-label-caps text-golden-ochre mb-4 block tracking-widest">ACCOMMODATIONS</span>
+<h2 class="font-headline-lg text-4xl md:text-5xl text-on-surface">Rooms &amp; Suites</h2>
+<p class="font-body-md text-on-surface-variant mt-4">106 rooms. Five types.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="bg-white group cursor-pointer shadow-sm hover:shadow-md transition-shadow">
+<div class="aspect-[4/3] overflow-hidden">
+<img alt="Classic Room" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="images/hotel/classic-room.jpg"/>
+</div>
+<div class="p-8">
+<h3 class="font-headline-sm text-2xl mb-2">Classic Room</h3>
+<div class="flex gap-4 text-sm text-gray-500 mb-6 font-body-md">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[18px]">bed</span> 42 rooms</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[18px]">person</span> 2 guests</span>
+</div>
+<a class="inline-block border-b border-warm-copper text-warm-copper font-label-caps text-sm tracking-widest pb-1 hover:text-golden-ochre hover:border-golden-ochre transition-colors" href="room-details.html">View Room</a>
+</div>
+</div>
+<div class="bg-white group cursor-pointer shadow-sm hover:shadow-md transition-shadow">
+<div class="aspect-[4/3] overflow-hidden">
+<img alt="Deluxe Room" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="images/hotel/deluxe-room.jpg"/>
+</div>
+<div class="p-8">
+<h3 class="font-headline-sm text-2xl mb-2">Deluxe Room</h3>
+<div class="flex gap-4 text-sm text-gray-500 mb-6 font-body-md">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[18px]">bed</span> 30 rooms</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[18px]">person</span> 2 guests</span>
+</div>
+<a class="inline-block border-b border-warm-copper text-warm-copper font-label-caps text-sm tracking-widest pb-1 hover:text-golden-ochre hover:border-golden-ochre transition-colors" href="room-details.html">View Room</a>
+</div>
+</div>
+<div class="bg-white group cursor-pointer shadow-sm hover:shadow-md transition-shadow">
+<div class="aspect-[4/3] overflow-hidden">
+<img alt="Premium Room" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="images/hotel/premium-room.jpg"/>
+</div>
+<div class="p-8">
+<h3 class="font-headline-sm text-2xl mb-2">Premium Room</h3>
+<div class="flex gap-4 text-sm text-gray-500 mb-6 font-body-md">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[18px]">bed</span> 24 rooms</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[18px]">person</span> 2 guests</span>
+</div>
+<a class="inline-block border-b border-warm-copper text-warm-copper font-label-caps text-sm tracking-widest pb-1 hover:text-golden-ochre hover:border-golden-ochre transition-colors" href="room-details.html">View Room</a>
+</div>
+</div>
+</div>
+<div class="text-center mt-12">
+<a class="inline-block bg-warm-copper text-white px-8 py-3 font-label-caps uppercase tracking-widest hover:bg-golden-ochre transition-colors" href="rooms.html">View all rooms</a>
+</div>
+</div>
+</section>
+<!-- Facilities -->
+<section class="py-section-gap max-w-container-max mx-auto px-margin-mobile lg:px-margin-desktop">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<div class="lg:col-span-5 order-2 lg:order-1">
+<span class="font-label-caps text-golden-ochre mb-4 block tracking-widest">FACILITIES</span>
+<h2 class="font-headline-lg text-4xl md:text-5xl text-on-surface mb-8">Pool, gym, spa &amp; more</h2>
+<p class="font-body-md text-on-surface-variant mb-8 leading-relaxed">
+                Swim, train, or unwind at Strands Spa. The hotel also has a bar, restaurants, a coffee shop, and Strands Bar by the pool.
+            </p>
+<ul class="space-y-6 mb-10">
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-warm-copper mt-1">pool</span>
+<div>
+<h4 class="font-headline-sm text-lg mb-1">Pool</h4>
+<p class="text-sm text-gray-600">An outdoor pool for a quiet swim in Ikeja GRA.</p>
+</div>
+</li>
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-warm-copper mt-1">spa</span>
+<div>
+<h4 class="font-headline-sm text-lg mb-1">Strands Spa</h4>
+<p class="text-sm text-gray-600">Treatments and rest after a day in Lagos.</p>
+</div>
+</li>
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-warm-copper mt-1">fitness_center</span>
+<div>
+<h4 class="font-headline-sm text-lg mb-1">Gym</h4>
+<p class="text-sm text-gray-600">A fitness studio for guests who want to keep a routine.</p>
+</div>
+</li>
+</ul>
+<a class="inline-block border border-warm-copper text-warm-copper px-8 py-3 font-label-caps uppercase tracking-widest hover:bg-warm-copper hover:text-white transition-colors" href="facilities.html">Explore Facilities</a>
+</div>
+<div class="lg:col-span-7 order-1 lg:order-2">
+<div class="aspect-[4/3] overflow-hidden">
+<img alt="Hotel pool" class="w-full h-full object-cover" src="images/hotel/hotel-01.jpg"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Dining -->
+<section class="bg-on-surface text-vanilla-cream py-section-gap">
+<div class="max-w-container-max mx-auto px-margin-mobile lg:px-margin-desktop grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div class="aspect-[4/3] overflow-hidden">
+<img alt="Restaurant at Silkwood Hotel" class="w-full h-full object-cover" src="images/hotel/restaurant.jpg"/>
+</div>
+<div>
+<span class="font-label-caps text-golden-ochre mb-4 block tracking-widest">DINING</span>
+<h2 class="font-headline-lg text-4xl md:text-5xl mb-8 text-white">Gather, Dine &amp; Unwind</h2>
+<p class="font-body-md text-vanilla-cream/80 mb-8 leading-relaxed">
+                Local and international dishes at the restaurant, open for breakfast, lunch, and dinner. The bar is open 24 hours. Room service runs around the clock.
+            </p>
+<a class="inline-block bg-warm-copper text-white px-8 py-3 font-label-caps uppercase tracking-widest hover:bg-golden-ochre transition-colors" href="dining.html">View Menus &amp; Reserve</a>
+</div>
+</div>
+</section>
+<!-- Destination -->
+<section class="py-section-gap max-w-container-max mx-auto px-margin-mobile lg:px-margin-desktop text-center">
+<span class="font-label-caps text-golden-ochre mb-4 block tracking-widest">THE DESTINATION</span>
+<h2 class="font-headline-lg text-4xl md:text-5xl text-on-surface mb-6">Discover Ikeja GRA</h2>
+<p class="font-body-md text-on-surface-variant mb-12 max-w-2xl mx-auto leading-relaxed">
+        About 15 minutes from Murtala Muhammed International Airport, and close to Ikeja City Mall, Ikeja Secretariat, Kalakuta Museum, Ndubuisi Kanu Park, and the New Afrika Shrine.
+    </p>
+<div class="aspect-[21/9] w-full overflow-hidden">
+<img alt="Ikeja GRA" class="w-full h-full object-cover" src="images/hotel/hotel-02.jpg"/>
+</div>
+</section>
+<!-- Reviews -->
+<section class="bg-peach-cream/20 py-24">
+<div class="max-w-4xl mx-auto px-6 text-center">
+<span class="material-symbols-outlined text-warm-copper text-4xl mb-6">format_quote</span>
+<p class="font-display-lg text-2xl md:text-3xl leading-relaxed text-on-surface italic mb-8">
+            "Beautiful and clean environment. The food is yummy. The swimming pool is very clean. The staff is friendly. This is my first time and I will surely come back with my family."
+        </p>
+<p class="font-label-caps text-sm text-gray-500 tracking-widest">A recent guest</p>
+<div class="flex justify-center gap-2 mt-8">
+<button class="w-2 h-2 rounded-full bg-warm-copper"></button>
+<button class="w-2 h-2 rounded-full bg-gray-300"></button>
+<button class="w-2 h-2 rounded-full bg-gray-300"></button>
+</div>
+</div>
+</section>
+<!-- Final CTA -->
+<section class="relative h-[60vh] w-full flex items-center justify-center">
+<div class="absolute inset-0 z-0">
+<img alt="Hotel terrace" class="w-full h-full object-cover" src="images/hotel/hotel-03.jpg"/>
+<div class="absolute inset-0 bg-black/50"></div>
+</div>
+<div class="relative z-10 text-center px-6">
+<h2 class="font-display-lg text-4xl md:text-6xl text-white mb-8">Your Stay Starts Here.</h2>
+<a href="contact.html" class="bg-warm-copper text-white px-10 py-4 font-label-caps uppercase tracking-widest hover:bg-golden-ochre transition-colors duration-300">
+            Book Now
+        </a>
+</div>
+</section>
+</main>
+<div id="site-footer-root"></div>
+<script src="js/site-chrome.js"></script>
+</body></html>
