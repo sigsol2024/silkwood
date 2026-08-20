@@ -378,6 +378,75 @@
           justify-content: center;
           padding-right: 0;
         }
+
+        .coming-enter .kicker,
+        .coming-enter h1,
+        .coming-enter .lede,
+        .coming-enter .amenities {
+          opacity: 1 !important;
+          filter: none !important;
+          transform: none !important;
+          transition: none !important;
+        }
+      }
+
+      .coming-enter .kicker,
+      .coming-enter h1,
+      .coming-enter .lede,
+      .coming-enter .amenities {
+        opacity: 0;
+        transform: translate3d(0, 18px, 0);
+        transition:
+          opacity 0.95s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 0.95s cubic-bezier(0.22, 1, 0.36, 1),
+          filter 0.95s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .coming-enter .kicker {
+        filter: blur(6px);
+        transition-delay: 0.05s;
+      }
+
+      .coming-enter h1 {
+        filter: blur(8px);
+        transition-delay: 0.12s;
+      }
+
+      .coming-enter .lede {
+        transition-delay: 0.28s;
+      }
+
+      .coming-enter .amenities {
+        transition-delay: 0.4s;
+      }
+
+      .coming-enter.is-ready .kicker,
+      .coming-enter.is-ready h1,
+      .coming-enter.is-ready .lede,
+      .coming-enter.is-ready .amenities {
+        opacity: 1;
+        filter: none;
+        transform: none;
+      }
+
+      .designed-by {
+        margin-top: 1.75rem;
+        font-size: 0.75rem;
+        letter-spacing: 0.04em;
+        color: rgba(255, 241, 219, 0.55);
+        text-align: center;
+      }
+
+      .designed-by a {
+        color: rgba(255, 241, 219, 0.72);
+        text-decoration: none;
+        border-bottom: 1px solid transparent;
+        transition: color 0.25s ease, border-color 0.25s ease;
+      }
+
+      .designed-by a:hover {
+        color: var(--cream);
+        border-bottom-color: rgba(255, 241, 219, 0.35);
       }
     </style>
   </head>
@@ -395,7 +464,7 @@
         <p class="location">Ikeja GRA · Lagos</p>
       </header>
 
-      <main class="hero">
+      <main class="hero coming-enter" id="coming-hero">
         <p class="kicker">Website coming soon</p>
         <h1>A four-star stay<br />in suburbia.</h1>
         <p class="lede">
@@ -450,7 +519,22 @@
           51 Sobo Ariobiodu Street, GRA Ikeja, Lagos, Nigeria
           <span>· Check-in 14:00 · Check-out 11:00</span>
         </p>
+        <p class="designed-by">
+          Designed by |
+          <a href="https://signature-solutions.com/" target="_blank" rel="noopener noreferrer">Signature Solutions</a>
+        </p>
       </section>
     </div>
+    <script>
+      (function () {
+        var hero = document.getElementById("coming-hero");
+        function ready() {
+          if (hero) hero.classList.add("is-ready");
+        }
+        if (document.readyState === "complete") ready();
+        else window.addEventListener("load", ready, { once: true });
+        window.setTimeout(ready, 120);
+      })();
+    </script>
   </body>
 </html>

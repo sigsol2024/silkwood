@@ -12,18 +12,10 @@
 <link rel="icon" href="/assets/brand/favicon.ico" sizes="any" />
 <link rel="icon" type="image/png" href="/assets/brand/favicon.png" />
 <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png" />
-<link rel="stylesheet" href="/css/silkwood.css?v=20260320b" />
+<link rel="stylesheet" href="/css/silkwood.css?v=20260320c" />
 <style>
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
-        }
-        .btn-primary {
-            background-color: theme('colors.warm-copper');
-            color: white;
-            transition: all 0.3s ease;
-        }
-        .btn-primary:hover {
-            background-color: theme('colors.golden-ochre');
         }
         .btn-outline {
             border: 1px solid white;
@@ -50,20 +42,20 @@
 <div id="site-header-root"></div>
 <main id="main">
 <!-- Hero Section -->
-<section class="home-hero page-hero page-hero--center relative w-full overflow-hidden">
-<div class="absolute inset-0 z-0">
-<img alt="Silkwood Hotel lobby" class="w-full h-full object-cover" src="/images/hero.jpg"/>
+<section class="home-hero page-hero page-hero--center hero-enter relative w-full overflow-hidden" data-hero>
+<div class="absolute inset-0 z-0 overflow-hidden">
+<img alt="Silkwood Hotel lobby" class="hero-enter__media parallax-subtle w-full h-full object-cover" data-parallax="6" src="/images/hero.jpg"/>
 <div class="absolute inset-0 bg-black/40"></div>
 </div>
 <div class="home-hero-inner relative z-10 text-center px-4 md:px-6 max-w-4xl mx-auto flex flex-col items-center">
-<h1 class="font-display-lg text-4xl md:text-7xl text-white mb-6 leading-tight">
+<h1 class="hero-enter__title font-display-lg text-4xl md:text-7xl text-white mb-6 leading-tight">
             A Stay Worth Remembering
         </h1>
-<p class="font-body-lg text-white/90 text-base md:text-xl mb-8 md:mb-10 max-w-2xl mx-auto">
+<p class="hero-enter__text font-body-lg text-white/90 text-base md:text-xl mb-8 md:mb-10 max-w-2xl mx-auto">
             106 rooms in Ikeja GRA, about 15 minutes from the airport, with pool, dining, gym, and Strands Spa.
         </p>
-<div class="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
-<a href="/contact" class="home-hero-cta bg-warm-copper text-white px-8 py-3 md:px-10 md:py-4 font-label-caps uppercase tracking-widest hover:bg-golden-ochre transition-colors duration-300">
+<div class="hero-enter__cta flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
+<a href="/rooms" class="home-hero-cta btn-interact bg-warm-copper text-white px-8 py-3 md:px-10 md:py-4 font-label-caps uppercase tracking-widest">
                 Book Your Stay
             </a>
 <a href="/rooms" class="home-hero-cta border border-white text-white px-8 py-3 md:px-10 md:py-4 font-label-caps uppercase tracking-widest hover:bg-white hover:text-warm-copper transition-colors duration-300">
@@ -73,7 +65,7 @@
 </div>
 </section>
 <!-- Booking Bar -->
-<section class="home-booking-bar relative z-20 mt-4 md:-mt-8 max-w-6xl mx-auto px-4 md:px-6">
+<section class="home-booking-bar reveal-up relative z-20 mt-4 md:-mt-8 max-w-6xl mx-auto px-4 md:px-6">
 <div class="bg-white shadow-xl flex flex-wrap md:flex-nowrap items-center p-2">
 <div class="flex-1 min-w-[200px] border-r border-gray-200 p-4">
 <label class="block font-label-caps text-xs text-gray-500 mb-1">Check-in</label>
@@ -99,14 +91,14 @@
 <option>3+ Rooms</option>
 </select>
 </div>
-<a href="/contact" class="w-full md:w-auto bg-warm-copper text-white px-8 py-6 font-label-caps uppercase tracking-widest hover:bg-golden-ochre transition-colors m-2 md:m-0 text-center">
+<a href="/rooms" class="btn-interact w-full md:w-auto bg-warm-copper text-white px-8 py-6 font-label-caps uppercase tracking-widest m-2 md:m-0 text-center">
             Check Availability
         </a>
 </div>
 </section>
 <!-- Introduction Section -->
 <section class="py-section-gap max-w-container-max mx-auto px-margin-mobile lg:px-margin-desktop grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-<div>
+<div class="reveal-up">
 <span class="font-label-caps text-golden-ochre mb-4 block tracking-widest">WELCOME</span>
 <h2 class="font-headline-lg text-4xl md:text-5xl text-on-surface mb-8">Your Home Away From Home</h2>
 <p class="font-body-md text-on-surface-variant mb-6 leading-relaxed">
@@ -116,22 +108,22 @@
             There are 106 rooms across five types, plus a restaurant, bar, coffee shop, pool, Strands Bar, gym, and Strands Spa. Check-in is from 14:00; check-out is by 11:00.
         </p>
 </div>
-<div class="aspect-[4/3] overflow-hidden rounded-sm">
+<div class="aspect-[4/3] overflow-hidden rounded-sm image-reveal">
 <img alt="Silkwood Hotel exterior" class="w-full h-full object-cover" src="/images/hotel/exterior.jpg"/>
 </div>
 </section>
 <!-- Rooms & Suites -->
 <section class="bg-peach-cream/30 py-section-gap">
 <div class="max-w-container-max mx-auto px-margin-mobile lg:px-margin-desktop">
-<div class="text-center mb-16">
+<div class="text-center mb-16 reveal-up">
 <span class="font-label-caps text-golden-ochre mb-4 block tracking-widest">ACCOMMODATIONS</span>
 <h2 class="font-headline-lg text-4xl md:text-5xl text-on-surface">Rooms &amp; Suites</h2>
 <p class="font-body-md text-on-surface-variant mt-4">106 rooms. Five types.</p>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-<div class="bg-white group cursor-pointer shadow-sm hover:shadow-md transition-shadow">
-<div class="aspect-[4/3] overflow-hidden">
-<img alt="Classic Room" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="/images/hotel/classic-room.jpg"/>
+<div class="stagger grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="reveal-up hover-lift bg-white group cursor-pointer shadow-sm">
+<div class="aspect-[4/3] overflow-hidden hover-zoom">
+<img alt="Classic Room" class="w-full h-full object-cover" src="/images/hotel/classic-room.jpg"/>
 </div>
 <div class="p-8">
 <h3 class="font-headline-sm text-2xl mb-2">Classic Room</h3>
@@ -142,9 +134,9 @@
 <a class="inline-block border-b border-warm-copper text-warm-copper font-label-caps text-sm tracking-widest pb-1 hover:text-golden-ochre hover:border-golden-ochre transition-colors" href="/room-details">View Room</a>
 </div>
 </div>
-<div class="bg-white group cursor-pointer shadow-sm hover:shadow-md transition-shadow">
-<div class="aspect-[4/3] overflow-hidden">
-<img alt="Deluxe Room" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="/images/hotel/deluxe-room.jpg"/>
+<div class="reveal-up hover-lift bg-white group cursor-pointer shadow-sm">
+<div class="aspect-[4/3] overflow-hidden hover-zoom">
+<img alt="Deluxe Room" class="w-full h-full object-cover" src="/images/hotel/deluxe-room.jpg"/>
 </div>
 <div class="p-8">
 <h3 class="font-headline-sm text-2xl mb-2">Deluxe Room</h3>
@@ -155,9 +147,9 @@
 <a class="inline-block border-b border-warm-copper text-warm-copper font-label-caps text-sm tracking-widest pb-1 hover:text-golden-ochre hover:border-golden-ochre transition-colors" href="/room-details">View Room</a>
 </div>
 </div>
-<div class="bg-white group cursor-pointer shadow-sm hover:shadow-md transition-shadow">
-<div class="aspect-[4/3] overflow-hidden">
-<img alt="Premium Room" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="/images/hotel/premium-room.jpg"/>
+<div class="reveal-up hover-lift bg-white group cursor-pointer shadow-sm">
+<div class="aspect-[4/3] overflow-hidden hover-zoom">
+<img alt="Premium Room" class="w-full h-full object-cover" src="/images/hotel/premium-room.jpg"/>
 </div>
 <div class="p-8">
 <h3 class="font-headline-sm text-2xl mb-2">Premium Room</h3>
@@ -169,15 +161,15 @@
 </div>
 </div>
 </div>
-<div class="text-center mt-12">
-<a class="inline-block bg-warm-copper text-white px-8 py-3 font-label-caps uppercase tracking-widest hover:bg-golden-ochre transition-colors" href="/rooms">View all rooms</a>
+<div class="text-center mt-12 reveal-up">
+<a class="btn-interact inline-block bg-warm-copper text-white px-8 py-3 font-label-caps uppercase tracking-widest" href="/rooms">View all rooms</a>
 </div>
 </div>
 </section>
 <!-- Facilities -->
 <section class="py-section-gap max-w-container-max mx-auto px-margin-mobile lg:px-margin-desktop">
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-<div class="lg:col-span-5 order-2 lg:order-1">
+<div class="lg:col-span-5 order-2 lg:order-1 reveal-left">
 <span class="font-label-caps text-golden-ochre mb-4 block tracking-widest">FACILITIES</span>
 <h2 class="font-headline-lg text-4xl md:text-5xl text-on-surface mb-8">Pool, gym, spa &amp; more</h2>
 <p class="font-body-md text-on-surface-variant mb-8 leading-relaxed">
@@ -206,10 +198,10 @@
 </div>
 </li>
 </ul>
-<a class="inline-block border border-warm-copper text-warm-copper px-8 py-3 font-label-caps uppercase tracking-widest hover:bg-warm-copper hover:text-white transition-colors" href="/facilities">Explore Facilities</a>
+<a class="btn-outline inline-block border border-warm-copper text-warm-copper px-8 py-3 font-label-caps uppercase tracking-widest" href="/facilities">Explore Facilities</a>
 </div>
 <div class="lg:col-span-7 order-1 lg:order-2">
-<div class="aspect-[4/3] overflow-hidden">
+<div class="aspect-[4/3] overflow-hidden image-reveal">
 <img alt="Hotel pool" class="w-full h-full object-cover" src="/images/hotel/hotel-01.jpg"/>
 </div>
 </div>
@@ -218,59 +210,61 @@
 <!-- Dining -->
 <section class="bg-on-surface text-vanilla-cream py-section-gap">
 <div class="max-w-container-max mx-auto px-margin-mobile lg:px-margin-desktop grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-<div class="aspect-[4/3] overflow-hidden">
+<div class="aspect-[4/3] overflow-hidden image-reveal">
 <img alt="Restaurant at Silkwood Hotel" class="w-full h-full object-cover" src="/images/hotel/restaurant.jpg"/>
 </div>
-<div>
+<div class="reveal-right">
 <span class="font-label-caps text-golden-ochre mb-4 block tracking-widest">DINING</span>
 <h2 class="font-headline-lg text-4xl md:text-5xl mb-8 text-white">Gather, Dine &amp; Unwind</h2>
 <p class="font-body-md text-vanilla-cream/80 mb-8 leading-relaxed">
                 Local and international dishes at the restaurant, open for breakfast, lunch, and dinner. The bar is open 24 hours. Room service runs around the clock.
             </p>
-<a class="inline-block bg-warm-copper text-white px-8 py-3 font-label-caps uppercase tracking-widest hover:bg-golden-ochre transition-colors" href="/dining">View Menus &amp; Reserve</a>
+<a class="btn-interact inline-block bg-warm-copper text-white px-8 py-3 font-label-caps uppercase tracking-widest" href="/dining">View Menus &amp; Reserve</a>
 </div>
 </div>
 </section>
 <!-- Destination -->
 <section class="py-section-gap max-w-container-max mx-auto px-margin-mobile lg:px-margin-desktop text-center">
+<div class="reveal-up">
 <span class="font-label-caps text-golden-ochre mb-4 block tracking-widest">THE DESTINATION</span>
 <h2 class="font-headline-lg text-4xl md:text-5xl text-on-surface mb-6">Discover Ikeja GRA</h2>
 <p class="font-body-md text-on-surface-variant mb-12 max-w-2xl mx-auto leading-relaxed">
         About 15 minutes from Murtala Muhammed International Airport, and close to Ikeja City Mall, Ikeja Secretariat, Kalakuta Museum, Ndubuisi Kanu Park, and the New Afrika Shrine.
     </p>
-<div class="aspect-[21/9] w-full overflow-hidden">
+</div>
+<div class="aspect-[21/9] w-full overflow-hidden image-reveal">
 <img alt="Ikeja GRA" class="w-full h-full object-cover" src="/images/hotel/hotel-02.jpg"/>
 </div>
 </section>
 <!-- Reviews -->
 <section class="bg-peach-cream/20 py-20">
-<div class="max-w-4xl mx-auto px-6 text-center">
+<div class="max-w-4xl mx-auto px-6 text-center reveal-up">
 <span class="material-symbols-outlined text-warm-copper text-4xl mb-6">format_quote</span>
 <p class="font-display-lg text-2xl md:text-3xl leading-relaxed text-on-surface italic mb-8">
             "Beautiful and clean environment. The food is yummy. The swimming pool is very clean. The staff is friendly. This is my first time and I will surely come back with my family."
         </p>
 <p class="font-label-caps text-sm text-gray-500 tracking-widest">A recent guest</p>
 <div class="flex justify-center gap-2 mt-8">
-<button class="w-2 h-2 rounded-full bg-warm-copper"></button>
-<button class="w-2 h-2 rounded-full bg-gray-300"></button>
-<button class="w-2 h-2 rounded-full bg-gray-300"></button>
+<button class="w-2 h-2 rounded-full bg-warm-copper" type="button" aria-label="Review 1"></button>
+<button class="w-2 h-2 rounded-full bg-gray-300" type="button" aria-label="Review 2"></button>
+<button class="w-2 h-2 rounded-full bg-gray-300" type="button" aria-label="Review 3"></button>
 </div>
 </div>
 </section>
 <!-- Final CTA -->
-<section class="relative h-[60vh] w-full flex items-center justify-center">
+<section class="relative h-[60vh] w-full flex items-center justify-center overflow-hidden">
 <div class="absolute inset-0 z-0">
-<img alt="Hotel terrace" class="w-full h-full object-cover" src="/images/hotel/hotel-03.jpg"/>
+<img alt="Hotel terrace" class="image-reveal w-full h-full object-cover" src="/images/hotel/hotel-03.jpg"/>
 <div class="absolute inset-0 bg-black/50"></div>
 </div>
-<div class="relative z-10 text-center px-6">
+<div class="relative z-10 text-center px-6 reveal-up">
 <h2 class="font-display-lg text-4xl md:text-6xl text-white mb-8">Your Stay Starts Here.</h2>
-<a href="/contact" class="bg-warm-copper text-white px-10 py-4 font-label-caps uppercase tracking-widest hover:bg-golden-ochre transition-colors duration-300">
+<a href="/rooms" class="btn-interact bg-warm-copper text-white px-10 py-4 font-label-caps uppercase tracking-widest inline-block">
             Book Now
         </a>
 </div>
 </section>
 </main>
 <div id="site-footer-root"></div>
-<script src="/js/site-chrome.js?v=20260320b"></script>
+<script src="/js/site-chrome.js?v=20260320c"></script>
 </body></html>

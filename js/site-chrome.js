@@ -3,7 +3,7 @@
   const MAPS_URL =
     "https://www.google.com/maps/search/?api=1&query=" +
     encodeURIComponent(ADDRESS);
-  const BOOK_HREF = "/contact";
+  const BOOK_HREF = "/rooms";
 
   const NAV = [
     { id: "rooms", label: "Rooms & Suites", href: "/rooms" },
@@ -18,11 +18,11 @@
       "font-label-caps text-sm uppercase tracking-widest transition-colors duration-300 nav-link";
     if (overHero) {
       return page === item.id
-        ? `${base} text-white border-b border-golden-ochre pb-1`
+        ? `${base} text-white`
         : `${base} text-white/90 hover:text-white`;
     }
     return page === item.id
-      ? `${base} text-warm-copper border-b border-golden-ochre pb-1`
+      ? `${base} text-warm-copper`
       : `${base} text-on-surface hover:text-warm-copper`;
   }
 
@@ -46,12 +46,12 @@
     const menuColor = overHero ? "text-white" : "text-ink";
     return `
 <a class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[100] focus:bg-vanilla-cream focus:text-ink focus:px-3 focus:py-2" href="#main">Skip to content</a>
-<header class="flex justify-between items-center w-full px-margin-mobile lg:px-margin-desktop py-4 max-w-container-max mx-auto z-50 fixed top-0 left-0 right-0 bg-transparent transition-all duration-300 ${overHero ? "" : "nav-scrolled"}" id="site-header" aria-label="Primary">
+<header class="flex justify-between items-center w-full px-margin-mobile lg:px-margin-desktop py-4 max-w-container-max mx-auto z-50 fixed top-0 left-0 right-0 bg-transparent transition-all duration-500 ${overHero ? "" : "nav-scrolled"}" id="site-header" aria-label="Primary">
   ${logoPair("")}
   <nav class="hidden lg:flex items-center gap-8">
     ${navLinks(page, overHero)}
   </nav>
-  <a class="hidden lg:inline-flex bg-warm-copper text-white px-8 py-3 font-label-caps uppercase tracking-widest hover:bg-golden-ochre transition-colors duration-300" href="${BOOK_HREF}">Book Now</a>
+  <a class="hidden lg:inline-flex btn-interact bg-warm-copper text-white px-8 py-3 font-label-caps uppercase tracking-widest" href="${BOOK_HREF}">Book Now</a>
   <button class="lg:hidden inline-flex items-center justify-center ${menuColor} p-1 -mr-1" type="button" aria-label="Open menu" data-menu-open>
     <span class="material-symbols-outlined text-[1.875rem] leading-none" aria-hidden="true">menu</span>
   </button>
@@ -77,7 +77,7 @@
       <div class="silkwood-mobile-nav__media">
         <img src="/images/hero.jpg" alt="" />
       </div>
-      <a class="silkwood-mobile-nav__cta inline-flex items-center justify-center px-5 py-3.5 bg-warm-copper text-white font-label-caps uppercase tracking-widest hover:bg-golden-ochre" href="${BOOK_HREF}">Book Now</a>
+      <a class="silkwood-mobile-nav__cta btn-interact inline-flex items-center justify-center px-5 py-3.5 bg-warm-copper text-white font-label-caps uppercase tracking-widest" href="${BOOK_HREF}">Book Now</a>
     </div>
   </div>
 </div>`;
@@ -122,14 +122,125 @@
       </form>
     </div>
   </div>
-  <div class="max-w-container-max mx-auto px-margin-mobile lg:px-margin-desktop mt-16 pt-8 border-t border-white/10 text-center text-xs text-gray-500 font-body-md">
-    © ${new Date().getFullYear()} Silkwood Hotel. All rights reserved.
+  <div class="max-w-container-max mx-auto px-margin-mobile lg:px-margin-desktop mt-16 pt-8 border-t border-white/10 text-center text-xs text-gray-500 font-body-md space-y-2">
+    <p>© ${new Date().getFullYear()} Silkwood Hotel. All rights reserved.</p>
+    <p>
+      Designed by |
+      <a class="hover:text-gray-300 transition-colors" href="https://signature-solutions.com/" target="_blank" rel="noopener noreferrer">Signature Solutions</a>
+    </p>
   </div>
 </footer>`;
   }
 
   const LOADER_LOG_KEY = "silkwood-loader-log";
   const loaderLog = [];
+  let heroStarted = false;
+
+  function prefersReducedMotion() {
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  }
+
+  function startHeroEntrance() {
+    if (heroStarted) return;
+    heroStarted = true;
+    document.body.classList.add("silkwood-hero-ready");
+    document.querySelectorAll(".hero-enter").forEach((el) => {
+      el.classList.add("is-ready");
+      el.querySelectorAll(
+        ".reveal, .reveal-up, .reveal-left, .reveal-right, .blur-reveal, .image-reveal, .scroll-reveal, .fade-in-up, .fade-up, .reveal-on-scroll"
+      ).forEach((child) => {
+        child.classList.add("is-inview", "visible");
+      });
+    });
+  }
+
+  function initScrollReveals() {
+    const selector = [
+      ".reveal",
+      ".reveal-up",
+      ".reveal-left",
+      ".reveal-right",
+      ".blur-reveal",
+      ".image-reveal",
+      ".scroll-reveal",
+      ".fade-in-up",
+      ".fade-up",
+      ".reveal-on-scroll"
+    ].join(",");
+
+    const nodes = Array.prototype.slice.call(document.querySelectorAll(selector));
+    if (!nodes.length) return;
+
+    function revealEl(el) {
+      el.classList.add("is-inview", "visible");
+    }
+
+    if (prefersReducedMotion() || !("IntersectionObserver" in window)) {
+      nodes.forEach(revealEl);
+      return;
+    }
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          revealEl(entry.target);
+          io.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -6% 0px" }
+    );
+
+    nodes.forEach((el) => {
+      if (el.closest(".hero-enter")) return;
+      io.observe(el);
+    });
+  }
+
+  function initMouseParallax() {
+    if (prefersReducedMotion()) return;
+    if (!window.matchMedia("(pointer: fine)").matches) return;
+    if (window.matchMedia("(max-width: 1023px)").matches) return;
+
+    const targets = Array.prototype.slice.call(
+      document.querySelectorAll(".parallax-subtle")
+    );
+    if (!targets.length) return;
+
+    let raf = 0;
+    let mx = 0;
+    let my = 0;
+
+    function apply() {
+      raf = 0;
+      targets.forEach((el) => {
+        const depth = parseFloat(el.getAttribute("data-parallax") || "8");
+        const x = mx * depth;
+        const y = my * depth;
+        el.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+      });
+    }
+
+    window.addEventListener(
+      "pointermove",
+      (e) => {
+        const cx = window.innerWidth / 2;
+        const cy = window.innerHeight / 2;
+        mx = (e.clientX - cx) / cx;
+        my = (e.clientY - cy) / cy;
+        if (!raf) raf = requestAnimationFrame(apply);
+      },
+      { passive: true }
+    );
+  }
+
+  function bindBookingPlaceholders() {
+    document.querySelectorAll("[data-booking-pending]").forEach((el) => {
+      el.addEventListener("click", (e) => {
+        e.preventDefault();
+      });
+    });
+  }
 
   function logLoader(event, detail) {
     const entry = {
@@ -200,8 +311,8 @@
     let startedAt = performance.now();
     let rafId = 0;
     let dismissed = false;
-    const minVisibleMs = 1500;
-    const maxWaitMs = 5000;
+    const minVisibleMs = 650;
+    const maxWaitMs = 4000;
     const copper = { r: 153, g: 78, b: 20 };
 
     function speedAt(elapsedMs) {
@@ -283,6 +394,7 @@
       root.setAttribute("aria-busy", "false");
       root.classList.add("is-leaving");
       document.body.classList.remove("silkwood-loading");
+      startHeroEntrance();
       logLoader("dismiss", {
         reason: reason || "unknown",
         visibleMs: Math.round(performance.now() - startedAt)
@@ -290,7 +402,7 @@
       window.setTimeout(() => {
         if (root.parentNode) root.parentNode.removeChild(root);
         logLoader("removed-from-dom");
-      }, 900);
+      }, 850);
     }
 
     const shownAt = performance.now();
@@ -391,23 +503,19 @@
       if (e.key === "Escape") closeMenu();
     });
 
-    document.querySelectorAll(".scroll-reveal").forEach((el) => {
-      if (!("IntersectionObserver" in window)) {
-        el.classList.add("visible");
-        return;
-      }
-      const io = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (!entry.isIntersecting) return;
-            entry.target.classList.add("visible");
-            io.unobserve(entry.target);
-          });
-        },
-        { threshold: 0.12 }
-      );
-      io.observe(el);
-    });
+    initScrollReveals();
+    initMouseParallax();
+    bindBookingPlaceholders();
+
+    // If loader never mounted (or already gone), still reveal hero
+    if (!document.getElementById("silkwood-loader")) {
+      startHeroEntrance();
+    } else if (prefersReducedMotion()) {
+      startHeroEntrance();
+    }
+
+    // Failsafe: hero must appear even if loader hangs past max wait
+    window.setTimeout(startHeroEntrance, 4200);
   }
 
   if (document.readyState === "loading") {

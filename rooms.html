@@ -12,7 +12,7 @@
 <link rel="icon" href="/assets/brand/favicon.ico" sizes="any" />
 <link rel="icon" type="image/png" href="/assets/brand/favicon.png" />
 <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png" />
-<link rel="stylesheet" href="/css/silkwood.css?v=20260320b" />
+<link rel="stylesheet" href="/css/silkwood.css?v=20260320c" />
 <style>
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
@@ -45,32 +45,29 @@
         .nav-scrolled .logo-text {
             color: theme('colors.warm-copper');
         }
-        
-        .scroll-reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
-        .scroll-reveal.visible { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body data-page="rooms" class="bg-surface text-on-surface font-body-md selection:bg-peach-cream selection:text-warm-copper">
 <div id="site-header-root"></div>
 <main id="main">
 <!-- Hero Section -->
-<section class="page-hero page-hero--center relative w-full overflow-hidden">
+<section class="page-hero page-hero--center hero-enter relative w-full overflow-hidden" data-hero>
 <div class="absolute inset-0 z-0">
-<img alt="A guest room at Silkwood Hotel" class="w-full h-full object-cover" src="/images/hotel/stay.jpg"/>
+<img alt="A guest room at Silkwood Hotel" class="hero-enter__media parallax-subtle w-full h-full object-cover" data-parallax="6" src="/images/hotel/stay.jpg"/>
 <div class="absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/30 to-transparent"></div>
 </div>
 <div class="page-hero-inner relative z-10 text-center px-6 max-w-4xl mx-auto flex flex-col items-center">
-<h1 class="font-display-lg text-5xl md:text-7xl text-white mb-6 leading-tight">
+<h1 class="hero-enter__title font-display-lg text-5xl md:text-7xl text-white mb-6 leading-tight">
             A refined stay in Ikeja GRA
         </h1>
-<p class="font-body-lg text-white/90 text-lg md:text-xl max-w-2xl mx-auto">
+<p class="hero-enter__text font-body-lg text-white/90 text-lg md:text-xl max-w-2xl mx-auto">
             106 rooms across five types, individually decorated for a stay in Ikeja GRA.
         </p>
 </div>
 </section>
 <!-- Introduction Section -->
 <section class="py-section-gap max-w-container-max mx-auto px-margin-mobile lg:px-margin-desktop text-center">
-<div class="scroll-reveal">
+<div class="scroll-reveal reveal-up">
 <span class="font-label-caps text-golden-ochre mb-4 block tracking-widest">ROOMS &amp; SUITES</span>
 <h2 class="font-headline-lg text-4xl md:text-5xl text-on-surface mb-6">Crafted for quiet moments.</h2>
 <p class="font-body-md text-on-surface-variant max-w-2xl mx-auto leading-relaxed">
@@ -80,9 +77,9 @@
 </section>
 <!-- Editorial Room List -->
 <section class="pb-section-gap overflow-hidden max-w-container-max mx-auto px-margin-mobile lg:px-margin-desktop">
-<div class="relative mb-20 group scroll-reveal">
+<div class="relative mb-20 group scroll-reveal reveal-up">
 <div class="grid grid-cols-1 md:grid-cols-12 gap-0 items-stretch bg-peach-cream/30 border border-outline-variant/30 shadow-sm">
-<div class="md:col-span-7 overflow-hidden">
+<div class="md:col-span-7 overflow-hidden hover-zoom">
 <img alt="Classic Room" class="w-full h-full aspect-[16/10] object-cover group-hover:scale-105 transition-transform duration-700" src="/images/hotel/classic-room-2.jpg"/>
 </div>
 <div class="md:col-span-5 p-12 flex flex-col justify-center">
@@ -110,9 +107,9 @@
 </div>
 </div>
 </div>
-<div class="relative mb-20 group scroll-reveal" style="transition-delay: 0.1s;">
+<div class="relative mb-20 group scroll-reveal reveal-up" style="transition-delay: 0.1s;">
 <div class="grid grid-cols-1 md:grid-cols-12 gap-0 items-stretch bg-peach-cream/30 border border-outline-variant/30 shadow-sm">
-<div class="md:col-span-7 md:order-2 overflow-hidden">
+<div class="md:col-span-7 md:order-2 overflow-hidden hover-zoom">
 <img alt="Deluxe Room" class="w-full h-full aspect-[16/10] object-cover group-hover:scale-105 transition-transform duration-700" src="/images/hotel/deluxe-room-2.jpg"/>
 </div>
 <div class="md:col-span-5 md:order-1 p-12 flex flex-col justify-center">
@@ -136,9 +133,9 @@
 </div>
 </div>
 </div>
-<div class="relative mb-20 group scroll-reveal" style="transition-delay: 0.15s;">
+<div class="relative mb-20 group scroll-reveal reveal-up" style="transition-delay: 0.15s;">
 <div class="grid grid-cols-1 md:grid-cols-12 gap-0 items-stretch bg-peach-cream/30 border border-outline-variant/30 shadow-sm">
-<div class="md:col-span-7 overflow-hidden">
+<div class="md:col-span-7 overflow-hidden hover-zoom">
 <img alt="Premium Room" class="w-full h-full aspect-[16/10] object-cover group-hover:scale-105 transition-transform duration-700" src="/images/hotel/hotel-04.jpg"/>
 </div>
 <div class="md:col-span-5 p-12 flex flex-col justify-center">
@@ -162,9 +159,9 @@
 </div>
 </div>
 </div>
-<div class="relative mb-20 group scroll-reveal" style="transition-delay: 0.2s;">
+<div class="relative mb-20 group scroll-reveal reveal-up" style="transition-delay: 0.2s;">
 <div class="grid grid-cols-1 md:grid-cols-12 gap-0 items-stretch bg-peach-cream/30 border border-outline-variant/30 shadow-sm">
-<div class="md:col-span-7 md:order-2 overflow-hidden">
+<div class="md:col-span-7 md:order-2 overflow-hidden hover-zoom">
 <img alt="Executive Room" class="w-full h-full aspect-[16/10] object-cover group-hover:scale-105 transition-transform duration-700" src="/images/hotel/executive-room.jpg"/>
 </div>
 <div class="md:col-span-5 md:order-1 p-12 flex flex-col justify-center">
@@ -188,9 +185,9 @@
 </div>
 </div>
 </div>
-<div class="relative group scroll-reveal" style="transition-delay: 0.25s;">
+<div class="relative group scroll-reveal reveal-up" style="transition-delay: 0.25s;">
 <div class="grid grid-cols-1 md:grid-cols-12 gap-0 items-stretch bg-peach-cream/30 border border-outline-variant/30 shadow-sm">
-<div class="md:col-span-7 overflow-hidden">
+<div class="md:col-span-7 overflow-hidden hover-zoom">
 <img alt="Diplomatic Suite" class="w-full h-full aspect-[16/10] object-cover group-hover:scale-105 transition-transform duration-700" src="/images/hotel/diplomatic-suite.jpg"/>
 </div>
 <div class="md:col-span-5 p-12 flex flex-col justify-center">
@@ -218,7 +215,7 @@
 <!-- Amenities Grid -->
 <section class="bg-surface-container-low py-section-gap px-margin-mobile lg:px-margin-desktop">
 <div class="max-w-container-max mx-auto">
-<div class="text-center mb-16 scroll-reveal">
+<div class="text-center mb-16 scroll-reveal reveal-up">
 <h2 class="font-headline-lg text-4xl md:text-5xl text-ink mb-4">Refined Inclusions</h2>
 <div class="w-12 h-[1px] bg-warm-copper mx-auto mb-6"></div>
 <p class="font-body-md text-on-surface-variant max-w-lg mx-auto">Every stay is curated with essentials that elevate a restful stay in Ikeja GRA.</p>
@@ -245,5 +242,5 @@
 </section>
 </main>
 <div id="site-footer-root"></div>
-<script src="/js/site-chrome.js?v=20260320b"></script>
+<script src="/js/site-chrome.js?v=20260320c"></script>
 </body></html>

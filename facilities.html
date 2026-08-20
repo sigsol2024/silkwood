@@ -12,7 +12,7 @@
 <link rel="icon" href="/assets/brand/favicon.ico" sizes="any" />
 <link rel="icon" type="image/png" href="/assets/brand/favicon.png" />
 <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png" />
-<link rel="stylesheet" href="/css/silkwood.css?v=20260320b" />
+<link rel="stylesheet" href="/css/silkwood.css?v=20260320c" />
 <style>
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 100, 'GRAD' 0, 'opsz' 24;
@@ -24,33 +24,6 @@
         .hero-scrim {
             background: linear-gradient(to bottom, rgba(26, 12, 4, 0.4) 0%, rgba(26, 12, 4, 0) 40%, rgba(26, 12, 4, 0.4) 100%);
         }
-        .reveal-on-scroll {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
-        }
-        .reveal-on-scroll.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        /* Slow Zoom Animation for Hero */
-        @keyframes slowZoom {
-            from { transform: scale(1); }
-            to { transform: scale(1.1); }
-        }
-        .animate-slow-zoom {
-            animation: slowZoom 25s ease-out infinite alternate;
-        }
-
-        /* Subtle Mask Reveal for Icons */
-        .icon-mask-reveal {
-            clip-path: inset(0 100% 0 0);
-            transition: clip-path 1.5s cubic-bezier(0.22, 1, 0.36, 1);
-        }
-        .visible .icon-mask-reveal {
-            clip-path: inset(0 0 0 0);
-        }
 
         /* Conference Card Hover/Transitions */
         .conference-card {
@@ -58,7 +31,7 @@
         }
         .conference-card:hover {
             background-color: rgba(255, 255, 255, 0.15);
-            transform: translateY(-8px);
+            transform: translateY(-3px);
         }
     </style>
 </head>
@@ -66,21 +39,21 @@
 <div id="site-header-root"></div>
 <main id="main">
 <!-- Hero Section -->
-<section class="page-hero page-hero--bottom relative w-full overflow-hidden">
-<img alt="Pool at Silkwood Hotel" class="absolute inset-0 w-full h-full object-cover animate-slow-zoom" src="/images/hotel/hotel-11.jpg"/>
+<section class="page-hero page-hero--bottom hero-enter relative w-full overflow-hidden" data-hero>
+<img alt="Pool at Silkwood Hotel" class="hero-enter__media parallax-subtle absolute inset-0 w-full h-full object-cover" data-parallax="6" src="/images/hotel/hotel-11.jpg"/>
 <div class="absolute inset-0 hero-scrim"></div>
 <div class="page-hero-inner relative z-10 px-margin-mobile lg:px-margin-desktop max-w-container-max mx-auto w-full">
-<div class="max-w-2xl reveal-on-scroll visible">
-<span class="font-label-caps text-on-primary uppercase mb-4 block">Facilities</span>
-<h1 class="font-display-lg text-display-lg text-on-primary mb-6">Pool &amp; more</h1>
-<p class="font-body-lg text-on-primary/90 max-w-lg">
+<div class="max-w-2xl">
+<span class="hero-enter__text font-label-caps text-on-primary uppercase mb-4 block">Facilities</span>
+<h1 class="hero-enter__title font-display-lg text-display-lg text-on-primary mb-6">Pool &amp; more</h1>
+<p class="hero-enter__text font-body-lg text-on-primary/90 max-w-lg">
                     Pool, gym, Strands Spa, restaurants, bar, coffee shop, and Strands Bar by the pool — on property in Ikeja GRA.
                 </p>
 </div>
 </div>
 </section>
 <!-- Intro Section -->
-<section class="py-section-gap px-margin-mobile lg:px-margin-desktop max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-12 gap-gutter items-center reveal-on-scroll">
+<section class="py-section-gap px-margin-mobile lg:px-margin-desktop max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-12 gap-gutter items-center reveal-on-scroll reveal-up">
 <div class="md:col-span-5 mb-12 md:mb-0">
 <span class="font-label-caps text-on-tertiary-container uppercase mb-4 block">On property</span>
 <h2 class="font-headline-lg text-headline-lg text-ink mb-8">A four-star stay in Ikeja GRA.</h2>
@@ -94,7 +67,7 @@
 </div>
 <div class="md:col-start-7 md:col-span-6 relative">
 <div class="bg-secondary-container absolute -inset-4 -z-10 translate-x-8 translate-y-8"></div>
-<img alt="Hotel facilities at Silkwood" class="w-full aspect-[4/5] object-cover shadow-2xl" src="/images/hotel/hotel-12.jpg"/>
+<img alt="Hotel facilities at Silkwood" class="image-reveal w-full aspect-[4/5] object-cover shadow-2xl" src="/images/hotel/hotel-12.jpg"/>
 </div>
 </section>
 <!-- The Spa Section (Asymmetric Bento) -->
@@ -247,22 +220,6 @@
 </div>
 </section>
 </main>
-<script>
-        const observerOptions = {
-            threshold: 0.15,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
-    </script>
 <div id="site-footer-root"></div>
-<script src="/js/site-chrome.js?v=20260320b"></script>
+<script src="/js/site-chrome.js?v=20260320c"></script>
 </body></html>

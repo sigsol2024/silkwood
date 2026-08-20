@@ -15,21 +15,10 @@
 <link rel="icon" href="/assets/brand/favicon.ico" sizes="any" />
 <link rel="icon" type="image/png" href="/assets/brand/favicon.png" />
 <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png" />
-<link rel="stylesheet" href="/css/silkwood.css?v=20260320b" />
+<link rel="stylesheet" href="/css/silkwood.css?v=20260320c" />
 <style>
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
-        }
-        
-        /* Smooth fade in for elements */
-        .fade-up {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-        .fade-up.visible {
-            opacity: 1;
-            transform: translateY(0);
         }
     </style>
 </head>
@@ -37,14 +26,14 @@
 <div id="site-header-root"></div>
 <main id="main" class="w-full relative min-h-screen">
 <!-- Header Hero -->
-<header class="w-full pt-32 pb-16 px-margin-mobile lg:px-margin-desktop max-w-container-max mx-auto border-b-[0.5px] border-secondary/30 relative">
-<div class="absolute inset-0 z-0 pointer-events-none opacity-20" data-alt="A highly textured, abstract macro photograph of weathered sandstone in warm, glowing sunlight. The light creates soft, undulating patterns across the rough surface, embodying an organic, earthy aesthetic. The color palette is strictly within warm sand tones, deep taupes, and soft creams, designed to serve as a subtle, premium backdrop texture for luxury editorial design." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCllv-9rC2k1pnJfnlxuV16kXrUNJeivfqfknTJs5eKQ4tsvuVzepWMjfC2LE1cR-CAqjuOdDwothYOjF6iij7CyFA1sZHOjLEYZYTATT_feSzQy5omEWZf-TDJiEYkEwsSMVh4E9l686LeYnCZ4NYBv0nl69qZeUC8Eivr0JnQg3LjL1fSp1UeQoFYDYqD2NbDPWfBwcVe8cFk4krJJj0aoiX090EYTGFlC_zJYRXBQH139vEYPCdb')"></div>
-<div class="relative z-10 flex flex-col items-center text-center fade-up">
+<header class="hero-enter w-full pt-32 pb-16 px-margin-mobile lg:px-margin-desktop max-w-container-max mx-auto border-b-[0.5px] border-secondary/30 relative" data-hero>
+<div class="hero-enter__media parallax-subtle absolute inset-0 z-0 pointer-events-none opacity-20" data-parallax="6" data-alt="A highly textured, abstract macro photograph of weathered sandstone in warm, glowing sunlight. The light creates soft, undulating patterns across the rough surface, embodying an organic, earthy aesthetic. The color palette is strictly within warm sand tones, deep taupes, and soft creams, designed to serve as a subtle, premium backdrop texture for luxury editorial design." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCllv-9rC2k1pnJfnlxuV16kXrUNJeivfqfknTJs5eKQ4tsvuVzepWMjfC2LE1cR-CAqjuOdDwothYOjF6iij7CyFA1sZHOjLEYZYTATT_feSzQy5omEWZf-TDJiEYkEwsSMVh4E9l686LeYnCZ4NYBv0nl69qZeUC8Eivr0JnQg3LjL1fSp1UeQoFYDYqD2NbDPWfBwcVe8cFk4krJJj0aoiX090EYTGFlC_zJYRXBQH139vEYPCdb')"></div>
+<div class="relative z-10 flex flex-col items-center text-center fade-up reveal-up">
 <span class="font-label-caps text-label-caps text-secondary mb-6 uppercase tracking-widest">Legal Information</span>
-<h1 class="font-display-lg text-display-lg md:text-[84px] text-headline-lg-mobile md:leading-[92px] text-ink max-w-4xl mb-8">
+<h1 class="hero-enter__title font-display-lg text-display-lg md:text-[84px] text-headline-lg-mobile md:leading-[92px] text-ink max-w-4xl mb-8">
                      Terms &amp; Conditions
                  </h1>
-<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
+<p class="hero-enter__text font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
                      The following terms establish the expectations for your stay at Silkwood Hotel. We kindly request that you review them prior to arrival to ensure a seamless experience.
                  </p>
 <div class="mt-8 text-sm font-body-md text-secondary">
@@ -132,36 +121,13 @@
 <p class="font-body-md text-body-md text-on-surface-variant mb-8 max-w-md">
                     If you have any questions regarding these terms, please contact our concierge prior to booking.
                 </p>
-<a class="bg-primary text-on-primary font-label-caps text-label-caps px-8 py-4 uppercase tracking-widest hover:bg-primary/90 transition-colors" href="/contact">
+<a class="btn-interact bg-primary text-on-primary font-label-caps text-label-caps px-8 py-4 uppercase tracking-widest hover:bg-primary/90 transition-colors" href="/contact">
                     Contact Concierge
                 </a>
 </div>
 </section>
 </main>
 <!-- Footer from JSON -->
-<script>
-        // Simple intersection observer for fade-up animations
-        document.addEventListener("DOMContentLoaded", function() {
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.1
-            };
-
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
-
-            document.querySelectorAll('.fade-up').forEach((el) => {
-                observer.observe(el);
-            });
-        });
-    </script>
 <div id="site-footer-root"></div>
-<script src="/js/site-chrome.js?v=20260320b"></script>
+<script src="/js/site-chrome.js?v=20260320c"></script>
 </body></html>
