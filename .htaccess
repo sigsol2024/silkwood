@@ -1,6 +1,12 @@
-# Silkwood Hotel — clean URL rewrites (Apache / LiteSpeed)
-# Staging is nginx; keep this for Apache hosts or LiteSpeed that reads .htaccess.
+# Silkwood Hotel — clean URL rewrites + cache headers (Apache / LiteSpeed)
+# Staging is nginx; this file does NOT apply on staging.silkwoodhotels.com.
+# Keep for Apache hosts or LiteSpeed that reads .htaccess.
 # Upload to the site document root alongside index.html.
+#
+# Cache policy (when mod_headers is available):
+#   HTML → no-cache (store + must revalidate)
+#   CSS/JS → long-lived immutable (use tools/stamp-assets.ps1 for ?v= hashes)
+#   images/fonts/video → long-lived
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
@@ -22,3 +28,20 @@
 </IfModule>
 
 DirectoryIndex index.html
+
+<IfModule mod_headers.c>
+  # HTML — must revalidate so stamped CSS/JS URLs stay fresh
+  <FilesMatch "\.(html?)$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+
+  # Fingerprinted CSS/JS — long cache
+  <FilesMatch "\.(css|js)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  # Media — long cache
+  <FilesMatch "\.(png|jpe?g|gif|webp|ico|svg|woff2?|mp4)$">
+    Header set Cache-Control "public, max-age=31536000"
+  </FilesMatch>
+</IfModule>
