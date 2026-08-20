@@ -154,6 +154,225 @@
     });
   }
 
+  const LOGO_INTRO_NEAR_END_SEC = 0.7;
+  const LOGO_INTRO_READY_MS = 2000;
+  const LOGO_INTRO_HARD_MS = 10000;
+  const LOGO_INTRO_EXIT_MS = 900;
+  let logoIntroState = null;
+
+  function isWideViewport() {
+    return window.matchMedia("(min-width: 1024px)").matches;
+  }
+
+  function isLogoIntroEligible() {
+    if (document.body.getAttribute("data-page") !== "home") return false;
+    if (!document.getElementById("silkwood-logo-intro")) return false;
+    if (prefersReducedMotion()) return false;
+    return isWideViewport();
+  }
+
+  function initLogoIntroPrefetch() {
+    if (!isLogoIntroEligible()) return;
+    const video = document.querySelector("#silkwood-logo-intro video");
+    if (!video) return;
+    video.preload = "auto";
+    try {
+      video.load();
+    } catch (e) {
+      /* ignore */
+    }
+    logLoader("logo-intro-prefetch");
+  }
+
+  function onLoaderComplete(reason) {
+    logLoader("loader-complete-handoff", { reason: reason || null });
+    if (isLogoIntroEligible()) {
+      startLogoIntro(reason);
+    } else {
+      startHeroEntrance();
+    }
+  }
+
+  function cleanupLogoIntro() {
+    if (!logoIntroState || logoIntroState.cleaned) return;
+    logoIntroState.cleaned = true;
+
+    logoIntroState.timers.forEach((id) => window.clearTimeout(id));
+    logoIntroState.timers = [];
+
+    logoIntroState.listeners.forEach(({ target, type, fn, opts }) => {
+      target.removeEventListener(type, fn, opts);
+    });
+    logoIntroState.listeners = [];
+
+    if (logoIntroState.mq && logoIntroState.onMqChange) {
+      logoIntroState.mq.removeEventListener("change", logoIntroState.onMqChange);
+    }
+
+    const video = logoIntroState.video;
+    if (video) {
+      try {
+        video.pause();
+        const source = video.querySelector("source");
+        if (source) source.removeAttribute("src");
+        video.load();
+      } catch (e) {
+        /* ignore */
+      }
+    }
+
+    const overlay = logoIntroState.overlay;
+    if (overlay) {
+      overlay.classList.remove("is-active", "is-transitioning", "is-exiting");
+      overlay.classList.add("is-done");
+      overlay.setAttribute("aria-hidden", "true");
+    }
+
+    document.body.classList.remove("silkwood-logo-intro-active");
+    logoIntroState = null;
+  }
+
+  function skipLogoIntroToHero(reason) {
+    logLoader("logo-intro-skip", { reason: reason || null });
+    cleanupLogoIntro();
+    startHeroEntrance();
+  }
+
+  function finishLogoIntroOverlay(reason) {
+    if (!logoIntroState || logoIntroState.cleaned) return;
+    if (logoIntroState.finishing) return;
+    logoIntroState.finishing = true;
+
+    const overlay = logoIntroState.overlay;
+    if (overlay) {
+      overlay.classList.add("is-exiting");
+    }
+
+    window.setTimeout(function () {
+      cleanupLogoIntro();
+      logLoader("logo-intro-finished", { reason: reason || null });
+    }, LOGO_INTRO_EXIT_MS);
+  }
+
+  function triggerLogoIntroNearEnd() {
+    if (!logoIntroState || logoIntroState.cleaned || logoIntroState.nearEndFired) {
+      return;
+    }
+    logoIntroState.nearEndFired = true;
+
+    const overlay = logoIntroState.overlay;
+    if (overlay) {
+      overlay.classList.add("is-transitioning");
+    }
+
+    startHeroEntrance();
+    logLoader("logo-intro-near-end");
+  }
+
+  function startLogoIntro(loaderReason) {
+    const overlay = document.getElementById("silkwood-logo-intro");
+    const video = overlay && overlay.querySelector("video");
+    if (!overlay || !video) {
+      startHeroEntrance();
+      return;
+    }
+
+    logoIntroState = {
+      overlay: overlay,
+      video: video,
+      cleaned: false,
+      finishing: false,
+      nearEndFired: false,
+      playing: false,
+      timers: [],
+      listeners: []
+    };
+
+    function trackListener(target, type, fn, opts) {
+      target.addEventListener(type, fn, opts);
+      logoIntroState.listeners.push({ target: target, type: type, fn: fn, opts: opts });
+    }
+
+    document.body.classList.add("silkwood-logo-intro-active");
+    overlay.classList.add("is-active");
+    overlay.setAttribute("aria-hidden", "false");
+    logLoader("logo-intro-start", { loaderReason: loaderReason || null });
+
+    const mq = window.matchMedia("(min-width: 1024px)");
+    function onMqChange() {
+      if (!mq.matches) skipLogoIntroToHero("viewport-narrow");
+    }
+    logoIntroState.mq = mq;
+    logoIntroState.onMqChange = onMqChange;
+    trackListener(mq, "change", onMqChange);
+
+    trackListener(video, "error", function () {
+      skipLogoIntroToHero("video-error");
+    });
+
+    trackListener(video, "ended", function () {
+      if (!logoIntroState.nearEndFired) triggerLogoIntroNearEnd();
+      finishLogoIntroOverlay("ended");
+    });
+
+    trackListener(video, "timeupdate", function () {
+      const duration = video.duration;
+      if (!duration || !isFinite(duration)) return;
+      if (duration - video.currentTime <= LOGO_INTRO_NEAR_END_SEC) {
+        triggerLogoIntroNearEnd();
+      }
+    });
+
+    function tryPlay() {
+      if (!logoIntroState || logoIntroState.cleaned || logoIntroState.playing) return;
+      logoIntroState.playing = true;
+      const playPromise = video.play();
+      if (playPromise && typeof playPromise.catch === "function") {
+        playPromise.catch(function () {
+          skipLogoIntroToHero("play-rejected");
+        });
+      }
+    }
+
+    function beginPlaybackWhenReady() {
+      if (video.readyState >= 2) {
+        tryPlay();
+        return;
+      }
+
+      let readyTimer = window.setTimeout(function () {
+        skipLogoIntroToHero("ready-timeout");
+      }, LOGO_INTRO_READY_MS);
+      logoIntroState.timers.push(readyTimer);
+
+      function onReady() {
+        window.clearTimeout(readyTimer);
+        tryPlay();
+      }
+
+      trackListener(video, "canplay", onReady);
+      trackListener(video, "loadeddata", onReady);
+    }
+
+    beginPlaybackWhenReady();
+
+    const hardTimer = window.setTimeout(function () {
+      if (!logoIntroState || logoIntroState.cleaned) return;
+      if (!logoIntroState.nearEndFired) triggerLogoIntroNearEnd();
+      finishLogoIntroOverlay("hard-timeout");
+    }, LOGO_INTRO_HARD_MS);
+    logoIntroState.timers.push(hardTimer);
+  }
+
+  function forceHeroIfStuck() {
+    if (heroStarted) return;
+    if (logoIntroState && !logoIntroState.cleaned) {
+      skipLogoIntroToHero("global-failsafe");
+      return;
+    }
+    startHeroEntrance();
+  }
+
   function initScrollReveals() {
     const selector = [
       ".reveal",
@@ -394,7 +613,7 @@
       root.setAttribute("aria-busy", "false");
       root.classList.add("is-leaving");
       document.body.classList.remove("silkwood-loading");
-      startHeroEntrance();
+      onLoaderComplete(reason);
       logLoader("dismiss", {
         reason: reason || "unknown",
         visibleMs: Math.round(performance.now() - startedAt)
@@ -506,16 +725,13 @@
     initScrollReveals();
     initMouseParallax();
     bindBookingPlaceholders();
+    initLogoIntroPrefetch();
 
-    // If loader never mounted (or already gone), still reveal hero
     if (!document.getElementById("silkwood-loader")) {
-      startHeroEntrance();
-    } else if (prefersReducedMotion()) {
-      startHeroEntrance();
+      onLoaderComplete("no-loader");
     }
 
-    // Failsafe: hero must appear even if loader hangs past max wait
-    window.setTimeout(startHeroEntrance, 4200);
+    window.setTimeout(forceHeroIfStuck, 16000);
   }
 
   if (document.readyState === "loading") {
