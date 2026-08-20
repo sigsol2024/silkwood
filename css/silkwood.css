@@ -800,7 +800,16 @@ video {
 }
 
 body.silkwood-loading {
-  overflow: hidden;
+  overflow: hidden !important;
+}
+
+/* Hide page content until the loader is dismissed — prevents blank section flash */
+body.silkwood-loading > *:not(#silkwood-loader) {
+  visibility: hidden !important;
+}
+
+body.silkwood-loading .silkwood-loader {
+  pointer-events: auto;
 }
 
 /* —— Homepage logo video intro (after page loader, ≥1024px) —— */

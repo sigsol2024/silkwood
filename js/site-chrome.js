@@ -566,11 +566,105 @@
     }
   }
 
-  function initLoader() {
-    if (document.getElementById("silkwood-loader")) {
-      logLoader("skip-already-present");
-      return;
+  function buildLoaderMarkup() {
+    return `
+      <div class="silkwood-loader__veil" aria-hidden="true"></div>
+      <div class="silkwood-loader__content">
+        <img class="silkwood-loader__logo" src="/assets/brand/logo-on-light.png" alt="" width="160" height="54" />
+        <div class="silkwood-loader__stage" aria-hidden="true">
+          <div class="silkwood-loader__ring"></div>
+          <canvas class="silkwood-loader__canvas" width="176" height="176"></canvas>
+        </div>
+      </div>`;
+  }
+
+  function ensureLoaderElement() {
+    let root = document.getElementById("silkwood-loader");
+    if (root) return root;
+    if (!document.body) return null;
+
+    root = document.createElement("div");
+    root.id = "silkwood-loader";
+    root.className = "silkwood-loader";
+    root.setAttribute("role", "status");
+    root.setAttribute("aria-live", "polite");
+    root.setAttribute("aria-busy", "true");
+    root.setAttribute("aria-label", "Loading Silkwood Hotel");
+    root.innerHTML = buildLoaderMarkup();
+    document.body.insertBefore(root, document.body.firstChild);
+    return root;
+  }
+
+  function showLoaderImmediately(reason) {
+    const root = ensureLoaderElement();
+    if (!root) return null;
+    root.classList.remove("is-leaving");
+    root.style.opacity = "1";
+    root.style.visibility = "visible";
+    root.setAttribute("aria-busy", "true");
+    document.body.classList.add("silkwood-loading");
+    logLoader("show-immediate", { reason: reason || null });
+    return root;
+  }
+
+  function isInternalNavLink(anchor) {
+    if (!anchor || anchor.tagName !== "A") return false;
+    if (anchor.hasAttribute("data-booking-pending")) return false;
+    if (anchor.target && anchor.target.toLowerCase() === "_blank") return false;
+    if (anchor.hasAttribute("download")) return false;
+
+    const href = anchor.getAttribute("href");
+    if (!href || href.charAt(0) === "#") return false;
+    if (/^(mailto:|tel:|sms:|javascript:)/i.test(href)) return false;
+
+    let url;
+    try {
+      url = new URL(href, window.location.href);
+    } catch (e) {
+      return false;
     }
+    if (url.origin !== window.location.origin) return false;
+    if (
+      url.pathname === window.location.pathname &&
+      url.search === window.location.search &&
+      url.hash
+    ) {
+      return false;
+    }
+    return true;
+  }
+
+  function bindInstantNavLoader() {
+    document.addEventListener(
+      "click",
+      function (e) {
+        if (e.defaultPrevented) return;
+        if (e.button !== 0) return;
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+
+        const anchor = e.target && e.target.closest ? e.target.closest("a") : null;
+        if (!isInternalNavLink(anchor)) return;
+
+        showLoaderImmediately("nav-click");
+      },
+      true
+    );
+
+    window.addEventListener("beforeunload", function () {
+      showLoaderImmediately("beforeunload");
+    });
+
+    window.addEventListener("pageshow", function (e) {
+      if (!e.persisted) return;
+      const root = document.getElementById("silkwood-loader");
+      if (root) {
+        root.classList.add("is-leaving");
+        document.body.classList.remove("silkwood-loading");
+      }
+    });
+  }
+
+  function initLoader() {
     if (!document.body) {
       logLoader("defer-no-body");
       document.addEventListener("DOMContentLoaded", initLoader, { once: true });
@@ -583,26 +677,16 @@
       "(prefers-reduced-motion: reduce)"
     ).matches;
 
-    const root = document.createElement("div");
-    root.id = "silkwood-loader";
-    root.className = "silkwood-loader";
-    root.setAttribute("role", "status");
-    root.setAttribute("aria-live", "polite");
-    root.setAttribute("aria-busy", "true");
-    root.setAttribute("aria-label", "Loading Silkwood Hotel");
-    root.innerHTML = `
-      <div class="silkwood-loader__veil" aria-hidden="true"></div>
-      <div class="silkwood-loader__content">
-        <img class="silkwood-loader__logo" src="/assets/brand/logo-on-light.png" alt="" width="160" height="54" />
-        <div class="silkwood-loader__stage" aria-hidden="true">
-          <div class="silkwood-loader__ring"></div>
-          <canvas class="silkwood-loader__canvas" width="176" height="176"></canvas>
-        </div>
-      </div>`;
+    const existed = !!document.getElementById("silkwood-loader");
+    const root = ensureLoaderElement();
+    if (!root) return;
 
-    document.body.appendChild(root);
+    root.classList.remove("is-leaving");
+    root.setAttribute("aria-busy", "true");
     document.body.classList.add("silkwood-loading");
-    logLoader("dom-injected", { reduceMotion: reduceMotion });
+    logLoader(existed ? "loader-adopted" : "dom-injected", {
+      reduceMotion: reduceMotion
+    });
 
     const canvas = root.querySelector(".silkwood-loader__canvas");
     const ctx = canvas && canvas.getContext ? canvas.getContext("2d") : null;
@@ -812,6 +896,7 @@
     initMouseParallax();
     bindBookingPlaceholders();
     initLogoIntroPrefetch();
+    bindInstantNavLoader();
 
     if (!document.getElementById("silkwood-loader")) {
       onLoaderComplete("no-loader");

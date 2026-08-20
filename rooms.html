@@ -1,6 +1,19 @@
 <!DOCTYPE html>
 
 <html class="scroll-smooth" lang="en"><head>
+<style id="silkwood-loader-critical">
+html{background:#fff1db}
+body.silkwood-loading{overflow:hidden!important}
+body.silkwood-loading>*:not(#silkwood-loader){visibility:hidden!important}
+#silkwood-loader{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;pointer-events:auto;background:rgba(255,241,219,.96)}
+#silkwood-loader .silkwood-loader__veil{position:absolute;inset:0;background:rgba(255,241,219,.94)}
+#silkwood-loader .silkwood-loader__content{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:1.35rem;padding:1rem}
+#silkwood-loader .silkwood-loader__logo{display:block;height:28px;width:auto;opacity:.82;object-fit:contain}
+#silkwood-loader .silkwood-loader__stage{position:relative;width:88px;height:88px}
+#silkwood-loader .silkwood-loader__ring{position:absolute;inset:10px;border-radius:50%;border:1px solid rgba(26,12,4,.07)}
+#silkwood-loader .silkwood-loader__canvas{display:block;width:88px;height:88px}
+</style>
+<link rel="stylesheet" href="/css/silkwood.css?v=3a318eb250" />
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Rooms &amp; Suites | Silkwood Hotel</title>
@@ -12,7 +25,7 @@
 <link rel="icon" href="/assets/brand/favicon.ico" sizes="any" />
 <link rel="icon" type="image/png" href="/assets/brand/favicon.png" />
 <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png" />
-<link rel="stylesheet" href="/css/silkwood.css?v=b06f6c5a63" />
+
 <style>
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
@@ -47,7 +60,17 @@
         }
     </style>
 </head>
-<body data-page="rooms" class="bg-surface text-on-surface font-body-md selection:bg-peach-cream selection:text-warm-copper">
+<body data-page="rooms" class="bg-surface text-on-surface font-body-md selection:bg-peach-cream selection:text-warm-copper silkwood-loading">
+<div id="silkwood-loader" class="silkwood-loader" role="status" aria-live="polite" aria-busy="true" aria-label="Loading Silkwood Hotel">
+<div class="silkwood-loader__veil" aria-hidden="true"></div>
+<div class="silkwood-loader__content">
+<img class="silkwood-loader__logo" src="/assets/brand/logo-on-light.png" alt="" width="160" height="54" />
+<div class="silkwood-loader__stage" aria-hidden="true">
+<div class="silkwood-loader__ring"></div>
+<canvas class="silkwood-loader__canvas" width="176" height="176"></canvas>
+</div>
+</div>
+</div>
 <div id="site-header-root"></div>
 <main id="main">
 <!-- Hero Section -->
@@ -242,5 +265,5 @@
 </section>
 </main>
 <div id="site-footer-root"></div>
-<script src="/js/site-chrome.js?v=0efcac7224"></script>
+<script src="/js/site-chrome.js?v=48868582b1"></script>
 </body></html>
