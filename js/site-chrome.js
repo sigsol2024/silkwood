@@ -155,8 +155,8 @@
   }
 
   const LOGO_INTRO_NEAR_END_SEC = 0.7;
-  const LOGO_INTRO_READY_MS = 2000;
-  const LOGO_INTRO_HARD_MS = 10000;
+  const LOGO_INTRO_READY_MS = 8000;
+  const LOGO_INTRO_HARD_MS = 14000;
   const LOGO_INTRO_EXIT_MS = 900;
   let logoIntroState = null;
 
@@ -171,11 +171,30 @@
     return isWideViewport();
   }
 
+  function prepareLogoVideo(video) {
+    if (!video) return;
+    video.muted = true;
+    video.defaultMuted = true;
+    video.playsInline = true;
+    video.setAttribute("muted", "");
+    video.setAttribute("playsinline", "");
+    video.preload = "auto";
+
+    const source = video.querySelector("source");
+    const src =
+      (source && source.getAttribute("src")) ||
+      video.getAttribute("src") ||
+      "";
+    if (src && video.getAttribute("src") !== src) {
+      video.setAttribute("src", src);
+    }
+  }
+
   function initLogoIntroPrefetch() {
     if (!isLogoIntroEligible()) return;
     const video = document.querySelector("#silkwood-logo-intro video");
     if (!video) return;
-    video.preload = "auto";
+    prepareLogoVideo(video);
     try {
       video.load();
     } catch (e) {
@@ -201,18 +220,34 @@
     logoIntroState.timers = [];
 
     logoIntroState.listeners.forEach(({ target, type, fn, opts }) => {
-      target.removeEventListener(type, fn, opts);
+      try {
+        target.removeEventListener(type, fn, opts);
+      } catch (e) {
+        /* ignore */
+      }
     });
     logoIntroState.listeners = [];
 
     if (logoIntroState.mq && logoIntroState.onMqChange) {
-      logoIntroState.mq.removeEventListener("change", logoIntroState.onMqChange);
+      try {
+        if (logoIntroState.mq.removeEventListener) {
+          logoIntroState.mq.removeEventListener(
+            "change",
+            logoIntroState.onMqChange
+          );
+        } else if (logoIntroState.mq.removeListener) {
+          logoIntroState.mq.removeListener(logoIntroState.onMqChange);
+        }
+      } catch (e) {
+        /* ignore */
+      }
     }
 
     const video = logoIntroState.video;
     if (video) {
       try {
         video.pause();
+        video.removeAttribute("src");
         const source = video.querySelector("source");
         if (source) source.removeAttribute("src");
         video.load();
@@ -277,91 +312,142 @@
       return;
     }
 
-    logoIntroState = {
-      overlay: overlay,
-      video: video,
-      cleaned: false,
-      finishing: false,
-      nearEndFired: false,
-      playing: false,
-      timers: [],
-      listeners: []
-    };
+    try {
+      logoIntroState = {
+        overlay: overlay,
+        video: video,
+        cleaned: false,
+        finishing: false,
+        nearEndFired: false,
+        playing: false,
+        timers: [],
+        listeners: []
+      };
 
-    function trackListener(target, type, fn, opts) {
-      target.addEventListener(type, fn, opts);
-      logoIntroState.listeners.push({ target: target, type: type, fn: fn, opts: opts });
-    }
-
-    document.body.classList.add("silkwood-logo-intro-active");
-    overlay.classList.add("is-active");
-    overlay.setAttribute("aria-hidden", "false");
-    logLoader("logo-intro-start", { loaderReason: loaderReason || null });
-
-    const mq = window.matchMedia("(min-width: 1024px)");
-    function onMqChange() {
-      if (!mq.matches) skipLogoIntroToHero("viewport-narrow");
-    }
-    logoIntroState.mq = mq;
-    logoIntroState.onMqChange = onMqChange;
-    trackListener(mq, "change", onMqChange);
-
-    trackListener(video, "error", function () {
-      skipLogoIntroToHero("video-error");
-    });
-
-    trackListener(video, "ended", function () {
-      if (!logoIntroState.nearEndFired) triggerLogoIntroNearEnd();
-      finishLogoIntroOverlay("ended");
-    });
-
-    trackListener(video, "timeupdate", function () {
-      const duration = video.duration;
-      if (!duration || !isFinite(duration)) return;
-      if (duration - video.currentTime <= LOGO_INTRO_NEAR_END_SEC) {
-        triggerLogoIntroNearEnd();
-      }
-    });
-
-    function tryPlay() {
-      if (!logoIntroState || logoIntroState.cleaned || logoIntroState.playing) return;
-      logoIntroState.playing = true;
-      const playPromise = video.play();
-      if (playPromise && typeof playPromise.catch === "function") {
-        playPromise.catch(function () {
-          skipLogoIntroToHero("play-rejected");
+      function trackListener(target, type, fn, opts) {
+        target.addEventListener(type, fn, opts);
+        logoIntroState.listeners.push({
+          target: target,
+          type: type,
+          fn: fn,
+          opts: opts
         });
       }
-    }
 
-    function beginPlaybackWhenReady() {
-      if (video.readyState >= 2) {
-        tryPlay();
-        return;
+      prepareLogoVideo(video);
+      document.body.classList.add("silkwood-logo-intro-active");
+      overlay.classList.add("is-active");
+      overlay.setAttribute("aria-hidden", "false");
+      logLoader("logo-intro-start", { loaderReason: loaderReason || null });
+
+      const mq = window.matchMedia("(min-width: 1024px)");
+      function onMqChange() {
+        if (!mq.matches) skipLogoIntroToHero("viewport-narrow");
+      }
+      logoIntroState.mq = mq;
+      logoIntroState.onMqChange = onMqChange;
+      try {
+        if (mq.addEventListener) {
+          mq.addEventListener("change", onMqChange);
+        } else if (mq.addListener) {
+          mq.addListener(onMqChange);
+        }
+      } catch (e) {
+        /* ignore mq listener failures */
       }
 
-      let readyTimer = window.setTimeout(function () {
-        skipLogoIntroToHero("ready-timeout");
-      }, LOGO_INTRO_READY_MS);
-      logoIntroState.timers.push(readyTimer);
+      trackListener(video, "error", function () {
+        skipLogoIntroToHero("video-error");
+      });
 
-      function onReady() {
-        window.clearTimeout(readyTimer);
-        tryPlay();
+      trackListener(video, "ended", function () {
+        if (!logoIntroState || logoIntroState.cleaned) return;
+        if (!logoIntroState.nearEndFired) triggerLogoIntroNearEnd();
+        finishLogoIntroOverlay("ended");
+      });
+
+      trackListener(video, "timeupdate", function () {
+        if (!logoIntroState || logoIntroState.cleaned) return;
+        const duration = video.duration;
+        if (!duration || !isFinite(duration)) return;
+        if (duration - video.currentTime <= LOGO_INTRO_NEAR_END_SEC) {
+          triggerLogoIntroNearEnd();
+        }
+      });
+
+      function tryPlay() {
+        if (!logoIntroState || logoIntroState.cleaned || logoIntroState.playing) {
+          return;
+        }
+        logoIntroState.playing = true;
+        prepareLogoVideo(video);
+        const playPromise = video.play();
+        if (playPromise && typeof playPromise.then === "function") {
+          playPromise
+            .then(function () {
+              logLoader("logo-intro-playing");
+            })
+            .catch(function (err) {
+              logLoader("logo-intro-play-rejected", {
+                message: err && err.message ? err.message : String(err)
+              });
+              skipLogoIntroToHero("play-rejected");
+            });
+        }
       }
 
-      trackListener(video, "canplay", onReady);
-      trackListener(video, "loadeddata", onReady);
+      function beginPlaybackWhenReady() {
+        if (video.readyState >= 2) {
+          tryPlay();
+          return;
+        }
+
+        try {
+          video.load();
+        } catch (e) {
+          /* ignore */
+        }
+
+        let readyTimer = window.setTimeout(function () {
+          if (!logoIntroState || logoIntroState.cleaned || logoIntroState.playing) {
+            return;
+          }
+          // Last attempt: play if any data exists, otherwise skip cleanly
+          if (video.readyState >= 2) {
+            tryPlay();
+          } else if (video.readyState >= 1) {
+            tryPlay();
+          } else {
+            skipLogoIntroToHero("ready-timeout");
+          }
+        }, LOGO_INTRO_READY_MS);
+        logoIntroState.timers.push(readyTimer);
+
+        function onReady() {
+          if (!logoIntroState || logoIntroState.cleaned) return;
+          window.clearTimeout(readyTimer);
+          tryPlay();
+        }
+
+        trackListener(video, "canplay", onReady);
+        trackListener(video, "loadeddata", onReady);
+        trackListener(video, "canplaythrough", onReady);
+      }
+
+      beginPlaybackWhenReady();
+
+      const hardTimer = window.setTimeout(function () {
+        if (!logoIntroState || logoIntroState.cleaned) return;
+        if (!logoIntroState.nearEndFired) triggerLogoIntroNearEnd();
+        finishLogoIntroOverlay("hard-timeout");
+      }, LOGO_INTRO_HARD_MS);
+      logoIntroState.timers.push(hardTimer);
+    } catch (err) {
+      logLoader("logo-intro-exception", {
+        message: err && err.message ? err.message : String(err)
+      });
+      skipLogoIntroToHero("exception");
     }
-
-    beginPlaybackWhenReady();
-
-    const hardTimer = window.setTimeout(function () {
-      if (!logoIntroState || logoIntroState.cleaned) return;
-      if (!logoIntroState.nearEndFired) triggerLogoIntroNearEnd();
-      finishLogoIntroOverlay("hard-timeout");
-    }, LOGO_INTRO_HARD_MS);
-    logoIntroState.timers.push(hardTimer);
   }
 
   function forceHeroIfStuck() {
@@ -731,7 +817,7 @@
       onLoaderComplete("no-loader");
     }
 
-    window.setTimeout(forceHeroIfStuck, 16000);
+    window.setTimeout(forceHeroIfStuck, 20000);
   }
 
   if (document.readyState === "loading") {
