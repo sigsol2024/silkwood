@@ -128,7 +128,150 @@
 </footer>`;
   }
 
+  function initLoader() {
+    if (document.getElementById("silkwood-loader")) return;
+
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    const root = document.createElement("div");
+    root.id = "silkwood-loader";
+    root.className = "silkwood-loader";
+    root.setAttribute("role", "status");
+    root.setAttribute("aria-live", "polite");
+    root.setAttribute("aria-busy", "true");
+    root.setAttribute("aria-label", "Loading Silkwood Hotel");
+    root.innerHTML = `
+      <div class="silkwood-loader__veil" aria-hidden="true"></div>
+      <div class="silkwood-loader__content">
+        <img class="silkwood-loader__logo" src="assets/brand/logo-on-light.png" alt="" width="160" height="54" />
+        <div class="silkwood-loader__stage" aria-hidden="true">
+          <div class="silkwood-loader__ring"></div>
+          <canvas class="silkwood-loader__canvas" width="176" height="176"></canvas>
+        </div>
+      </div>`;
+
+    document.body.appendChild(root);
+    document.body.classList.add("silkwood-loading");
+
+    const canvas = root.querySelector(".silkwood-loader__canvas");
+    const ctx = canvas && canvas.getContext ? canvas.getContext("2d") : null;
+    const size = 176;
+    const center = size / 2;
+    const radius = 52;
+    const trail = [];
+    const trailMax = 28;
+    let angle = -Math.PI / 2;
+    let startedAt = performance.now();
+    let rafId = 0;
+    let dismissed = false;
+    const minVisibleMs = 700;
+    const maxWaitMs = 4200;
+    const copper = { r: 153, g: 78, b: 20 };
+
+    function speedAt(elapsedMs) {
+      const cycle = 4200;
+      const phase = ((elapsedMs % cycle) / cycle) * Math.PI * 2;
+      // Slow → faster → slow, continuous (0.55 … 1.85)
+      return 0.55 + 1.3 * (0.5 - 0.5 * Math.cos(phase));
+    }
+
+    function drawFrame(now) {
+      if (!ctx || dismissed) return;
+      const elapsed = now - startedAt;
+      const omega = speedAt(elapsed) * 0.042;
+      angle += omega;
+
+      const x = center + Math.cos(angle) * radius;
+      const y = center + Math.sin(angle) * radius;
+      trail.push({ x, y });
+      if (trail.length > trailMax) trail.shift();
+
+      ctx.clearRect(0, 0, size, size);
+
+      // Soft path guide
+      ctx.beginPath();
+      ctx.arc(center, center, radius, 0, Math.PI * 2);
+      ctx.strokeStyle = "rgba(26, 12, 4, 0.06)";
+      ctx.lineWidth = 1;
+      ctx.stroke();
+
+      // Fading trail segments
+      for (let i = 0; i < trail.length - 1; i += 1) {
+        const t = (i + 1) / trail.length;
+        const p = trail[i];
+        const alpha = 0.04 + t * 0.28;
+        const r = 1.1 + t * 2.1;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${copper.r}, ${copper.g}, ${copper.b}, ${alpha})`;
+        ctx.fill();
+      }
+
+      // Lead dot
+      const lead = trail[trail.length - 1] || { x, y };
+      ctx.beginPath();
+      ctx.arc(lead.x, lead.y, 3.4, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${copper.r}, ${copper.g}, ${copper.b}, 0.88)`;
+      ctx.fill();
+
+      // Soft halo
+      ctx.beginPath();
+      ctx.arc(lead.x, lead.y, 6.5, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${copper.r}, ${copper.g}, ${copper.b}, 0.12)`;
+      ctx.fill();
+
+      rafId = requestAnimationFrame(drawFrame);
+    }
+
+    if (ctx && !reduceMotion) {
+      rafId = requestAnimationFrame(drawFrame);
+    } else if (ctx && reduceMotion) {
+      // Static refined mark for reduced motion
+      ctx.beginPath();
+      ctx.arc(center, center, radius, 0, Math.PI * 2);
+      ctx.strokeStyle = "rgba(26, 12, 4, 0.08)";
+      ctx.lineWidth = 1;
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(center + radius, center, 3.4, 0, Math.PI * 2);
+      ctx.fillStyle = "rgba(153, 78, 20, 0.75)";
+      ctx.fill();
+    }
+
+    function dismiss() {
+      if (dismissed) return;
+      dismissed = true;
+      if (rafId) cancelAnimationFrame(rafId);
+      root.setAttribute("aria-busy", "false");
+      root.classList.add("is-leaving");
+      document.body.classList.remove("silkwood-loading");
+      window.setTimeout(() => {
+        if (root.parentNode) root.parentNode.removeChild(root);
+      }, 900);
+    }
+
+    const shownAt = performance.now();
+    function tryDismiss() {
+      const waited = performance.now() - shownAt;
+      const remaining = Math.max(0, minVisibleMs - waited);
+      window.setTimeout(dismiss, remaining);
+    }
+
+    if (document.readyState === "complete") {
+      tryDismiss();
+    } else {
+      window.addEventListener("load", tryDismiss, { once: true });
+    }
+
+    // Failsafe: never stay stuck if assets hang
+    window.setTimeout(dismiss, maxWaitMs);
+  }
+
   function initChrome() {
+    initLoader();
+
     const page = document.body.getAttribute("data-page") || "home";
     const headerRoot = document.getElementById("site-header-root");
     const footerRoot = document.getElementById("site-footer-root");

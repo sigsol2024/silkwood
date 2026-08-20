@@ -23,7 +23,362 @@
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Outfit:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css" />
+    <style>
+      :root {
+        --silkwood-warm-copper: #994e14;
+        --silkwood-golden-ochre: #c79242;
+        --silkwood-peach-cream: #ffe3ba;
+        --silkwood-vanilla-cream: #fff1db;
+        --cream: var(--silkwood-vanilla-cream);
+        --peach: var(--silkwood-peach-cream);
+        --gold: var(--silkwood-golden-ochre);
+        --copper: var(--silkwood-warm-copper);
+        --ink: #1a0c04;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html,
+      body {
+        height: 100%;
+        height: 100dvh;
+        max-width: 100%;
+        overflow-x: hidden;
+      }
+
+      body {
+        font-family: Outfit, system-ui, sans-serif;
+        color: var(--cream);
+        background: var(--ink);
+        overflow: hidden;
+      }
+
+      .bg {
+        position: fixed;
+        inset: 0;
+        background: url("images/hero.jpg") center / cover no-repeat;
+        transform: scale(1.04);
+        animation: drift 28s ease-in-out infinite alternate;
+      }
+
+      .veil {
+        position: fixed;
+        inset: 0;
+        background:
+          linear-gradient(
+            105deg,
+            rgba(14, 7, 3, 0.92) 0%,
+            rgba(26, 12, 4, 0.78) 38%,
+            rgba(26, 12, 4, 0.58) 100%
+          ),
+          linear-gradient(to top, rgba(14, 7, 3, 0.82), rgba(14, 7, 3, 0.28) 42%);
+      }
+
+      .page {
+        position: relative;
+        z-index: 1;
+        height: 100%;
+        height: 100dvh;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        grid-template-columns: minmax(0, 1fr);
+        padding: clamp(1rem, 2.4vh, 1.6rem) 5.5vw clamp(1rem, 2.2vh, 1.5rem);
+        width: 100%;
+        max-width: 1400px;
+        min-width: 0;
+        overflow-x: hidden;
+      }
+
+      .top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        padding-bottom: clamp(0.7rem, 1.6vh, 1rem);
+        border-bottom: 1px solid color-mix(in srgb, var(--peach) 22%, transparent);
+      }
+
+      .logo {
+        display: block;
+        height: clamp(44px, 7vh, 58px);
+        width: auto;
+        mix-blend-mode: screen;
+      }
+
+      .location {
+        font-size: 0.72rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--gold);
+        font-weight: 500;
+      }
+
+      .hero {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: clamp(0.8rem, 3vh, 1.8rem) 0;
+        max-width: 40rem;
+        width: 100%;
+        min-width: 0;
+        min-height: 0;
+      }
+
+      .kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.7rem;
+        font-size: 0.72rem;
+        letter-spacing: 0.32em;
+        text-transform: uppercase;
+        color: var(--gold);
+        font-weight: 500;
+        margin-bottom: clamp(0.7rem, 1.6vh, 1rem);
+      }
+
+      .kicker::before {
+        content: "";
+        width: 2.2rem;
+        height: 1px;
+        background: var(--gold);
+      }
+
+      h1 {
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-weight: 500;
+        font-size: clamp(2.4rem, 7.2vh, 4.6rem);
+        line-height: 0.95;
+        letter-spacing: -0.02em;
+        margin-bottom: clamp(0.8rem, 1.8vh, 1.15rem);
+        color: var(--cream);
+      }
+
+      .lede {
+        font-size: clamp(0.95rem, 1.7vh, 1.05rem);
+        font-weight: 300;
+        line-height: 1.6;
+        color: color-mix(in srgb, var(--peach) 88%, white);
+        max-width: 36rem;
+      }
+
+      .amenities {
+        overflow: hidden;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        margin-top: clamp(1rem, 2.4vh, 1.5rem);
+        mask-image: linear-gradient(
+          to right,
+          transparent,
+          #000 8%,
+          #000 92%,
+          transparent
+        );
+      }
+
+      .amenities-track {
+        display: flex;
+        width: max-content;
+        animation: marquee 22s linear infinite;
+      }
+
+      .amenities-track:hover {
+        animation-play-state: paused;
+      }
+
+      .amenities-track ul {
+        display: flex;
+        flex-shrink: 0;
+        gap: 0.45rem;
+        list-style: none;
+        padding-right: 0.45rem;
+      }
+
+      .amenities li {
+        flex-shrink: 0;
+        font-size: 0.7rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        padding: 0.4rem 0.7rem;
+        border: 1px solid color-mix(in srgb, var(--gold) 42%, transparent);
+        color: var(--gold);
+        white-space: nowrap;
+      }
+
+      .contact {
+        border-top: 1px solid color-mix(in srgb, var(--peach) 22%, transparent);
+        padding-top: clamp(0.85rem, 1.8vh, 1.15rem);
+      }
+
+      .contact-label {
+        font-size: 0.68rem;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+        color: color-mix(in srgb, var(--peach) 58%, transparent);
+        margin-bottom: 0.7rem;
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.8rem 1.5rem;
+      }
+
+      .contact-grid a {
+        color: var(--cream);
+        text-decoration: none;
+        font-size: 0.95rem;
+        font-weight: 400;
+        letter-spacing: 0.01em;
+        transition: color 0.2s ease;
+      }
+
+      .contact-grid a:hover,
+      .contact-grid a:focus-visible {
+        color: var(--gold);
+      }
+
+      .contact-grid span {
+        display: block;
+        font-size: 0.66rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 0.22rem;
+        font-weight: 500;
+      }
+
+      .address {
+        margin-top: 0.85rem;
+        font-size: 0.84rem;
+        font-weight: 300;
+        color: color-mix(in srgb, var(--peach) 78%, transparent);
+        line-height: 1.45;
+      }
+
+      .address span {
+        color: color-mix(in srgb, var(--peach) 50%, transparent);
+      }
+
+      @keyframes drift {
+        from {
+          transform: scale(1.04) translate3d(0, 0, 0);
+        }
+        to {
+          transform: scale(1.08) translate3d(-1.2%, -0.6%, 0);
+        }
+      }
+
+      @keyframes marquee {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      @media (max-width: 820px) {
+        html,
+        body {
+          height: auto;
+          min-height: 100dvh;
+          overflow-x: hidden;
+          overflow-y: auto;
+        }
+
+        .page {
+          height: auto;
+          min-height: 100dvh;
+          padding: 1.15rem 6vw 1.5rem;
+          text-align: center;
+        }
+
+        .top {
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 0.55rem;
+          min-width: 0;
+        }
+
+        .logo {
+          margin-inline: auto;
+          max-width: min(220px, 80vw);
+          height: auto;
+        }
+
+        .location {
+          text-align: center;
+        }
+
+        .hero {
+          align-items: center;
+          margin-inline: auto;
+          text-align: center;
+          max-width: 100%;
+          width: 100%;
+        }
+
+        .kicker {
+          justify-content: center;
+        }
+
+        .lede {
+          margin-inline: auto;
+          font-size: 0.88rem;
+          line-height: 1.55;
+        }
+
+        .amenities {
+          align-self: stretch;
+        }
+
+        .contact {
+          min-width: 0;
+        }
+
+        .contact-grid {
+          grid-template-columns: 1fr;
+          gap: 0.85rem;
+        }
+      }
+
+      @media (max-width: 560px) {
+        h1 {
+          font-size: 2.45rem;
+        }
+
+        .logo {
+          mix-blend-mode: normal;
+          height: 48px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .bg,
+        .amenities-track {
+          animation: none;
+          transform: none;
+        }
+
+        .amenities-track ul[aria-hidden="true"] {
+          display: none;
+        }
+
+        .amenities-track ul {
+          flex-wrap: wrap;
+          justify-content: center;
+          padding-right: 0;
+        }
+      }
+    </style>
   </head>
   <body>
     <div class="bg" role="presentation"></div>
