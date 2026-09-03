@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<style id="silkwood-loader-critical">
+html{background:#fff1db}
+body.silkwood-loading{overflow:hidden!important}
+body.silkwood-loading>*:not(#silkwood-loader){visibility:hidden!important}
+#silkwood-loader{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;pointer-events:auto;background:rgba(255,241,219,.96)}
+#silkwood-loader .silkwood-loader__veil{position:absolute;inset:0;background:rgba(255,241,219,.94)}
+#silkwood-loader .silkwood-loader__content{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:1.35rem;padding:1rem}
+#silkwood-loader .silkwood-loader__logo{display:block;height:28px;width:auto;opacity:.82;object-fit:contain}
+#silkwood-loader .silkwood-loader__stage{position:relative;width:88px;height:88px}
+#silkwood-loader .silkwood-loader__ring{position:absolute;inset:10px;border-radius:50%;border:1px solid rgba(26,12,4,.07)}
+#silkwood-loader .silkwood-loader__canvas{display:block;width:88px;height:88px}
+</style>
+<link rel="stylesheet" href="/css/silkwood.css?v=1620368475" />
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Gallery | Silkwood Hotel</title>
+<meta name="description" content="Browse photos of Silkwood Hotel in Ikeja GRA — rooms, reception, pool bar, conference hall, and meeting spaces." />
+<link rel="canonical" href="https://silkwoodhotels.com/gallery" />
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&amp;family=Montserrat:wght@300;400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="/js/tailwind-theme.js?v=a8810dd504"></script>
+<link rel="icon" href="/assets/brand/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" href="/assets/brand/favicon.png" />
+<link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png" />
+
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 100, 'GRAD' 0, 'opsz' 24;
+            font-size: 24px;
+        }
+        body {
+            background-color: #FFF1DB;
+        }
+        .hero-scrim {
+            background: linear-gradient(to bottom, rgba(26, 12, 4, 0.4) 0%, rgba(26, 12, 4, 0) 40%, rgba(26, 12, 4, 0.4) 100%);
+        }
+        #lightbox {
+            transition: opacity 0.3s ease;
+        }
+        #lightbox.hidden {
+            display: none;
+        }
+        .gallery-filter {
+            border-bottom: 1px solid transparent;
+            transition: color 0.3s ease, border-color 0.3s ease;
+        }
+        .gallery-filter.is-active {
+            color: #1A0C04;
+            border-bottom-color: #994E14;
+        }
+        .gallery-item.is-hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body data-page="gallery" class="font-body-md text-on-surface silkwood-loading">
+<div id="silkwood-loader" class="silkwood-loader" role="status" aria-live="polite" aria-busy="true" aria-label="Loading Silkwood Hotel">
+<div class="silkwood-loader__veil" aria-hidden="true"></div>
+<div class="silkwood-loader__content">
+<img class="silkwood-loader__logo" src="/assets/brand/logo-on-light.png" alt="" width="160" height="54" />
+<div class="silkwood-loader__stage" aria-hidden="true">
+<div class="silkwood-loader__ring"></div>
+<canvas class="silkwood-loader__canvas" width="176" height="176"></canvas>
+</div>
+</div>
+</div>
+<div id="site-header-root"></div>
+<main id="main">
+<!-- Hero Section -->
+<section class="page-hero page-hero--bottom hero-enter relative w-full overflow-hidden" data-hero>
+<img alt="Reception at Silkwood Hotel" class="hero-enter__media parallax-subtle absolute inset-0 w-full h-full object-cover" data-parallax="6" src="/images/hotel/reception/silkwood-78.jpg"/>
+<div class="absolute inset-0 hero-scrim"></div>
+<div class="page-hero-inner relative z-10 px-margin-mobile lg:px-margin-desktop max-w-container-max mx-auto w-full">
+<div class="max-w-2xl">
+<span class="hero-enter__text font-label-caps text-on-primary uppercase mb-4 block">Silkwood Hotel</span>
+<h1 class="hero-enter__title font-display-lg text-display-lg text-on-primary mb-6">Gallery</h1>
+<p class="hero-enter__text font-body-lg text-on-primary/90 max-w-lg">
+                    Rooms, reception, dining spaces, and meeting rooms — a look at the hotel in Ikeja GRA.
+                </p>
+</div>
+</div>
+</section>
+<!-- Filters & Grid -->
+<section class="py-section-gap px-margin-mobile lg:px-margin-desktop max-w-container-max mx-auto">
+<div id="gallery-filters" class="flex flex-wrap gap-x-6 gap-y-3 mb-12 reveal-on-scroll" role="tablist" aria-label="Gallery categories"></div>
+<div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-gutter"></div>
+</section>
+</main>
+<!-- Lightbox -->
+<div class="fixed inset-0 z-[100] bg-black/95 hidden flex flex-col justify-between" id="lightbox" role="dialog" aria-modal="true" aria-label="Image lightbox">
+<div class="flex justify-between items-center p-6 text-on-primary">
+<div class="font-label-caps text-xs tracking-widest"><span id="lightbox-current">1</span> / <span id="lightbox-total">1</span></div>
+<button type="button" class="hover:text-on-primary/70 transition-colors" id="lightbox-close" aria-label="Close lightbox">
+<span class="material-symbols-outlined text-3xl font-light">close</span>
+</button>
+</div>
+<div class="flex-grow flex items-center justify-center relative px-12">
+<button type="button" class="absolute left-6 text-on-primary hover:text-on-primary/70 transition-colors hidden md:block" id="lightbox-prev" aria-label="Previous image">
+<span class="material-symbols-outlined text-4xl font-light">chevron_left</span>
+</button>
+<img alt="" class="max-h-[80vh] max-w-full object-contain select-none" id="lightbox-img" src=""/>
+<button type="button" class="absolute right-6 text-on-primary hover:text-on-primary/70 transition-colors hidden md:block" id="lightbox-next" aria-label="Next image">
+<span class="material-symbols-outlined text-4xl font-light">chevron_right</span>
+</button>
+</div>
+<div class="p-6 text-center text-on-primary/80 font-body-md text-sm">
+<p id="lightbox-caption"></p>
+</div>
+</div>
+<div id="site-footer-root"></div>
+<script src="/js/hotel-images.js?v=0a3279f1d5"></script>
+<script src="/js/site-chrome.js?v=40b275795c"></script>
+<script>
+(function () {
+  var images = window.SilkwoodImages;
+  if (!images || !images.gallery) return;
+
+  var categories = images.gallery.categories || [];
+  var items = images.gallery.items || [];
+  var filtersEl = document.getElementById("gallery-filters");
+  var gridEl = document.getElementById("gallery-grid");
+  var activeCategory = "all";
+  var visibleItems = [];
+
+  var lightbox = document.getElementById("lightbox");
+  var lightboxImg = document.getElementById("lightbox-img");
+  var lightboxCaption = document.getElementById("lightbox-caption");
+  var lightboxCurrent = document.getElementById("lightbox-current");
+  var lightboxTotal = document.getElementById("lightbox-total");
+  var lightboxIndex = 0;
+
+  function renderFilters() {
+    if (!filtersEl) return;
+    filtersEl.innerHTML = categories
+      .map(function (cat) {
+        var active = cat.id === activeCategory ? " is-active" : "";
+        return (
+          '<button type="button" class="gallery-filter font-label-caps text-xs uppercase tracking-widest text-on-surface-variant hover:text-ink pb-1' +
+          active +
+          '" data-filter="' +
+          cat.id +
+          '" role="tab" aria-selected="' +
+          (cat.id === activeCategory ? "true" : "false") +
+          '">' +
+          cat.label +
+          "</button>"
+        );
+      })
+      .join("");
+  }
+
+  function renderGrid() {
+    if (!gridEl) return;
+    gridEl.innerHTML = items
+      .map(function (item, i) {
+        return (
+          '<button type="button" class="gallery-item group relative overflow-hidden bg-surface-container aspect-[4/3] cursor-pointer text-left reveal-on-scroll" data-category="' +
+          item.category +
+          '" data-index="' +
+          i +
+          '" aria-label="' +
+          (item.alt || "View image") +
+          '">' +
+          '<img src="' +
+          item.src +
+          '" alt="' +
+          (item.alt || "") +
+          '" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />' +
+          "</button>"
+        );
+      })
+      .join("");
+  }
+
+  function applyFilter(category) {
+    activeCategory = category || "all";
+    visibleItems = [];
+    var buttons = filtersEl ? filtersEl.querySelectorAll(".gallery-filter") : [];
+    buttons.forEach(function (btn) {
+      var on = btn.getAttribute("data-filter") === activeCategory;
+      btn.classList.toggle("is-active", on);
+      btn.setAttribute("aria-selected", on ? "true" : "false");
+    });
+
+    var nodes = gridEl ? gridEl.querySelectorAll(".gallery-item") : [];
+    nodes.forEach(function (node) {
+      var cat = node.getAttribute("data-category");
+      var show = activeCategory === "all" || cat === activeCategory;
+      node.classList.toggle("is-hidden", !show);
+      if (show) {
+        visibleItems.push({
+          src: node.querySelector("img").src,
+          alt: node.querySelector("img").alt || "",
+          index: parseInt(node.getAttribute("data-index"), 10)
+        });
+      }
+    });
+  }
+
+  function openLightbox(visibleIdx) {
+    if (!visibleItems.length || !lightbox) return;
+    lightboxIndex = ((visibleIdx % visibleItems.length) + visibleItems.length) % visibleItems.length;
+    var item = visibleItems[lightboxIndex];
+    lightboxImg.src = item.src;
+    lightboxImg.alt = item.alt;
+    lightboxCaption.textContent = item.alt;
+    lightboxCurrent.textContent = String(lightboxIndex + 1);
+    lightboxTotal.textContent = String(visibleItems.length);
+    lightbox.classList.remove("hidden");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeLightbox() {
+    if (!lightbox) return;
+    lightbox.classList.add("hidden");
+    document.body.style.overflow = "";
+  }
+
+  function stepLightbox(delta) {
+    if (!visibleItems.length) return;
+    openLightbox(lightboxIndex + delta);
+  }
+
+  renderFilters();
+  renderGrid();
+  applyFilter("all");
+
+  if (filtersEl) {
+    filtersEl.addEventListener("click", function (e) {
+      var btn = e.target.closest("[data-filter]");
+      if (!btn) return;
+      applyFilter(btn.getAttribute("data-filter"));
+    });
+  }
+
+  if (gridEl) {
+    gridEl.addEventListener("click", function (e) {
+      var item = e.target.closest(".gallery-item");
+      if (!item || item.classList.contains("is-hidden")) return;
+      var src = item.querySelector("img").src;
+      var idx = visibleItems.findIndex(function (v) {
+        return v.src === src;
+      });
+      if (idx < 0) idx = 0;
+      openLightbox(idx);
+    });
+  }
+
+  var closeBtn = document.getElementById("lightbox-close");
+  var prevBtn = document.getElementById("lightbox-prev");
+  var nextBtn = document.getElementById("lightbox-next");
+  if (closeBtn) closeBtn.addEventListener("click", closeLightbox);
+  if (prevBtn) prevBtn.addEventListener("click", function () { stepLightbox(-1); });
+  if (nextBtn) nextBtn.addEventListener("click", function () { stepLightbox(1); });
+
+  if (lightbox) {
+    lightbox.addEventListener("click", function (e) {
+      if (e.target === lightbox) closeLightbox();
+    });
+  }
+
+  document.addEventListener("keydown", function (e) {
+    if (!lightbox || lightbox.classList.contains("hidden")) return;
+    if (e.key === "Escape") closeLightbox();
+    if (e.key === "ArrowLeft") stepLightbox(-1);
+    if (e.key === "ArrowRight") stepLightbox(1);
+  });
+})();
+</script>
+</body></html>

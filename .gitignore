@@ -1,0 +1,4 @@
+# Local / working folders — do not commit
+images/image_backup/
+images/_extract_tmp/
+reference_designs/

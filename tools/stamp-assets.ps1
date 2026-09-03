@@ -21,7 +21,8 @@ function Get-ShortHash([string]$RelativePath) {
 $Assets = @(
   @{ Path = "css/silkwood.css"; Url = "/css/silkwood.css" },
   @{ Path = "js/site-chrome.js"; Url = "/js/site-chrome.js" },
-  @{ Path = "js/tailwind-theme.js"; Url = "/js/tailwind-theme.js" }
+  @{ Path = "js/tailwind-theme.js"; Url = "/js/tailwind-theme.js" },
+  @{ Path = "js/hotel-images.js"; Url = "/js/hotel-images.js" }
 )
 
 $Pages = @(
@@ -32,7 +33,9 @@ $Pages = @(
   "facilities.html",
   "about.html",
   "contact.html",
-  "terms.html"
+  "terms.html",
+  "conference.html",
+  "gallery.html"
 )
 
 $Hashes = @{}

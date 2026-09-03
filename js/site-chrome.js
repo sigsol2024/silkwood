@@ -9,6 +9,7 @@
     { id: "rooms", label: "Rooms & Suites", href: "/rooms" },
     { id: "dining", label: "Dining", href: "/dining" },
     { id: "facilities", label: "Facilities", href: "/facilities" },
+    { id: "conference", label: "Conference", href: "/conference" },
     { id: "about", label: "About", href: "/about" },
     { id: "contact", label: "Contact", href: "/contact" }
   ];
@@ -75,7 +76,7 @@
     <div class="silkwood-mobile-nav__divider" aria-hidden="true"></div>
     <div class="silkwood-mobile-nav__aside">
       <div class="silkwood-mobile-nav__media">
-        <img src="/images/hero.jpg" alt="" />
+        <img src="/images/hotel/reception/silkwood-78.jpg" alt="" />
       </div>
       <a class="silkwood-mobile-nav__cta btn-interact inline-flex items-center justify-center px-5 py-3.5 bg-warm-copper text-white font-label-caps uppercase tracking-widest" href="${BOOK_HREF}">Book Now</a>
     </div>
@@ -101,6 +102,8 @@
         <li><a class="hover:text-white transition-colors" href="/rooms">Rooms &amp; Suites</a></li>
         <li><a class="hover:text-white transition-colors" href="/dining">Dining</a></li>
         <li><a class="hover:text-white transition-colors" href="/facilities">Facilities</a></li>
+        <li><a class="hover:text-white transition-colors" href="/conference">Conference</a></li>
+        <li><a class="hover:text-white transition-colors" href="/gallery">Gallery</a></li>
       </ul>
     </div>
     <div>
@@ -828,6 +831,120 @@
     }, maxWaitMs);
   }
 
+  function initSilkwoodSliders(root) {
+    const scope = root || document;
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    scope.querySelectorAll("[data-silkwood-slider]").forEach(function (slider) {
+      if (slider.dataset.sliderReady === "1") return;
+      const slides = Array.from(
+        slider.querySelectorAll(".silkwood-slider__slide")
+      );
+      if (slides.length < 2) {
+        slider.dataset.sliderReady = "1";
+        return;
+      }
+
+      const dots = Array.from(slider.querySelectorAll("[data-slider-dot]"));
+      const prevBtn = slider.querySelector("[data-slider-prev]");
+      const nextBtn = slider.querySelector("[data-slider-next]");
+      let index = slides.findIndex(function (s) {
+        return s.classList.contains("is-active");
+      });
+      if (index < 0) index = 0;
+      let touchStartX = 0;
+      let touchDeltaX = 0;
+
+      function goTo(next) {
+        const len = slides.length;
+        index = ((next % len) + len) % len;
+        slides.forEach(function (slide, i) {
+          slide.classList.toggle("is-active", i === index);
+        });
+        dots.forEach(function (dot, i) {
+          const on = i === index;
+          dot.classList.toggle("is-active", on);
+          if (on) dot.setAttribute("aria-current", "true");
+          else dot.removeAttribute("aria-current");
+        });
+      }
+
+      if (prevBtn) {
+        prevBtn.addEventListener("click", function () {
+          goTo(index - 1);
+        });
+      }
+      if (nextBtn) {
+        nextBtn.addEventListener("click", function () {
+          goTo(index + 1);
+        });
+      }
+      dots.forEach(function (dot) {
+        dot.addEventListener("click", function () {
+          const i = parseInt(dot.getAttribute("data-slider-dot"), 10);
+          if (!isNaN(i)) goTo(i);
+        });
+      });
+
+      slider.addEventListener("keydown", function (e) {
+        if (e.key === "ArrowLeft") {
+          e.preventDefault();
+          goTo(index - 1);
+        } else if (e.key === "ArrowRight") {
+          e.preventDefault();
+          goTo(index + 1);
+        }
+      });
+      if (!slider.hasAttribute("tabindex")) slider.setAttribute("tabindex", "0");
+
+      const viewport = slider.querySelector(".silkwood-slider__viewport");
+      const swipeTarget = viewport || slider;
+      swipeTarget.addEventListener(
+        "touchstart",
+        function (e) {
+          if (!e.touches || !e.touches.length) return;
+          touchStartX = e.touches[0].clientX;
+          touchDeltaX = 0;
+        },
+        { passive: true }
+      );
+      swipeTarget.addEventListener(
+        "touchmove",
+        function (e) {
+          if (!e.touches || !e.touches.length) return;
+          touchDeltaX = e.touches[0].clientX - touchStartX;
+        },
+        { passive: true }
+      );
+      swipeTarget.addEventListener("touchend", function () {
+        if (Math.abs(touchDeltaX) < 40) return;
+        if (touchDeltaX > 0) goTo(index - 1);
+        else goTo(index + 1);
+        touchDeltaX = 0;
+      });
+
+      if (!reduceMotion && slider.hasAttribute("data-slider-autoplay")) {
+        let timer = window.setInterval(function () {
+          goTo(index + 1);
+        }, 6000);
+        slider.addEventListener("pointerenter", function () {
+          window.clearInterval(timer);
+          timer = 0;
+        });
+        slider.addEventListener("pointerleave", function () {
+          if (timer) return;
+          timer = window.setInterval(function () {
+            goTo(index + 1);
+          }, 6000);
+        });
+      }
+
+      slider.dataset.sliderReady = "1";
+    });
+  }
+
   function initChrome() {
     try {
       initLoader();
@@ -897,6 +1014,7 @@
     bindBookingPlaceholders();
     initLogoIntroPrefetch();
     bindInstantNavLoader();
+    initSilkwoodSliders();
 
     if (!document.getElementById("silkwood-loader")) {
       onLoaderComplete("no-loader");
@@ -916,6 +1034,7 @@
     address: ADDRESS,
     bookHref: BOOK_HREF,
     loaderLog: loaderLog,
+    initSliders: initSilkwoodSliders,
     getLoaderLog: function () {
       try {
         return JSON.parse(sessionStorage.getItem(LOADER_LOG_KEY) || "[]");

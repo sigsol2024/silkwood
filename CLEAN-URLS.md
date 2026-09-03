@@ -28,7 +28,8 @@ Deploy the root `.htaccess` file; it handles the same redirects and rewrites.
 
 ## Repo changes (already done)
 
-- All live page links use clean paths (`/rooms`, `/contact`, …; home is `/`).
+- All live page links use clean paths (`/rooms`, `/conference`, `/gallery`, `/contact`, …; home is `/`).
+- Expected public URLs include `/conference` and `/gallery` (plus existing `/`, `/rooms`, `/room-details`, `/dining`, `/facilities`, `/about`, `/contact`, `/terms`, `/coming`).
 - Shared header/footer/nav in `js/site-chrome.js` updated the same way.
 - Asset URLs are root-absolute (`/css/…`, `/js/…`, `/images/…`, `/assets/…`) so they work on clean paths.
 - Each page has a `rel="canonical"` pointing at the clean `https://silkwoodhotels.com/…` URL.

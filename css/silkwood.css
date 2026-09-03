@@ -903,3 +903,143 @@ body.silkwood-logo-intro-active {
     transform: none;
   }
 }
+
+/* —— Silkwood image slider —— */
+.silkwood-slider {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: #1a0c04;
+  isolation: isolate;
+}
+
+.silkwood-slider__viewport {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+}
+
+.silkwood-slider--hero .silkwood-slider__viewport,
+.silkwood-slider--fill .silkwood-slider__viewport {
+  aspect-ratio: auto;
+  position: absolute;
+  inset: 0;
+  height: 100%;
+}
+
+.silkwood-slider--square .silkwood-slider__viewport {
+  aspect-ratio: 1 / 1;
+}
+
+.silkwood-slider--portrait .silkwood-slider__viewport {
+  aspect-ratio: 4 / 5;
+}
+
+.silkwood-slider__track {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.silkwood-slider__slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.7s var(--sw-ease, cubic-bezier(0.22, 1, 0.36, 1)),
+    visibility 0.7s;
+  pointer-events: none;
+}
+
+.silkwood-slider__slide.is-active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  z-index: 1;
+}
+
+.silkwood-slider__slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.silkwood-slider__nav {
+  position: absolute;
+  top: 50%;
+  z-index: 3;
+  transform: translateY(-50%);
+  width: 2.5rem;
+  height: 2.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 219, 0.35);
+  background: rgba(26, 12, 4, 0.45);
+  color: #fff1db;
+  cursor: pointer;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.silkwood-slider__nav:hover,
+.silkwood-slider__nav:focus-visible {
+  background: rgba(153, 78, 20, 0.85);
+  border-color: rgba(255, 241, 219, 0.7);
+  outline: none;
+}
+
+.silkwood-slider__nav--prev {
+  left: 0.75rem;
+}
+
+.silkwood-slider__nav--next {
+  right: 0.75rem;
+}
+
+.silkwood-slider__nav .material-symbols-outlined {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.silkwood-slider__dots {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.85rem;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  gap: 0.4rem;
+  pointer-events: none;
+}
+
+.silkwood-slider__dot {
+  pointer-events: auto;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 999px;
+  border: 0;
+  padding: 0;
+  background: rgba(255, 241, 219, 0.4);
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.silkwood-slider__dot.is-active {
+  background: #fff1db;
+  transform: scale(1.25);
+}
+
+.silkwood-slider__dot:focus-visible {
+  outline: 2px solid #994e14;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .silkwood-slider__slide {
+    transition-duration: 0.01ms;
+  }
+}
