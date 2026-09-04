@@ -1,9 +1,20 @@
 (function () {
-  const ADDRESS = "51 Sobo Ariobiodu Street, GRA Ikeja, Lagos, Nigeria";
+  const ADDRESS = "261, Sobo Ariobiodu Street, GRA Ikeja, Lagos, Nigeria";
+  const ADDRESS_LINES = "261, Sobo Ariobiodu Street,<br/>GRA Ikeja, Lagos.";
   const MAPS_URL =
     "https://www.google.com/maps/search/?api=1&query=" +
     encodeURIComponent(ADDRESS);
+  const MAPS_EMBED_URL =
+    "https://www.google.com/maps?q=" +
+    encodeURIComponent(ADDRESS) +
+    "&z=16&output=embed";
+  const WHATSAPP_URL = "https://wa.me/2347072032040";
   const BOOK_HREF = "/rooms";
+  const SOCIAL = {
+    instagram: "https://www.instagram.com/silkwoodhotelikeja",
+    facebook: "https://www.facebook.com/Silkwoodhotelikeja",
+    tiktok: "https://www.tiktok.com/@silkwood.hotel.ike"
+  };
 
   const NAV = [
     { id: "rooms", label: "Rooms & Suites", href: "/rooms" },
@@ -85,7 +96,13 @@
 </div>
 <button type="button" class="silkwood-scroll-top" id="silkwood-scroll-top" aria-label="Scroll to top">
   <span class="material-symbols-outlined" aria-hidden="true">arrow_upward</span>
-</button>`;
+</button>
+<a class="silkwood-whatsapp" id="silkwood-whatsapp" href="${WHATSAPP_URL}" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+  <svg class="silkwood-whatsapp__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path fill="currentColor" d="M17.47 14.38c-.28-.14-1.64-.81-1.9-.9-.25-.1-.44-.14-.62.14-.18.27-.71.9-.87 1.08-.16.18-.32.2-.6.07-.28-.14-1.17-.43-2.23-1.37-.82-.73-1.38-1.64-1.54-1.92-.16-.27-.02-.42.12-.55.13-.13.28-.32.42-.48.14-.16.18-.27.28-.45.09-.18.05-.34-.02-.48-.07-.14-.62-1.49-.85-2.04-.22-.53-.45-.46-.62-.47h-.53c-.18 0-.48.07-.73.34-.25.27-.96.94-.96 2.3s.98 2.67 1.12 2.85c.14.18 1.93 2.95 4.68 4.13.65.28 1.16.45 1.56.58.65.21 1.25.18 1.72.11.53-.08 1.64-.67 1.87-1.32.23-.65.23-1.2.16-1.32-.07-.11-.25-.18-.53-.32z"/>
+    <path fill="currentColor" d="M12.04 2C6.5 2 2.02 6.48 2.02 12c0 1.77.46 3.45 1.28 4.91L2 22l5.25-1.38A9.96 9.96 0 0 0 12.04 22C17.56 22 22 17.52 22 12S17.56 2 12.04 2zm0 18.15c-1.6 0-3.1-.43-4.4-1.18l-.32-.19-3.11.82.83-3.04-.2-.33A8.12 8.12 0 0 1 3.9 12c0-4.48 3.65-8.12 8.14-8.12 4.48 0 8.12 3.64 8.12 8.12 0 4.49-3.64 8.15-8.12 8.15z"/>
+  </svg>
+</a>`;
   }
 
   function renderFooter() {
@@ -1319,7 +1336,11 @@
 
   window.SilkwoodChrome = {
     mapsUrl: MAPS_URL,
+    mapsEmbedUrl: MAPS_EMBED_URL,
     address: ADDRESS,
+    addressLines: ADDRESS_LINES,
+    whatsappUrl: WHATSAPP_URL,
+    social: SOCIAL,
     bookHref: BOOK_HREF,
     loaderLog: loaderLog,
     initSliders: initSilkwoodSliders,
