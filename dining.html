@@ -8,12 +8,19 @@ body.silkwood-loading>*:not(#silkwood-loader){visibility:hidden!important}
 #silkwood-loader{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;pointer-events:auto;background:rgba(255,241,219,.96)}
 #silkwood-loader .silkwood-loader__veil{position:absolute;inset:0;background:rgba(255,241,219,.94)}
 #silkwood-loader .silkwood-loader__content{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:1.35rem;padding:1rem}
-#silkwood-loader .silkwood-loader__logo{display:block;height:28px;width:auto;opacity:.82;object-fit:contain}
+#silkwood-loader .silkwood-loader__logo{display:block;height:28px;width:auto;max-width:160px;opacity:0;object-fit:contain;transition:opacity .25s ease}
+#silkwood-loader .silkwood-loader__logo.is-ready{opacity:.82}
 #silkwood-loader .silkwood-loader__stage{position:relative;width:88px;height:88px}
-#silkwood-loader .silkwood-loader__ring{position:absolute;inset:10px;border-radius:50%;border:1px solid rgba(26,12,4,.07)}
+#silkwood-loader .silkwood-loader__ring{position:absolute;inset:10px;border-radius:50%;border:1px solid rgba(26,12,4,.1);pointer-events:none}
+#silkwood-loader .silkwood-loader__ring::after{content:"";position:absolute;inset:-3px;border-radius:50%;border:2px solid transparent;border-top-color:rgba(153,78,20,.85);border-right-color:rgba(153,78,20,.35);animation:silkwood-loader-spin 1s linear infinite}
+#silkwood-loader.has-canvas-anim .silkwood-loader__ring::after{opacity:0;animation:none}
 #silkwood-loader .silkwood-loader__canvas{display:block;width:88px;height:88px}
+@keyframes silkwood-loader-spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){#silkwood-loader .silkwood-loader__ring::after{animation:none;border-top-color:rgba(153,78,20,.7);border-right-color:transparent}}
 </style>
-<link rel="stylesheet" href="/css/silkwood.css?v=854fc08f40" />
+<link rel="preload" as="image" href="/assets/brand/logo-on-light.png" fetchpriority="high" />
+
+<link rel="stylesheet" href="/css/silkwood.css?v=db8df35ed2" />
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Dining | Silkwood Hotel</title>
@@ -170,13 +177,14 @@ body.silkwood-loading>*:not(#silkwood-loader){visibility:hidden!important}
 <div id="silkwood-loader" class="silkwood-loader" role="status" aria-live="polite" aria-busy="true" aria-label="Loading Silkwood Hotel">
 <div class="silkwood-loader__veil" aria-hidden="true"></div>
 <div class="silkwood-loader__content">
-<img class="silkwood-loader__logo" src="/assets/brand/logo-on-light.png" alt="" width="160" height="54" />
+<img class="silkwood-loader__logo" src="/assets/brand/logo-on-light.png" alt="" width="160" height="54" fetchpriority="high" decoding="async" onload="this.classList.add('is-ready')" />
 <div class="silkwood-loader__stage" aria-hidden="true">
 <div class="silkwood-loader__ring"></div>
 <canvas class="silkwood-loader__canvas" width="176" height="176"></canvas>
 </div>
 </div>
 </div>
+<script>(function(){var img=document.querySelector('#silkwood-loader .silkwood-loader__logo');if(!img)return;function r(){img.classList.add('is-ready');}if(img.complete&&img.naturalWidth)r();else{img.addEventListener('load',r,{once:true});}})();</script>
 <div id="site-header-root"></div>
 <main id="main">
 <!-- Hero -->
@@ -318,7 +326,7 @@ Contact reservations
 
 <div id="site-footer-root"></div>
 <script src="/js/hotel-images.js?v=53456c0e4d"></script>
-<script src="/js/site-chrome.js?v=c53fe81ffa"></script>
+<script src="/js/site-chrome.js?v=5b051f92da"></script>
 <script>
 (function () {
   var images = window.SilkwoodImages;

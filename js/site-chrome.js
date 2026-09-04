@@ -577,12 +577,33 @@
     return `
       <div class="silkwood-loader__veil" aria-hidden="true"></div>
       <div class="silkwood-loader__content">
-        <img class="silkwood-loader__logo" src="/assets/brand/logo-on-light.png" alt="" width="160" height="54" />
+        <img class="silkwood-loader__logo" src="/assets/brand/logo-on-light.png" alt="" width="160" height="54" fetchpriority="high" decoding="async" />
         <div class="silkwood-loader__stage" aria-hidden="true">
           <div class="silkwood-loader__ring"></div>
           <canvas class="silkwood-loader__canvas" width="176" height="176"></canvas>
         </div>
       </div>`;
+  }
+
+  function bindLoaderLogo(root) {
+    if (!root) return;
+    const logo = root.querySelector(".silkwood-loader__logo");
+    if (!logo) return;
+    function markReady() {
+      logo.classList.add("is-ready");
+    }
+    if (logo.complete && logo.naturalWidth > 0) {
+      markReady();
+    } else {
+      logo.addEventListener("load", markReady, { once: true });
+      logo.addEventListener(
+        "error",
+        function () {
+          logo.style.visibility = "hidden";
+        },
+        { once: true }
+      );
+    }
   }
 
   function ensureLoaderElement() {
@@ -599,6 +620,7 @@
     root.setAttribute("aria-label", "Loading Silkwood Hotel");
     root.innerHTML = buildLoaderMarkup();
     document.body.insertBefore(root, document.body.firstChild);
+    bindLoaderLogo(root);
     return root;
   }
 
@@ -691,6 +713,7 @@
     root.classList.remove("is-leaving");
     root.setAttribute("aria-busy", "true");
     document.body.classList.add("silkwood-loading");
+    bindLoaderLogo(root);
     logLoader(existed ? "loader-adopted" : "dom-injected", {
       reduceMotion: reduceMotion
     });
@@ -767,10 +790,13 @@
     }
 
     if (ctx && !reduceMotion) {
-      rafId = requestAnimationFrame(drawFrame);
+      // First paint immediately, then hand off to rAF — avoids blank canvas wait
+      root.classList.add("has-canvas-anim");
+      drawFrame(performance.now());
       logLoader("animation-started");
     } else if (ctx && reduceMotion) {
       // Static refined mark for reduced motion
+      root.classList.add("has-canvas-anim");
       ctx.beginPath();
       ctx.arc(center, center, radius, 0, Math.PI * 2);
       ctx.strokeStyle = "rgba(26, 12, 4, 0.08)";
