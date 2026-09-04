@@ -812,40 +812,14 @@ video {
   }
 }
 
-/* Home hero: mobile slider nav near bottom + clickable through copy stack */
+/* Home hero: on mobile only, move slider nav near bottom — do not move title/CTAs */
 @media (max-width: 1023px) {
-  .home-hero.page-hero--center {
-    justify-content: flex-start;
-    align-items: stretch;
-  }
-
   .home-hero .home-hero-inner {
-    z-index: 10;
-    width: 100%;
-    max-width: 56rem;
-    min-height: 100%;
-    padding-top: 0.5rem;
-    padding-bottom: 6.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
     pointer-events: none;
   }
 
-  .home-hero .home-hero-inner .hero-enter__title,
-  .home-hero .home-hero-inner .hero-enter__text {
-    pointer-events: none;
-  }
-
-  .home-hero .home-hero-inner .hero-enter__cta {
-    pointer-events: auto;
-    margin-top: auto;
-    margin-bottom: 0.5rem;
-    position: relative;
-    z-index: 15;
-  }
-
-  .home-hero .home-hero-inner .hero-enter__cta a {
+  .home-hero .home-hero-inner a,
+  .home-hero .home-hero-inner button {
     pointer-events: auto;
   }
 
@@ -853,12 +827,10 @@ video {
     top: auto;
     bottom: 1.75rem;
     transform: none;
-    z-index: 16;
   }
 
   .home-hero .silkwood-slider__dots {
     bottom: 0.35rem;
-    z-index: 16;
   }
 }
 
