@@ -76,7 +76,7 @@ body.silkwood-loading>*:not(#silkwood-loader){visibility:hidden!important}
 <!-- Hero Section -->
 <section class="page-hero page-hero--center hero-enter relative w-full overflow-hidden" data-hero>
 <div class="absolute inset-0 z-0">
-<img alt="A guest room at Silkwood Hotel" class="hero-enter__media parallax-subtle w-full h-full object-cover" data-parallax="6" src="/images/hotel/rooms/classic/silkwood-4.jpg"/>
+<img id="rooms-hero-img" alt="A guest room at Silkwood Hotel" class="hero-enter__media parallax-subtle w-full h-full object-cover" data-parallax="6" src="/images/hotel/rooms/classic/silkwood-4.jpg"/>
 <div class="absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/30 to-transparent"></div>
 </div>
 <div class="page-hero-inner relative z-10 text-center px-6 max-w-4xl mx-auto flex flex-col items-center">
@@ -94,7 +94,7 @@ body.silkwood-loading>*:not(#silkwood-loader){visibility:hidden!important}
 <span class="font-label-caps text-golden-ochre mb-4 block tracking-widest">ROOMS &amp; SUITES</span>
 <h2 class="font-headline-lg text-4xl md:text-5xl text-on-surface mb-6">Crafted for quiet moments.</h2>
 <p class="font-body-md text-on-surface-variant max-w-2xl mx-auto leading-relaxed">
-            106 rooms across five types: Classic (42), Deluxe (30), Premium (24), Executive (6), and Diplomatic Suite (4). Individually decorated, with air-conditioning, Wi-Fi, a work desk, mini bar, safe, and satellite TV. Check-in from 14:00; check-out by 11:00.
+            106 rooms across five types: Classic, Deluxe, Premium, Executive, and Diplomatic Suite. Check-in from 14:00; check-out by 11:00.
         </p>
 </div>
 </section>
@@ -112,7 +112,7 @@ body.silkwood-loading>*:not(#silkwood-loader){visibility:hidden!important}
 <div class="flex flex-wrap gap-6 mb-8 font-label-caps text-sm text-on-surface-variant">
 <div class="flex items-center gap-2">
 <span class="material-symbols-outlined text-[20px] font-light">ac_unit</span>
-<span>Aircon</span>
+<span>AC</span>
 </div>
 <div class="flex items-center gap-2">
 <span class="material-symbols-outlined text-[20px] font-light">wifi</span>
@@ -123,8 +123,7 @@ body.silkwood-loading>*:not(#silkwood-loader){visibility:hidden!important}
 <span>Work Desk</span>
 </div>
 </div>
-<div class="flex items-center justify-between mt-auto pt-8 border-t border-outline-variant/30">
-<span class="font-label-caps text-xs text-on-surface-variant tracking-widest">ENQUIRE</span>
+<div class="flex items-center justify-start mt-auto pt-8 border-t border-outline-variant/30">
 <a href="/room-details?room=classic" class="btn-outline px-8 py-3 font-label-caps text-sm tracking-widest uppercase inline-block">View Room</a>
 </div>
 </div>
@@ -141,16 +140,19 @@ body.silkwood-loading>*:not(#silkwood-loader){visibility:hidden!important}
 <p class="font-body-md text-on-surface-variant mb-6 leading-relaxed">A larger stay with the same considered finish: tea and coffee, hairdryer, mini bar, and a desk for work or rest.</p>
 <div class="flex flex-wrap gap-6 mb-8 font-label-caps text-sm text-on-surface-variant">
 <div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-[20px] font-light">coffee_maker</span>
-<span>Tea &amp; Coffee</span>
-</div>
-<div class="flex items-center gap-2">
 <span class="material-symbols-outlined text-[20px] font-light">wifi</span>
 <span>Wi-Fi</span>
 </div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] font-light">desk</span>
+<span>Work Desk</span>
 </div>
-<div class="flex items-center justify-between mt-auto pt-8 border-t border-outline-variant/30">
-<span class="font-label-caps text-xs text-on-surface-variant tracking-widest">ENQUIRE</span>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] font-light">king_bed</span>
+<span>King Size Bed</span>
+</div>
+</div>
+<div class="flex items-center justify-start mt-auto pt-8 border-t border-outline-variant/30">
 <a href="/room-details?room=deluxe" class="btn-outline px-8 py-3 font-label-caps text-sm tracking-widest uppercase inline-block">View Room</a>
 </div>
 </div>
@@ -174,9 +176,12 @@ body.silkwood-loading>*:not(#silkwood-loader){visibility:hidden!important}
 <span class="material-symbols-outlined text-[20px] font-light">lock</span>
 <span>Safe</span>
 </div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] font-light">ac_unit</span>
+<span>AC</span>
 </div>
-<div class="flex items-center justify-between mt-auto pt-8 border-t border-outline-variant/30">
-<span class="font-label-caps text-xs text-on-surface-variant tracking-widest">ENQUIRE</span>
+</div>
+<div class="flex items-center justify-start mt-auto pt-8 border-t border-outline-variant/30">
 <a href="/room-details?room=premium" class="btn-outline px-8 py-3 font-label-caps text-sm tracking-widest uppercase inline-block">View Room</a>
 </div>
 </div>
@@ -200,9 +205,12 @@ body.silkwood-loading>*:not(#silkwood-loader){visibility:hidden!important}
 <span class="material-symbols-outlined text-[20px] font-light">wifi</span>
 <span>Wi-Fi</span>
 </div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] font-light">king_bed</span>
+<span>King Size Bed</span>
 </div>
-<div class="flex items-center justify-between mt-auto pt-8 border-t border-outline-variant/30">
-<span class="font-label-caps text-xs text-on-surface-variant tracking-widest">ENQUIRE</span>
+</div>
+<div class="flex items-center justify-start mt-auto pt-8 border-t border-outline-variant/30">
 <a href="/room-details?room=executive" class="btn-outline px-8 py-3 font-label-caps text-sm tracking-widest uppercase inline-block">View Room</a>
 </div>
 </div>
@@ -226,9 +234,12 @@ body.silkwood-loading>*:not(#silkwood-loader){visibility:hidden!important}
 <span class="material-symbols-outlined text-[20px] font-light">tv</span>
 <span>Satellite TV</span>
 </div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] font-light">wifi</span>
+<span>Wi-Fi</span>
 </div>
-<div class="flex items-center justify-between mt-auto pt-8 border-t border-outline-variant/30">
-<span class="font-label-caps text-xs text-on-surface-variant tracking-widest">ENQUIRE</span>
+</div>
+<div class="flex items-center justify-start mt-auto pt-8 border-t border-outline-variant/30">
 <a href="/room-details?room=diplomatic" class="btn-outline px-8 py-3 font-label-caps text-sm tracking-widest uppercase inline-block">View Room</a>
 </div>
 </div>
@@ -265,6 +276,20 @@ body.silkwood-loading>*:not(#silkwood-loader){visibility:hidden!important}
 </section>
 </main>
 <div id="site-footer-root"></div>
-<script src="/js/hotel-images.js?v=c070f64480"></script>
+<script src="/js/hotel-images.js?v=e47cdd1cb1"></script>
 <script src="/js/site-chrome.js?v=c731bf70bd"></script>
+<script>
+(function () {
+  var images = window.SilkwoodImages;
+  if (!images || !images.roomsPageHero || !images.roomsPageHero.length) return;
+  var img = document.getElementById("rooms-hero-img");
+  if (!img) return;
+  var pool = images.roomsPageHero;
+  var pick = pool[Math.floor(Math.random() * pool.length)];
+  if (pick && pick.src) {
+    img.src = pick.src;
+    if (pick.alt) img.alt = pick.alt;
+  }
+})();
+</script>
 </body></html>

@@ -303,6 +303,19 @@
       if (key === "diplomatic-suite") return rooms.diplomatic;
       return rooms[key] || rooms.executive;
     },
+    /** Rooms list page hero — rotate one of these on each load */
+    roomsPageHero: [
+      rooms.classic.gallery[0],
+      rooms.classic.gallery[2] || rooms.classic.gallery[1],
+      rooms.deluxe.gallery[0],
+      rooms.deluxe.gallery[2] || rooms.deluxe.gallery[1],
+      rooms.premium.gallery[0],
+      rooms.premium.gallery[2] || rooms.premium.gallery[1],
+      rooms.executive.gallery[0],
+      rooms.executive.gallery[2] || rooms.executive.gallery[1],
+      rooms.diplomatic.gallery[0],
+      rooms.diplomatic.gallery[2] || rooms.diplomatic.gallery[1]
+    ].filter(Boolean),
     facilities: {
       poolBar: poolBar,
       gym: gym,
