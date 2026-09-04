@@ -397,6 +397,29 @@
       meetingSpace[0],
       meetingSpace[2] || meetingSpace[1]
     ].filter(Boolean),
+    /** About page — Art of Discretion cards (pick one of 3 on each load) */
+    aboutArt: {
+      guestRelations: [
+        rooms.classic.gallery[0],
+        rooms.deluxe.gallery[1] || rooms.deluxe.gallery[0],
+        rooms.executive.gallery[0]
+      ].filter(Boolean),
+      kitchen: imgs(
+        "restaurant",
+        ["silkwood-55.jpg", "silkwood-67.jpg", "silkwood-73.jpg"],
+        "Restaurant at Silkwood Hotel"
+      ),
+      frontOffice: [
+        reception[0],
+        reception[2] || reception[1],
+        reception[4] || reception[3] || reception[1]
+      ].filter(Boolean)
+    },
+    about: {
+      storyMain: outdoor[4] || outdoor[3] || outdoor[0], // silkwoodikeja-5 — distinct from overlay
+      storyInset: outdoor[2] || outdoor[1], // silkwoodikeja-3
+      philosophy: floors[1] || floors[0]
+    },
     dining: {
       restaurant: imgs(
         "restaurant",

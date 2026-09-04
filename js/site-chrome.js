@@ -840,7 +840,13 @@
     const reduceMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
-    const AUTO_MS = 5500;
+    // Cadence after the first in-view advance
+    const AUTO_MS = 4200;
+    // Brief beat so slide 1 is seen, then advance to 2 — not instant flash, not a long wait
+    const FIRST_ADVANCE_MS = 900;
+    const canHoverPause = window.matchMedia(
+      "(hover: hover) and (pointer: fine)"
+    ).matches;
 
     scope.querySelectorAll("[data-silkwood-slider]").forEach(function (slider) {
       if (slider.dataset.sliderReady === "1") return;
@@ -862,6 +868,7 @@
       let touchStartX = 0;
       let touchDeltaX = 0;
       let timer = 0;
+      let firstTimer = 0;
       let inView = false;
       let paused = false;
 
@@ -884,34 +891,61 @@
           window.clearInterval(timer);
           timer = 0;
         }
+        if (firstTimer) {
+          window.clearTimeout(firstTimer);
+          firstTimer = 0;
+        }
       }
 
-      function startAuto() {
+      function startLoop() {
         if (reduceMotion || slider.hasAttribute("data-slider-no-autoplay")) return;
         if (!inView || paused) return;
-        stopAuto();
+        if (timer) window.clearInterval(timer);
         timer = window.setInterval(function () {
           goTo(index + 1);
         }, AUTO_MS);
       }
 
+      /**
+       * When a slider enters the mid-viewport band: show slide 1 briefly,
+       * advance to slide 2, then keep auto-advancing.
+       */
+      function onEnterView() {
+        if (reduceMotion || slider.hasAttribute("data-slider-no-autoplay")) return;
+        if (!inView || paused) return;
+        stopAuto();
+        firstTimer = window.setTimeout(function () {
+          firstTimer = 0;
+          if (!inView || paused) return;
+          goTo(index + 1);
+          startLoop();
+        }, FIRST_ADVANCE_MS);
+      }
+
+      function onLeaveView() {
+        stopAuto();
+      }
+
       if (prevBtn) {
         prevBtn.addEventListener("click", function () {
           goTo(index - 1);
-          startAuto();
+          stopAuto();
+          startLoop();
         });
       }
       if (nextBtn) {
         nextBtn.addEventListener("click", function () {
           goTo(index + 1);
-          startAuto();
+          stopAuto();
+          startLoop();
         });
       }
       dots.forEach(function (dot) {
         dot.addEventListener("click", function () {
           const i = parseInt(dot.getAttribute("data-slider-dot"), 10);
           if (!isNaN(i)) goTo(i);
-          startAuto();
+          stopAuto();
+          startLoop();
         });
       });
 
@@ -919,11 +953,13 @@
         if (e.key === "ArrowLeft") {
           e.preventDefault();
           goTo(index - 1);
-          startAuto();
+          stopAuto();
+          startLoop();
         } else if (e.key === "ArrowRight") {
           e.preventDefault();
           goTo(index + 1);
-          startAuto();
+          stopAuto();
+          startLoop();
         }
       });
       if (!slider.hasAttribute("tabindex")) slider.setAttribute("tabindex", "0");
@@ -956,35 +992,45 @@
         }
         touchDeltaX = 0;
         paused = false;
-        startAuto();
+        if (inView) startLoop();
       });
 
-      // Auto-advance while in viewport (all sliders, mobile + desktop)
+      // Auto-advance while in mid-viewport (all sliders, mobile + desktop)
       if (!reduceMotion && !slider.hasAttribute("data-slider-no-autoplay")) {
-        slider.addEventListener("pointerenter", function () {
-          paused = true;
-          stopAuto();
-        });
-        slider.addEventListener("pointerleave", function () {
-          paused = false;
-          startAuto();
-        });
+        if (canHoverPause) {
+          slider.addEventListener("pointerenter", function () {
+            paused = true;
+            stopAuto();
+          });
+          slider.addEventListener("pointerleave", function () {
+            paused = false;
+            if (inView) startLoop();
+          });
+        }
 
         if ("IntersectionObserver" in window) {
+          // Shrink the effective viewport so we don't fire on a tiny peek at the
+          // edge, and don't wait until the slider is almost fully centered.
           const io = new IntersectionObserver(
             function (entries) {
               entries.forEach(function (entry) {
-                inView = entry.isIntersecting && entry.intersectionRatio >= 0.35;
-                if (inView) startAuto();
-                else stopAuto();
+                const wasInView = inView;
+                // Mid-band rootMargin means isIntersecting ≈ "meaningfully on screen"
+                inView = entry.isIntersecting;
+                if (inView && !wasInView) onEnterView();
+                else if (!inView && wasInView) onLeaveView();
               });
             },
-            { threshold: [0, 0.35, 0.6] }
+            {
+              root: null,
+              rootMargin: "-18% 0px -22% 0px",
+              threshold: [0, 0.05, 0.15, 0.3, 0.5]
+            }
           );
           io.observe(slider);
         } else {
           inView = true;
-          startAuto();
+          onEnterView();
         }
       }
 
