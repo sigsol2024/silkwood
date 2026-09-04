@@ -351,7 +351,11 @@
           "silkwood-56.jpg",
           "silkwood-62.jpg",
           "silkwood-68.jpg",
-          "silkwood-74.jpg"
+          "silkwood-74.jpg",
+          "silkwood-57.jpg",
+          "silkwood-63.jpg",
+          "silkwood-69.jpg",
+          "silkwood-75.jpg"
         ],
         "Silkwood Hotel restaurant"
       )

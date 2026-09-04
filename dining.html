@@ -57,58 +57,57 @@ body.silkwood-loading>*:not(#silkwood-loader){visibility:hidden!important}
       bottom: 0.4rem;
     }
   }
-  /* Intro mosaic: 5–6 restaurant photos */
+  /* Intro mosaic: 4 restaurant photos — open, taller */
   .dining-intro-mosaic {
     display: grid;
-    grid-template-columns: 1.2fr 0.9fr 0.9fr;
-    grid-template-rows: 11rem 9rem 11rem;
-    gap: 0.75rem;
+    grid-template-columns: 1.25fr 1fr 1fr;
+    grid-template-rows: minmax(17rem, 22rem) minmax(14rem, 18rem);
+    gap: 0.85rem;
     width: 100%;
   }
   .dining-intro-mosaic__a { grid-column: 1; grid-row: 1 / 3; }
   .dining-intro-mosaic__b { grid-column: 2; grid-row: 1; }
   .dining-intro-mosaic__c { grid-column: 3; grid-row: 1; }
   .dining-intro-mosaic__d { grid-column: 2 / 4; grid-row: 2; }
-  .dining-intro-mosaic__e { grid-column: 1 / 3; grid-row: 3; }
-  .dining-intro-mosaic__f { grid-column: 3; grid-row: 3; }
   .dining-intro-mosaic figure {
     margin: 0;
     overflow: hidden;
     border-radius: 0.125rem;
     min-height: 0;
     height: 100%;
+    cursor: pointer;
   }
   .dining-intro-mosaic img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
+    transition: transform 0.7s ease;
+  }
+  .dining-intro-mosaic figure:hover img {
+    transform: scale(1.03);
   }
   @media (max-width: 767px) {
     .dining-intro-mosaic {
       grid-template-columns: 1fr 1fr;
-      grid-template-rows: 10rem 8rem 10rem 8rem;
+      grid-template-rows: minmax(14rem, 18rem) minmax(11rem, 14rem) minmax(12rem, 15rem);
     }
     .dining-intro-mosaic__a { grid-column: 1 / 3; grid-row: 1; }
     .dining-intro-mosaic__b { grid-column: 1; grid-row: 2; }
     .dining-intro-mosaic__c { grid-column: 2; grid-row: 2; }
     .dining-intro-mosaic__d { grid-column: 1 / 3; grid-row: 3; }
-    .dining-intro-mosaic__e { grid-column: 1; grid-row: 4; }
-    .dining-intro-mosaic__f { grid-column: 2; grid-row: 4; }
   }
-  /* Collective dynamic gallery */
+  /* Collective — taller, 4 unique photos */
   .dining-collective-grid {
     display: grid;
-    grid-template-columns: 1.15fr 0.95fr 1.05fr;
-    grid-template-rows: 16rem 12rem 14rem;
-    gap: 0.85rem;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: minmax(18rem, 22rem) minmax(18rem, 22rem);
+    gap: 1rem;
   }
-  .dining-collective-grid__1 { grid-column: 1; grid-row: 1 / 3; }
+  .dining-collective-grid__1 { grid-column: 1; grid-row: 1; }
   .dining-collective-grid__2 { grid-column: 2; grid-row: 1; }
-  .dining-collective-grid__3 { grid-column: 3; grid-row: 1 / 2; }
-  .dining-collective-grid__4 { grid-column: 2 / 4; grid-row: 2; }
-  .dining-collective-grid__5 { grid-column: 1 / 3; grid-row: 3; }
-  .dining-collective-grid__6 { grid-column: 3; grid-row: 3; }
+  .dining-collective-grid__3 { grid-column: 1; grid-row: 2; }
+  .dining-collective-grid__4 { grid-column: 2; grid-row: 2; }
   .dining-collective-grid figure {
     margin: 0;
     position: relative;
@@ -116,6 +115,7 @@ body.silkwood-loading>*:not(#silkwood-loader){visibility:hidden!important}
     border-radius: 0.125rem;
     min-height: 0;
     height: 100%;
+    cursor: pointer;
   }
   .dining-collective-grid img {
     width: 100%;
@@ -127,17 +127,42 @@ body.silkwood-loading>*:not(#silkwood-loader){visibility:hidden!important}
   .dining-collective-grid figure:hover img {
     transform: scale(1.04);
   }
-  @media (max-width: 1023px) {
+  @media (min-width: 1024px) {
     .dining-collective-grid {
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 14rem 11rem 12rem 11rem;
+      grid-template-columns: 1.2fr 0.95fr 1fr;
+      grid-template-rows: minmax(22rem, 28rem) minmax(18rem, 22rem);
     }
-    .dining-collective-grid__1 { grid-column: 1 / 3; grid-row: 1; }
-    .dining-collective-grid__2 { grid-column: 1; grid-row: 2; }
-    .dining-collective-grid__3 { grid-column: 2; grid-row: 2; }
-    .dining-collective-grid__4 { grid-column: 1 / 3; grid-row: 3; }
-    .dining-collective-grid__5 { grid-column: 1; grid-row: 4; }
-    .dining-collective-grid__6 { grid-column: 2; grid-row: 4; }
+    .dining-collective-grid__1 { grid-column: 1; grid-row: 1 / 3; }
+    .dining-collective-grid__2 { grid-column: 2; grid-row: 1; }
+    .dining-collective-grid__3 { grid-column: 3; grid-row: 1; }
+    .dining-collective-grid__4 { grid-column: 2 / 4; grid-row: 2; }
+  }
+  @media (max-width: 639px) {
+    .dining-collective-grid {
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(4, minmax(16rem, 20rem));
+    }
+    .dining-collective-grid__1,
+    .dining-collective-grid__2,
+    .dining-collective-grid__3,
+    .dining-collective-grid__4 {
+      grid-column: 1;
+      grid-row: auto;
+    }
+  }
+  .dining-journal-images figure,
+  .dining-journal-images button {
+    cursor: pointer;
+  }
+  /* Lightbox */
+  #dining-lightbox.hidden { display: none !important; }
+  #dining-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.94);
+    display: flex;
+    flex-direction: column;
   }
 </style>
 </head>
@@ -249,9 +274,7 @@ Enquire
 </a>
 </div>
 <div class="lg:col-span-7 reveal-right">
-<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6" id="dining-journal-images">
-<!-- filled by script: two still images -->
-</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 dining-journal-images" id="dining-journal-images"></div>
 </div>
 </div>
 </section>
@@ -270,25 +293,53 @@ Contact reservations
 </div>
 </section>
 </main>
+
+<!-- Dining image lightbox -->
+<div id="dining-lightbox" class="hidden" role="dialog" aria-modal="true" aria-label="Restaurant photo">
+<div class="flex justify-between items-center p-4 md:p-6 text-on-primary">
+<div class="font-label-caps text-xs tracking-widest"><span id="dining-lightbox-current">1</span> / <span id="dining-lightbox-total">1</span></div>
+<button type="button" class="hover:text-on-primary/70 transition-colors p-1" id="dining-lightbox-close" aria-label="Close">
+<span class="material-symbols-outlined text-3xl font-light">close</span>
+</button>
+</div>
+<div class="flex-grow flex items-center justify-center relative px-4 md:px-12" id="dining-lightbox-stage">
+<button type="button" class="absolute left-2 md:left-6 text-on-primary hover:text-on-primary/70 transition-colors z-10 p-2" id="dining-lightbox-prev" aria-label="Previous image">
+<span class="material-symbols-outlined text-4xl font-light">chevron_left</span>
+</button>
+<img alt="" class="max-h-[70vh] md:max-h-[80vh] max-w-full object-contain select-none" id="dining-lightbox-img" src="" draggable="false"/>
+<button type="button" class="absolute right-2 md:right-6 text-on-primary hover:text-on-primary/70 transition-colors z-10 p-2" id="dining-lightbox-next" aria-label="Next image">
+<span class="material-symbols-outlined text-4xl font-light">chevron_right</span>
+</button>
+</div>
+<div class="p-4 md:p-6 text-center text-on-primary/80 font-body-md text-sm">
+<p id="dining-lightbox-caption"></p>
+</div>
+</div>
+
 <div id="site-footer-root"></div>
-<script src="/js/hotel-images.js?v=547f9bf397"></script>
+<script src="/js/hotel-images.js?v=abbabc2147"></script>
 <script src="/js/site-chrome.js?v=c76d66f135"></script>
 <script>
 (function () {
   var images = window.SilkwoodImages;
   if (!images || !images.dining || !images.dining.restaurant) return;
-  var restaurant = images.dining.restaurant;
+  var restaurant = images.dining.restaurant.slice();
 
-  function pick(i) {
-    return restaurant[i % restaurant.length];
-  }
+  // Unique pools for page body (hero may reuse freely)
+  var introItems = restaurant.slice(0, 4);       // 4
+  var collectiveItems = restaurant.slice(4, 8); // 4 unique
+  var journalItems = restaurant.slice(8, 10);   // 2 unique
+  var lightboxItems = introItems.concat(collectiveItems, journalItems);
+  var lbIndex = 0;
 
-  function figureHtml(item, extraClass) {
+  function figureHtml(item, extraClass, lbIdx) {
     if (!item) return "";
     return (
       '<figure class="' +
       (extraClass || "") +
-      '">' +
+      '" role="button" tabindex="0" data-lb-index="' +
+      lbIdx +
+      '" aria-label="Open restaurant photo">' +
       '<img src="' +
       item.src +
       '" alt="' +
@@ -298,7 +349,7 @@ Contact reservations
     );
   }
 
-  // Hero slider only (restaurant photos)
+  // Hero — may repeat restaurant photos
   var heroEl = document.getElementById("dining-hero-slider");
   if (heroEl && images.buildSliderHtml) {
     heroEl.innerHTML = images.buildSliderHtml(restaurant.slice(0, 6), {
@@ -309,47 +360,129 @@ Contact reservations
     if (slider) slider.setAttribute("data-slider-autoplay", "");
   }
 
-  // Intro mosaic — six still images
+  // Intro — 4 unique
   var mosaic = document.getElementById("dining-intro-mosaic");
   if (mosaic) {
-    var slots = ["a", "b", "c", "d", "e", "f"];
+    var slots = ["a", "b", "c", "d"];
     mosaic.innerHTML = slots
       .map(function (key, i) {
-        return figureHtml(pick(i), "dining-intro-mosaic__" + key);
+        return figureHtml(introItems[i], "dining-intro-mosaic__" + key, i);
       })
       .join("");
   }
 
-  // Collective dynamic gallery — six still images
+  // Collective — 4 unique (taller grid)
   var collective = document.getElementById("dining-collective-grid");
   if (collective) {
-    collective.innerHTML = [0, 1, 2, 3, 4, 5]
-      .map(function (i) {
-        return figureHtml(pick(i + 3), "dining-collective-grid__" + (i + 1));
+    collective.innerHTML = collectiveItems
+      .map(function (item, i) {
+        return figureHtml(item, "dining-collective-grid__" + (i + 1), introItems.length + i);
       })
       .join("");
   }
 
-  // Journal — two still images
+  // Journal — 2 unique, taller portraits
   var journal = document.getElementById("dining-journal-images");
   if (journal) {
-    var a = pick(1);
-    var b = pick(5);
-    journal.innerHTML =
-      '<div class="overflow-hidden rounded-sm aspect-[3/4]">' +
-      '<img class="w-full h-full object-cover" src="' +
-      a.src +
-      '" alt="' +
-      (a.alt || "") +
-      '" loading="lazy" />' +
-      "</div>" +
-      '<div class="overflow-hidden rounded-sm aspect-[3/4] sm:mt-10">' +
-      '<img class="w-full h-full object-cover" src="' +
-      b.src +
-      '" alt="' +
-      (b.alt || "") +
-      '" loading="lazy" />' +
-      "</div>";
+    var base = introItems.length + collectiveItems.length;
+    journal.innerHTML = journalItems
+      .map(function (item, i) {
+        var offset = i === 1 ? " sm:mt-12" : "";
+        return (
+          '<button type="button" class="block w-full overflow-hidden rounded-sm aspect-[3/4] min-h-[20rem] md:min-h-[24rem] text-left' +
+          offset +
+          '" data-lb-index="' +
+          (base + i) +
+          '" aria-label="Open restaurant photo">' +
+          '<img class="w-full h-full object-cover" src="' +
+          item.src +
+          '" alt="' +
+          (item.alt || "") +
+          '" loading="lazy" />' +
+          "</button>"
+        );
+      })
+      .join("");
+  }
+
+  // Lightbox
+  var lightbox = document.getElementById("dining-lightbox");
+  var lightboxImg = document.getElementById("dining-lightbox-img");
+  var lightboxCaption = document.getElementById("dining-lightbox-caption");
+  var lightboxCurrent = document.getElementById("dining-lightbox-current");
+  var lightboxTotal = document.getElementById("dining-lightbox-total");
+  var lightboxStage = document.getElementById("dining-lightbox-stage");
+  if (lightboxTotal) lightboxTotal.textContent = String(lightboxItems.length || 1);
+
+  function openLb(i) {
+    if (!lightboxItems.length || !lightbox || !lightboxImg) return;
+    lbIndex = ((i % lightboxItems.length) + lightboxItems.length) % lightboxItems.length;
+    var item = lightboxItems[lbIndex];
+    lightboxImg.src = item.src;
+    lightboxImg.alt = item.alt || "";
+    if (lightboxCaption) lightboxCaption.textContent = item.alt || "Silkwood Hotel restaurant";
+    if (lightboxCurrent) lightboxCurrent.textContent = String(lbIndex + 1);
+    lightbox.classList.remove("hidden");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeLb() {
+    if (!lightbox) return;
+    lightbox.classList.add("hidden");
+    document.body.style.overflow = "";
+  }
+
+  document.addEventListener("click", function (e) {
+    var trigger = e.target.closest("[data-lb-index]");
+    if (!trigger) return;
+    var idx = parseInt(trigger.getAttribute("data-lb-index"), 10);
+    if (isNaN(idx)) return;
+    openLb(idx);
+  });
+
+  document.addEventListener("keydown", function (e) {
+    var trigger = e.target.closest && e.target.closest("[data-lb-index]");
+    if (trigger && (e.key === "Enter" || e.key === " ")) {
+      e.preventDefault();
+      openLb(parseInt(trigger.getAttribute("data-lb-index"), 10) || 0);
+      return;
+    }
+    if (!lightbox || lightbox.classList.contains("hidden")) return;
+    if (e.key === "Escape") closeLb();
+    if (e.key === "ArrowLeft") openLb(lbIndex - 1);
+    if (e.key === "ArrowRight") openLb(lbIndex + 1);
+  });
+
+  var closeBtn = document.getElementById("dining-lightbox-close");
+  var prevBtn = document.getElementById("dining-lightbox-prev");
+  var nextBtn = document.getElementById("dining-lightbox-next");
+  if (closeBtn) closeBtn.addEventListener("click", closeLb);
+  if (prevBtn) prevBtn.addEventListener("click", function (e) { e.stopPropagation(); openLb(lbIndex - 1); });
+  if (nextBtn) nextBtn.addEventListener("click", function (e) { e.stopPropagation(); openLb(lbIndex + 1); });
+  if (lightbox) {
+    lightbox.addEventListener("click", function (e) {
+      if (e.target === lightbox || e.target === lightboxStage) closeLb();
+    });
+  }
+
+  var touchStartX = 0;
+  var touchStartY = 0;
+  var swipeTarget = lightboxStage || lightboxImg;
+  if (swipeTarget) {
+    swipeTarget.addEventListener("touchstart", function (e) {
+      if (!e.changedTouches || !e.changedTouches[0]) return;
+      touchStartX = e.changedTouches[0].clientX;
+      touchStartY = e.changedTouches[0].clientY;
+    }, { passive: true });
+    swipeTarget.addEventListener("touchend", function (e) {
+      if (!e.changedTouches || !e.changedTouches[0]) return;
+      if (!lightbox || lightbox.classList.contains("hidden")) return;
+      var dx = e.changedTouches[0].clientX - touchStartX;
+      var dy = e.changedTouches[0].clientY - touchStartY;
+      if (Math.abs(dx) < 45 || Math.abs(dx) < Math.abs(dy)) return;
+      if (dx < 0) openLb(lbIndex + 1);
+      else openLb(lbIndex - 1);
+    }, { passive: true });
   }
 
   if (window.SilkwoodChrome && typeof window.SilkwoodChrome.initSliders === "function") {
