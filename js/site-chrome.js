@@ -82,7 +82,10 @@
       <a class="silkwood-mobile-nav__cta btn-interact inline-flex items-center justify-center px-5 py-3.5 bg-warm-copper text-white font-label-caps uppercase tracking-widest" href="${BOOK_HREF}">Book Now</a>
     </div>
   </div>
-</div>`;
+</div>
+<button type="button" class="silkwood-scroll-top" id="silkwood-scroll-top" aria-label="Scroll to top">
+  <span class="material-symbols-outlined" aria-hidden="true">arrow_upward</span>
+</button>`;
   }
 
   function renderFooter() {
@@ -946,6 +949,30 @@
     });
   }
 
+  function initScrollTop() {
+    const btn = document.getElementById("silkwood-scroll-top");
+    if (!btn) return;
+
+    function updateVisibility() {
+      const doc = document.documentElement;
+      const scrollTop = window.scrollY || doc.scrollTop || 0;
+      const scrollable = Math.max(doc.scrollHeight - window.innerHeight, 1);
+      const ratio = scrollTop / scrollable;
+      btn.classList.toggle("is-visible", ratio >= 0.3);
+    }
+
+    btn.addEventListener("click", function () {
+      const reduce =
+        window.matchMedia &&
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+    });
+
+    window.addEventListener("scroll", updateVisibility, { passive: true });
+    window.addEventListener("resize", updateVisibility, { passive: true });
+    updateVisibility();
+  }
+
   function initChrome() {
     try {
       initLoader();
@@ -1016,6 +1043,7 @@
     initLogoIntroPrefetch();
     bindInstantNavLoader();
     initSilkwoodSliders();
+    initScrollTop();
 
     if (!document.getElementById("silkwood-loader")) {
       onLoaderComplete("no-loader");

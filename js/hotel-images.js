@@ -366,8 +366,12 @@
       ].filter(Boolean),
       conferenceTeaser: [
         conferenceHall[0],
-        meetingSpace[0]
-      ],
+        meetingSpace[0],
+        mainHall[0],
+        conferenceHall[1] || conferenceHall[0],
+        meetingSpace[1] || meetingSpace[0],
+        mainHall[1] || mainHall[0]
+      ].filter(Boolean),
       destination: outdoor[1] || outdoor[0] || reception[3],
       cta: outdoor[4] || outdoor[0] || reception[4],
       mobileNav: reception[0]
@@ -384,28 +388,15 @@
     gallery: {
       categories: [
         { id: "all", label: "All" },
-        { id: "rooms-classic", label: "Classic Room", folder: "rooms/classic" },
-        { id: "rooms-deluxe", label: "Deluxe Room", folder: "rooms/deluxe" },
-        { id: "rooms-premium", label: "Premium Room", folder: "rooms/premium" },
-        { id: "rooms-executive", label: "Executive Room", folder: "rooms/executive" },
+        { id: "rooms", label: "Rooms" },
+        { id: "dining", label: "Dining" },
+        { id: "facilities", label: "Facilities" },
         {
-          id: "rooms-diplomatic",
-          label: "Diplomatic Suite",
-          folder: "rooms/diplomatic-suite"
+          id: "conference",
+          label: "Conference & Meeting Space"
         },
-        { id: "restaurant", label: "Restaurant", folder: "restaurant" },
-        { id: "pool-bar", label: "Pool Bar", folder: "pool-bar" },
-        { id: "gym", label: "Gym", folder: "gym" },
-        { id: "reception", label: "Reception", folder: "reception" },
-        { id: "main-hall", label: "Main Hall", folder: "main-hall" },
-        { id: "meeting-space", label: "Meeting Space", folder: "meeting-space" },
-        {
-          id: "conference-hall",
-          label: "Conference Hall",
-          folder: "conference-hall"
-        },
-        { id: "outdoor", label: "Outdoor", folder: "outdoor" },
-        { id: "floors", label: "Floors", folder: "floors" }
+        { id: "outdoor", label: "Outdoor" },
+        { id: "floors", label: "Floors" }
       ],
       items: (function () {
         const list = [];
@@ -418,13 +409,13 @@
             });
           });
         }
-        push("rooms-classic", rooms.classic.gallery);
-        push("rooms-deluxe", rooms.deluxe.gallery);
-        push("rooms-premium", rooms.premium.gallery);
-        push("rooms-executive", rooms.executive.gallery);
-        push("rooms-diplomatic", rooms.diplomatic.gallery);
+        push("rooms", rooms.classic.gallery);
+        push("rooms", rooms.deluxe.gallery);
+        push("rooms", rooms.premium.gallery);
+        push("rooms", rooms.executive.gallery);
+        push("rooms", rooms.diplomatic.gallery);
         push(
-          "restaurant",
+          "dining",
           imgs(
             "restaurant",
             [
@@ -440,12 +431,12 @@
             "Silkwood Hotel restaurant"
           )
         );
-        push("pool-bar", poolBar);
-        push("gym", gym);
-        push("reception", reception);
-        push("main-hall", mainHall);
-        push("meeting-space", meetingSpace);
-        push("conference-hall", conferenceHall);
+        push("facilities", poolBar);
+        push("facilities", gym);
+        push("facilities", reception);
+        push("conference", mainHall);
+        push("conference", meetingSpace);
+        push("conference", conferenceHall);
         push("outdoor", outdoor);
         push("floors", floors);
         return list;
