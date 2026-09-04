@@ -342,15 +342,32 @@
     },
     home: {
       heroFallback: [
-        reception[0],
         outdoor[0],
+        reception[0],
         reception[2],
         outdoor[2] || reception[4],
         outdoor[3] || reception[1]
       ],
       exterior: outdoor[0] || reception[6] || reception[0],
       pool: poolBar[0],
+      gym: gym[0],
       dining: imgs("restaurant", ["silkwood-55.jpg"], "Silkwood Hotel restaurant")[0],
+      facilitiesCollage: [
+        poolBar[0],
+        gym[0] || gym[1] || poolBar[1],
+        imgs("restaurant", ["silkwood-55.jpg"], "Silkwood Hotel restaurant")[0]
+      ],
+      facilitiesSlider: [
+        poolBar[0],
+        gym[0] || poolBar[1],
+        imgs("restaurant", ["silkwood-55.jpg"], "Silkwood Hotel restaurant")[0],
+        poolBar[1] || poolBar[0],
+        gym[1] || gym[0] || poolBar[2]
+      ].filter(Boolean),
+      conferenceTeaser: [
+        conferenceHall[0],
+        meetingSpace[0]
+      ],
       destination: outdoor[1] || outdoor[0] || reception[3],
       cta: outdoor[4] || outdoor[0] || reception[4],
       mobileNav: reception[0]

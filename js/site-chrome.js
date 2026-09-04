@@ -10,13 +10,14 @@
     { id: "dining", label: "Dining", href: "/dining" },
     { id: "facilities", label: "Facilities", href: "/facilities" },
     { id: "conference", label: "Conference", href: "/conference" },
+    { id: "gallery", label: "Gallery", href: "/gallery" },
     { id: "about", label: "About", href: "/about" },
     { id: "contact", label: "Contact", href: "/contact" }
   ];
 
   function navLinkClass(page, item, overHero) {
     const base =
-      "font-label-caps text-sm uppercase tracking-widest transition-colors duration-300 nav-link";
+      "font-label-caps text-xs uppercase tracking-wider transition-colors duration-300 nav-link";
     if (overHero) {
       return page === item.id
         ? `${base} text-white`
@@ -49,10 +50,10 @@
 <a class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[100] focus:bg-vanilla-cream focus:text-ink focus:px-3 focus:py-2" href="#main">Skip to content</a>
 <header class="flex justify-between items-center w-full px-margin-mobile lg:px-margin-desktop py-4 max-w-container-max mx-auto z-50 fixed top-0 left-0 right-0 bg-transparent transition-all duration-500 ${overHero ? "" : "nav-scrolled"}" id="site-header" aria-label="Primary">
   ${logoPair("")}
-  <nav class="hidden lg:flex items-center gap-8">
+  <nav class="hidden lg:flex items-center gap-5 xl:gap-6">
     ${navLinks(page, overHero)}
   </nav>
-  <a class="hidden lg:inline-flex btn-interact bg-warm-copper text-white px-8 py-3 font-label-caps uppercase tracking-widest" href="${BOOK_HREF}">Book Now</a>
+  <a class="hidden lg:inline-flex btn-interact bg-warm-copper text-white px-5 py-2 text-xs font-label-caps uppercase tracking-wider" href="${BOOK_HREF}">Book Now</a>
   <button class="lg:hidden inline-flex items-center justify-center ${menuColor} p-1 -mr-1" type="button" aria-label="Open menu" data-menu-open>
     <span class="material-symbols-outlined text-[1.875rem] leading-none" aria-hidden="true">menu</span>
   </button>

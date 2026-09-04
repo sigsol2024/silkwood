@@ -757,6 +757,51 @@ video {
   }
 }
 
+/* —— Home facilities collage (desktop) —— */
+.home-facilities-collage {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  grid-template-rows: minmax(11rem, 1fr) minmax(8rem, 0.72fr);
+  gap: 0.75rem;
+  width: 100%;
+  min-height: 26rem;
+  height: 100%;
+}
+
+.home-facilities-collage__top {
+  grid-column: 1;
+  grid-row: 1;
+  overflow: hidden;
+  border-radius: 0.125rem;
+}
+
+.home-facilities-collage__side {
+  grid-column: 2;
+  grid-row: 1 / 3;
+  overflow: hidden;
+  border-radius: 0.125rem;
+}
+
+.home-facilities-collage__bottom {
+  grid-column: 1;
+  grid-row: 2;
+  overflow: hidden;
+  border-radius: 0.125rem;
+}
+
+.home-facilities-collage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 1023px) {
+  .home-facilities-collage {
+    display: none !important;
+  }
+}
+
 /* —— Silkwood page loader —— */
 .silkwood-loader {
   position: fixed;
@@ -852,7 +897,7 @@ body.silkwood-loading .silkwood-loader {
 .silkwood-logo-intro {
   position: absolute;
   inset: 0;
-  z-index: 30;
+  z-index: 1; /* under hero copy/CTAs (z-10) and booking bar; above bg slider */
   width: 100%;
   height: 100%;
   background: #000;

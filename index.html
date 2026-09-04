@@ -13,7 +13,7 @@ body.silkwood-loading>*:not(#silkwood-loader){visibility:hidden!important}
 #silkwood-loader .silkwood-loader__ring{position:absolute;inset:10px;border-radius:50%;border:1px solid rgba(26,12,4,.07)}
 #silkwood-loader .silkwood-loader__canvas{display:block;width:88px;height:88px}
 </style>
-<link rel="stylesheet" href="/css/silkwood.css?v=e001b8cfad" />
+<link rel="stylesheet" href="/css/silkwood.css?v=f83ef2d97c" />
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Silkwood Hotel | Ikeja GRA, Lagos</title>
@@ -200,9 +200,9 @@ body.silkwood-loading>*:not(#silkwood-loader){visibility:hidden!important}
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 <div class="lg:col-span-5 order-2 lg:order-1 reveal-left">
 <span class="font-label-caps text-golden-ochre mb-4 block tracking-widest">FACILITIES</span>
-<h2 class="font-headline-lg text-4xl md:text-5xl text-on-surface mb-8">Pool, gym, spa &amp; more</h2>
+<h2 class="font-headline-lg text-4xl md:text-5xl text-on-surface mb-8">Pool, gym &amp; restaurant</h2>
 <p class="font-body-md text-on-surface-variant mb-8 leading-relaxed">
-                Swim, train, or unwind at Strands Spa. The hotel also has a bar, restaurants, a coffee shop, and Strands Bar by the pool.
+                Swim, train, or dine on property. The hotel has a pool, gym, restaurants, a bar, coffee shop, and Strands Bar by the pool.
             </p>
 <ul class="space-y-6 mb-10">
 <li class="flex items-start gap-4">
@@ -213,45 +213,52 @@ body.silkwood-loading>*:not(#silkwood-loader){visibility:hidden!important}
 </div>
 </li>
 <li class="flex items-start gap-4">
-<span class="material-symbols-outlined text-warm-copper mt-1">spa</span>
-<div>
-<h4 class="font-headline-sm text-lg mb-1">Strands Spa</h4>
-<p class="text-sm text-gray-600">Treatments and rest after a day in Lagos.</p>
-</div>
-</li>
-<li class="flex items-start gap-4">
 <span class="material-symbols-outlined text-warm-copper mt-1">fitness_center</span>
 <div>
 <h4 class="font-headline-sm text-lg mb-1">Gym</h4>
 <p class="text-sm text-gray-600">A fitness studio for guests who want to keep a routine.</p>
 </div>
 </li>
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-warm-copper mt-1">restaurant</span>
+<div>
+<h4 class="font-headline-sm text-lg mb-1">Restaurant</h4>
+<p class="text-sm text-gray-600">Local and international dishes for breakfast, lunch, and dinner.</p>
+</div>
+</li>
 </ul>
-<div class="flex flex-col sm:flex-row gap-4">
-<a class="btn-outline inline-block border border-warm-copper text-warm-copper px-8 py-3 font-label-caps uppercase tracking-widest text-center" href="/facilities">Explore Facilities</a>
-<a class="inline-block border-b border-warm-copper text-warm-copper font-label-caps uppercase tracking-widest pb-1 self-center hover:text-golden-ochre hover:border-golden-ochre transition-colors" href="/conference">Conference &amp; Meetings</a>
+<div class="flex flex-col sm:flex-row gap-3 sm:items-center">
+<a class="btn-outline inline-block border border-warm-copper text-warm-copper px-6 py-2.5 text-xs font-label-caps uppercase tracking-wider text-center" href="/facilities">Explore Facilities</a>
+<a class="inline-block border-b border-warm-copper text-warm-copper text-xs font-label-caps uppercase tracking-wider pb-1 self-center hover:text-golden-ochre hover:border-golden-ochre transition-colors" href="/dining">View Dining</a>
 </div>
 </div>
 <div class="lg:col-span-7 order-1 lg:order-2">
-<div class="aspect-[4/3] overflow-hidden image-reveal">
-<img alt="Pool and Strands Bar at Silkwood Hotel" class="w-full h-full object-cover" src="/images/hotel/pool-bar/silkwood-110.jpg"/>
+<div class="home-facilities-collage image-reveal" aria-hidden="false">
+<figure class="home-facilities-collage__top m-0">
+<img alt="Pool and Strands Bar at Silkwood Hotel" src="/images/hotel/pool-bar/silkwood-110.jpg"/>
+</figure>
+<figure class="home-facilities-collage__side m-0">
+<img alt="Gym at Silkwood Hotel" src="/images/hotel/gym/silkwood-106.jpg"/>
+</figure>
+<figure class="home-facilities-collage__bottom m-0">
+<img alt="Restaurant at Silkwood Hotel" src="/images/hotel/restaurant/silkwood-55.jpg"/>
+</figure>
 </div>
+<div id="home-facilities-slider" class="lg:hidden reveal-up"></div>
 </div>
 </div>
 </section>
-<!-- Dining -->
+<!-- Conference & Meetings -->
 <section class="bg-on-surface text-vanilla-cream py-section-gap">
 <div class="max-w-container-max mx-auto px-margin-mobile lg:px-margin-desktop grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-<div class="aspect-[4/3] overflow-hidden image-reveal">
-<img alt="Restaurant at Silkwood Hotel" class="w-full h-full object-cover" src="/images/hotel/restaurant/silkwood-55.jpg"/>
-</div>
+<div id="home-conference-slider" class="reveal-up overflow-hidden rounded-sm"></div>
 <div class="reveal-right">
-<span class="font-label-caps text-golden-ochre mb-4 block tracking-widest">DINING</span>
-<h2 class="font-headline-lg text-4xl md:text-5xl mb-8 text-white">Gather, Dine &amp; Unwind</h2>
+<span class="font-label-caps text-golden-ochre mb-4 block tracking-widest">CONFERENCE</span>
+<h2 class="font-headline-lg text-4xl md:text-5xl mb-8 text-white">Conference hall &amp; meetings</h2>
 <p class="font-body-md text-vanilla-cream/80 mb-8 leading-relaxed">
-                Local and international dishes at the restaurant, open for breakfast, lunch, and dinner. The bar is open 24 hours. Room service runs around the clock.
+                Host conferences, seminars, and private meetings on property. Dedicated conference hall and meeting spaces with Wi-Fi and air-conditioning.
             </p>
-<a class="btn-interact inline-block bg-warm-copper text-white px-8 py-3 font-label-caps uppercase tracking-widest" href="/dining">View Menus &amp; Reserve</a>
+<a class="btn-interact inline-block bg-warm-copper text-white px-6 py-2.5 text-xs font-label-caps uppercase tracking-wider" href="/conference">Explore Conference &amp; Meetings</a>
 </div>
 </div>
 </section>
@@ -298,23 +305,35 @@ body.silkwood-loading>*:not(#silkwood-loader){visibility:hidden!important}
 </section>
 </main>
 <div id="site-footer-root"></div>
-<script src="/js/hotel-images.js?v=0a3279f1d5"></script>
-<script src="/js/site-chrome.js?v=02e3b105ff"></script>
+<script src="/js/hotel-images.js?v=7f67240554"></script>
+<script src="/js/site-chrome.js?v=ab65fed327"></script>
 <script>
 (function () {
   var images = window.SilkwoodImages;
   if (!images || !images.home) return;
-  var el = document.getElementById("home-hero-slider");
-  if (!el) return;
-  el.innerHTML = images.buildSliderHtml(images.home.heroFallback, {
+
+  function mountSlider(el, items, opts) {
+    if (!el || !items || !items.length || !images.buildSliderHtml) return;
+    el.innerHTML = images.buildSliderHtml(items, opts || {});
+    var slider = el.querySelector("[data-silkwood-slider]");
+    if (slider) slider.setAttribute("data-slider-autoplay", "");
+    if (window.SilkwoodChrome && typeof window.SilkwoodChrome.initSliders === "function") {
+      window.SilkwoodChrome.initSliders(el);
+    }
+  }
+
+  mountSlider(document.getElementById("home-hero-slider"), images.home.heroFallback, {
     modifier: "silkwood-slider--hero silkwood-slider--fill",
     label: "Silkwood Hotel"
   });
-  var slider = el.querySelector("[data-silkwood-slider]");
-  if (slider) slider.setAttribute("data-slider-autoplay", "");
-  if (window.SilkwoodChrome && typeof window.SilkwoodChrome.initSliders === "function") {
-    window.SilkwoodChrome.initSliders(el);
-  }
+
+  mountSlider(document.getElementById("home-facilities-slider"), images.home.facilitiesSlider, {
+    label: "Pool, gym and restaurant"
+  });
+
+  mountSlider(document.getElementById("home-conference-slider"), images.home.conferenceTeaser, {
+    label: "Conference hall and meeting space"
+  });
 })();
 </script>
 </body></html>
