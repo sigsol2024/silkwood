@@ -64,7 +64,7 @@ tailwind.config = {
       },
       spacing: {
         "margin-desktop": "80px",
-        "section-gap": "96px",
+        "section-gap": "72px",
         "margin-mobile": "16px",
         unit: "8px",
         gutter: "32px",

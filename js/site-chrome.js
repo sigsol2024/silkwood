@@ -86,7 +86,7 @@
 
   function renderFooter() {
     return `
-<footer class="bg-ink text-white py-16">
+<footer class="bg-ink text-white py-12">
   <div class="max-w-container-max mx-auto px-margin-mobile lg:px-margin-desktop grid grid-cols-1 md:grid-cols-4 gap-12">
     <div class="md:col-span-1">
       <a class="silkwood-logo silkwood-logo--footer inline-block mb-6 hover:opacity-90" href="/" aria-label="Silkwood Hotel home">
