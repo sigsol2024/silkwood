@@ -347,11 +347,14 @@
           "silkwood-67.jpg",
           "silkwood-70.jpg",
           "silkwood-73.jpg",
-          "silkwood-76.jpg"
+          "silkwood-76.jpg",
+          "silkwood-56.jpg",
+          "silkwood-62.jpg",
+          "silkwood-68.jpg",
+          "silkwood-74.jpg"
         ],
         "Silkwood Hotel restaurant"
-      ),
-      poolBar: poolBar.slice(0, 6)
+      )
     },
     home: {
       heroFallback: [
