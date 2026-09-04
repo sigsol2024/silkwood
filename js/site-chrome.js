@@ -979,6 +979,83 @@
     );
     if (!containers.length) return;
 
+    function parseStayEaziDate(dateStr) {
+      if (!dateStr) return null;
+      // StayEazi widget default format is dd-mm-yy
+      var parts = String(dateStr).split("-");
+      if (parts.length !== 3) return null;
+      var day = parseInt(parts[0], 10);
+      var month = parseInt(parts[1], 10);
+      var yearPart = parts[2];
+      var year = parseInt(yearPart, 10);
+      if (!day || !month || isNaN(year)) return null;
+      if (yearPart.length === 2) {
+        year = year < 50 ? 2000 + year : 1900 + year;
+      }
+      var mm = month < 10 ? "0" + month : String(month);
+      var dd = day < 10 ? "0" + day : String(day);
+      return year + "-" + mm + "-" + dd;
+    }
+
+    function hookRoomSpecificRedirect(container) {
+      function attach() {
+        var form = container.querySelector("#stayeazi-booking-form");
+        if (!form || form.getAttribute("data-silkwood-room-hook") === "1") {
+          return !!form;
+        }
+        form.setAttribute("data-silkwood-room-hook", "1");
+        form.addEventListener(
+          "submit",
+          function (e) {
+            var base = container.getAttribute("data-booking-url");
+            if (!base) return;
+
+            e.preventDefault();
+            e.stopImmediatePropagation();
+
+            var checkinEl = container.querySelector("#stayeazi-checkin");
+            var checkoutEl = container.querySelector("#stayeazi-checkout");
+            var adultsEl = container.querySelector("#stayeazi-adults");
+            var childrenEl = container.querySelector("#stayeazi-children");
+            var from = parseStayEaziDate(checkinEl && checkinEl.value);
+            var to = parseStayEaziDate(checkoutEl && checkoutEl.value);
+            var adults = parseInt(adultsEl && adultsEl.value, 10);
+            var children = parseInt(childrenEl && childrenEl.value, 10);
+            if (!from || !to) {
+              window.alert("Please select check-in and check-out dates");
+              return;
+            }
+            if (isNaN(adults) || adults < 1) adults = 2;
+            if (isNaN(children) || children < 0) children = 0;
+
+            var url =
+              base +
+              "?from=" +
+              encodeURIComponent(from) +
+              "&to=" +
+              encodeURIComponent(to) +
+              "&adult=" +
+              encodeURIComponent(adults) +
+              "&child=" +
+              encodeURIComponent(children);
+            window.location.href = url;
+          },
+          true
+        );
+        return true;
+      }
+
+      if (attach()) return;
+      var observer = new MutationObserver(function () {
+        if (attach()) observer.disconnect();
+      });
+      observer.observe(container, { childList: true, subtree: true });
+      window.setTimeout(function () {
+        attach();
+        observer.disconnect();
+      }, 5000);
+    }
+
     function applyGuestDefaults(container) {
       const adults = container.querySelector("#stayeazi-adults");
       const children = container.querySelector("#stayeazi-children");
@@ -1019,6 +1096,7 @@
       const token = container.getAttribute("data-widget-token");
       if (!token) return;
       watchDefaults(container);
+      hookRoomSpecificRedirect(container);
 
       const scriptId = "stayeazi-widget-script-" + token;
       if (document.getElementById(scriptId)) return;
@@ -1029,6 +1107,7 @@
       script.async = true;
       script.onload = function () {
         watchDefaults(container);
+        hookRoomSpecificRedirect(container);
         window.setTimeout(function () {
           applyGuestDefaults(container);
         }, 200);

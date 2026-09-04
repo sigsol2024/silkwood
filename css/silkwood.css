@@ -1210,7 +1210,8 @@ body.silkwood-logo-intro-active {
 }
 
 /* —— StayEazi booking widget — Silkwood shell overrides —— */
-.home-booking-bar .stayeazi-booking-widget {
+.home-booking-bar .stayeazi-booking-widget,
+.room-booking-bar .stayeazi-booking-widget {
   font-family: Montserrat, system-ui, sans-serif !important;
   background: #ffffff !important;
   border: none !important;
@@ -1223,11 +1224,13 @@ body.silkwood-logo-intro-active {
   box-sizing: border-box !important;
 }
 
-.home-booking-bar .stayeazi-booking-widget .widget-header {
+.home-booking-bar .stayeazi-booking-widget .widget-header,
+.room-booking-bar .stayeazi-booking-widget .widget-header {
   display: none !important;
 }
 
-.home-booking-bar .stayeazi-booking-widget .widget-form-container {
+.home-booking-bar .stayeazi-booking-widget .widget-form-container,
+.room-booking-bar .stayeazi-booking-widget .widget-form-container {
   display: flex !important;
   flex-wrap: wrap !important;
   align-items: stretch !important;
@@ -1235,7 +1238,8 @@ body.silkwood-logo-intro-active {
   width: 100% !important;
 }
 
-.home-booking-bar .stayeazi-booking-widget .form-fields-group {
+.home-booking-bar .stayeazi-booking-widget .form-fields-group,
+.room-booking-bar .stayeazi-booking-widget .form-fields-group {
   display: flex !important;
   flex: 1 1 auto !important;
   flex-wrap: wrap !important;
@@ -1244,7 +1248,8 @@ body.silkwood-logo-intro-active {
   overflow: visible !important;
 }
 
-.home-booking-bar .stayeazi-booking-widget .secondary-fields-container {
+.home-booking-bar .stayeazi-booking-widget .secondary-fields-container,
+.room-booking-bar .stayeazi-booking-widget .secondary-fields-container {
   display: flex !important;
   flex: 1 1 auto !important;
   flex-wrap: wrap !important;
@@ -1254,7 +1259,10 @@ body.silkwood-logo-intro-active {
 
 .home-booking-bar .stayeazi-booking-widget .form-group,
 .home-booking-bar .stayeazi-booking-widget .form-group-primary,
-.home-booking-bar .stayeazi-booking-widget .form-group-secondary {
+.home-booking-bar .stayeazi-booking-widget .form-group-secondary,
+.room-booking-bar .stayeazi-booking-widget .form-group,
+.room-booking-bar .stayeazi-booking-widget .form-group-primary,
+.room-booking-bar .stayeazi-booking-widget .form-group-secondary {
   flex: 1 1 140px !important;
   min-width: 140px !important;
   max-width: none !important;
@@ -1264,7 +1272,8 @@ body.silkwood-logo-intro-active {
   box-sizing: border-box !important;
 }
 
-.home-booking-bar .stayeazi-booking-widget label {
+.home-booking-bar .stayeazi-booking-widget label,
+.room-booking-bar .stayeazi-booking-widget label {
   display: block !important;
   margin-bottom: 0.25rem !important;
   font-family: Montserrat, system-ui, sans-serif !important;
@@ -1276,7 +1285,9 @@ body.silkwood-logo-intro-active {
 }
 
 .home-booking-bar .stayeazi-booking-widget input,
-.home-booking-bar .stayeazi-booking-widget select {
+.home-booking-bar .stayeazi-booking-widget select,
+.room-booking-bar .stayeazi-booking-widget input,
+.room-booking-bar .stayeazi-booking-widget select {
   width: 100% !important;
   padding: 0 !important;
   border: none !important;
@@ -1289,13 +1300,16 @@ body.silkwood-logo-intro-active {
 }
 
 .home-booking-bar .stayeazi-booking-widget input:focus,
-.home-booking-bar .stayeazi-booking-widget select:focus {
+.home-booking-bar .stayeazi-booking-widget select:focus,
+.room-booking-bar .stayeazi-booking-widget input:focus,
+.room-booking-bar .stayeazi-booking-widget select:focus {
   outline: none !important;
   border: none !important;
   box-shadow: none !important;
 }
 
-.home-booking-bar .stayeazi-booking-widget .widget-button-row {
+.home-booking-bar .stayeazi-booking-widget .widget-button-row,
+.room-booking-bar .stayeazi-booking-widget .widget-button-row {
   display: flex !important;
   align-items: stretch !important;
   flex: 0 0 auto !important;
@@ -1303,7 +1317,8 @@ body.silkwood-logo-intro-active {
   gap: 0 !important;
 }
 
-.home-booking-bar .stayeazi-booking-widget .widget-submit-btn {
+.home-booking-bar .stayeazi-booking-widget .widget-submit-btn,
+.room-booking-bar .stayeazi-booking-widget .widget-submit-btn {
   background: #994e14 !important;
   color: #ffffff !important;
   border: none !important;
@@ -1322,28 +1337,36 @@ body.silkwood-logo-intro-active {
   transition: background-color 0.3s ease !important;
 }
 
-.home-booking-bar .stayeazi-booking-widget .widget-submit-btn:hover {
+.home-booking-bar .stayeazi-booking-widget .widget-submit-btn:hover,
+.room-booking-bar .stayeazi-booking-widget .widget-submit-btn:hover {
   background: #c79242 !important;
   opacity: 1 !important;
 }
 
 .home-booking-bar .stayeazi-booking-widget .widget-toggle-btn,
-.home-booking-bar .stayeazi-booking-widget .field-toggle-btn {
+.home-booking-bar .stayeazi-booking-widget .field-toggle-btn,
+.room-booking-bar .stayeazi-booking-widget .widget-toggle-btn,
+.room-booking-bar .stayeazi-booking-widget .field-toggle-btn {
   display: none !important;
 }
 
-.home-booking-bar .stayeazi-booking-widget .promo-field {
+.home-booking-bar .stayeazi-booking-widget .promo-field,
+.room-booking-bar .stayeazi-booking-widget .promo-field {
   display: none !important;
 }
 
 @media (max-width: 768px) {
-  .home-booking-bar .stayeazi-booking-widget {
+  .home-booking-bar .stayeazi-booking-widget,
+  .room-booking-bar .stayeazi-booking-widget {
     padding: 0.75rem !important;
   }
 
   .home-booking-bar .stayeazi-booking-widget .widget-form-container,
   .home-booking-bar .stayeazi-booking-widget .form-fields-group,
-  .home-booking-bar .stayeazi-booking-widget .secondary-fields-container {
+  .home-booking-bar .stayeazi-booking-widget .secondary-fields-container,
+  .room-booking-bar .stayeazi-booking-widget .widget-form-container,
+  .room-booking-bar .stayeazi-booking-widget .form-fields-group,
+  .room-booking-bar .stayeazi-booking-widget .secondary-fields-container {
     display: grid !important;
     grid-template-columns: 1fr 1fr !important;
     gap: 0 !important;
@@ -1351,25 +1374,33 @@ body.silkwood-logo-intro-active {
 
   .home-booking-bar .stayeazi-booking-widget .form-fields-group,
   .home-booking-bar .stayeazi-booking-widget .secondary-fields-container,
-  .home-booking-bar .stayeazi-booking-widget .widget-button-row {
+  .home-booking-bar .stayeazi-booking-widget .widget-button-row,
+  .room-booking-bar .stayeazi-booking-widget .form-fields-group,
+  .room-booking-bar .stayeazi-booking-widget .secondary-fields-container,
+  .room-booking-bar .stayeazi-booking-widget .widget-button-row {
     grid-column: 1 / -1 !important;
   }
 
   .home-booking-bar .stayeazi-booking-widget .form-group,
   .home-booking-bar .stayeazi-booking-widget .form-group-primary,
-  .home-booking-bar .stayeazi-booking-widget .form-group-secondary {
+  .home-booking-bar .stayeazi-booking-widget .form-group-secondary,
+  .room-booking-bar .stayeazi-booking-widget .form-group,
+  .room-booking-bar .stayeazi-booking-widget .form-group-primary,
+  .room-booking-bar .stayeazi-booking-widget .form-group-secondary {
     border-right: none !important;
     border-bottom: 1px solid #e5e7eb !important;
     min-width: 0 !important;
     padding: 0.85rem 0.75rem !important;
   }
 
-  .home-booking-bar .stayeazi-booking-widget .widget-button-row {
+  .home-booking-bar .stayeazi-booking-widget .widget-button-row,
+  .room-booking-bar .stayeazi-booking-widget .widget-button-row {
     margin: 0.75rem 0 0 !important;
     display: block !important;
   }
 
-  .home-booking-bar .stayeazi-booking-widget .widget-submit-btn {
+  .home-booking-bar .stayeazi-booking-widget .widget-submit-btn,
+  .room-booking-bar .stayeazi-booking-widget .widget-submit-btn {
     width: 100% !important;
     padding: 1rem 1.25rem !important;
   }

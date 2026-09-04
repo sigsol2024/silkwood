@@ -13,7 +13,7 @@ body.silkwood-loading>*:not(#silkwood-loader){visibility:hidden!important}
 #silkwood-loader .silkwood-loader__ring{position:absolute;inset:10px;border-radius:50%;border:1px solid rgba(26,12,4,.07)}
 #silkwood-loader .silkwood-loader__canvas{display:block;width:88px;height:88px}
 </style>
-<link rel="stylesheet" href="/css/silkwood.css?v=496ba1aaaa" />
+<link rel="stylesheet" href="/css/silkwood.css?v=854fc08f40" />
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Rooms &amp; Suites - Silkwood Hotel</title>
@@ -128,9 +128,9 @@ body.silkwood-loading>*:not(#silkwood-loader){visibility:hidden!important}
 </div>
 </div>
 <div class="hero-enter__cta flex flex-col sm:flex-row gap-4">
-<button type="button" data-booking-pending class="bg-ink text-on-primary px-10 py-4 font-label-caps text-label-caps uppercase tracking-widest hover:bg-primary transition-colors">
+<a id="room-book-hero" href="https://app.stayeazi.com/reservation/silkwood-hotels/executive-room" class="bg-ink text-on-primary px-10 py-4 font-label-caps text-label-caps uppercase tracking-widest hover:bg-primary transition-colors text-center">
                         Book This Room
-                    </button>
+                    </a>
 <a href="#gallery" class="border border-on-primary/50 text-on-primary px-10 py-4 font-label-caps text-label-caps uppercase tracking-widest hover:bg-on-primary hover:text-primary transition-colors flex items-center justify-center gap-2">
                         Explore Gallery
                         <span class="material-symbols-outlined text-sm">arrow_downward</span>
@@ -149,9 +149,9 @@ body.silkwood-loading>*:not(#silkwood-loader){visibility:hidden!important}
 <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors uppercase tracking-widest pb-1" href="#booking">Booking</a>
 </nav>
 <div class="flex items-center gap-6">
-<button type="button" data-booking-pending class="bg-primary text-on-primary px-6 py-2.5 font-label-caps text-[10px] uppercase tracking-widest hover:bg-ink transition-colors">
+<a id="room-book-subnav" href="https://app.stayeazi.com/reservation/silkwood-hotels/executive-room" class="bg-primary text-on-primary px-6 py-2.5 font-label-caps text-[10px] uppercase tracking-widest hover:bg-ink transition-colors">
                     Check Availability
-                </button>
+                </a>
 </div>
 </div>
 </div>
@@ -259,39 +259,8 @@ Space to work and rest.
 <div class="max-w-4xl mx-auto text-center fade-in-up">
 <p class="font-label-caps text-label-caps text-tertiary-container uppercase tracking-widest mb-4">Reserve</p>
 <h2 class="font-headline-lg text-headline-md text-ink mb-12">Plan Your Stay</h2>
-<div class="bg-surface border-[0.5px] border-outline-variant/50 p-6 md:p-8 flex flex-col md:flex-row gap-4 items-end shadow-sm">
-<!-- Check-in -->
-<div class="w-full text-left">
-<label class="block font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest mb-2">Check In</label>
-<div class="relative flex items-center bg-surface-container-low px-4 py-3 border-[0.5px] border-outline-variant/30 group hover:border-outline transition-colors cursor-pointer w-full">
-<span class="material-symbols-outlined font-light text-on-surface-variant mr-3">calendar_today</span>
-<span class="font-body-md text-primary">Select Date</span>
-<input class="absolute inset-0 opacity-0 cursor-pointer w-full" type="date"/>
-</div>
-</div>
-<!-- Check-out -->
-<div class="w-full text-left">
-<label class="block font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest mb-2">Check Out</label>
-<div class="relative flex items-center bg-surface-container-low px-4 py-3 border-[0.5px] border-outline-variant/30 group hover:border-outline transition-colors cursor-pointer w-full">
-<span class="material-symbols-outlined font-light text-on-surface-variant mr-3">calendar_today</span>
-<span class="font-body-md text-primary">Select Date</span>
-<input class="absolute inset-0 opacity-0 cursor-pointer w-full" type="date"/>
-</div>
-</div>
-<!-- Guests -->
-<div class="w-full text-left">
-<label class="block font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest mb-2">Guests</label>
-<div class="relative flex items-center justify-between bg-surface-container-low px-4 py-3 border-[0.5px] border-outline-variant/30 group hover:border-outline transition-colors cursor-pointer w-full">
-<div class="flex items-center">
-<span class="material-symbols-outlined font-light text-on-surface-variant mr-3">person</span>
-<span class="font-body-md text-primary">2 Adults</span>
-</div>
-<span class="material-symbols-outlined text-on-surface-variant text-sm">expand_more</span>
-</div>
-</div>
-<button type="button" data-booking-pending class="w-full md:w-auto bg-primary text-on-primary px-10 py-3.5 font-label-caps text-label-caps uppercase tracking-widest hover:bg-ink transition-colors whitespace-nowrap text-center">
-                    Check Availability
-                </button>
+<div class="room-booking-bar" aria-label="Check availability">
+<div id="stayeazi-widget-room-details" class="stayeazi-booking-widget" data-widget-token="zf21Fo8LYm0jHYRP91grvJZnBqG4yktO" data-booking-url="https://app.stayeazi.com/reservation/silkwood-hotels/executive-room"></div>
 </div>
 <p class="font-body-md text-sm text-on-surface-variant mt-6 text-center">Rates on request. Check-in from 14:00; check-out by 11:00.</p>
 </div>
@@ -337,9 +306,9 @@ Space to work and rest.
 </div>
 <div class="relative z-10 text-center px-margin-mobile fade-in-up">
 <h2 class="font-display-lg text-headline-lg-mobile md:text-display-lg text-on-primary mb-8 drop-shadow-md">Your stay begins here.</h2>
-<button type="button" data-booking-pending class="bg-ink text-on-primary px-12 py-4 font-label-caps text-label-caps uppercase tracking-widest hover:bg-primary transition-colors inline-block">
+<a id="room-book-cta" href="https://app.stayeazi.com/reservation/silkwood-hotels/executive-room" class="bg-ink text-on-primary px-12 py-4 font-label-caps text-label-caps uppercase tracking-widest hover:bg-primary transition-colors inline-block">
                 Reserve The Executive Room
-            </button>
+            </a>
 </div>
 </section>
 </main>
@@ -374,13 +343,13 @@ Space to work and rest.
 <span class="font-label-caps text-[10px] uppercase tracking-widest truncate">Reservation</span>
 <span class="material-symbols-outlined text-base text-primary leading-none" aria-hidden="true">arrow_forward</span>
 </div>
-<button type="button" data-booking-pending class="shrink-0 bg-primary text-on-primary px-6 py-3 font-label-caps text-xs uppercase tracking-widest hover:bg-ink transition-colors">
+<a id="room-book-mobile" href="https://app.stayeazi.com/reservation/silkwood-hotels/executive-room" class="shrink-0 bg-primary text-on-primary px-6 py-3 font-label-caps text-xs uppercase tracking-widest hover:bg-ink transition-colors">
         Book Room
-    </button>
+    </a>
 </div>
 <div id="site-footer-root"></div>
-<script src="/js/hotel-images.js?v=e13dc03785"></script>
-<script src="/js/site-chrome.js?v=c731bf70bd"></script>
+<script src="/js/hotel-images.js?v=97bea979d0"></script>
+<script src="/js/site-chrome.js?v=c734d35449"></script>
 <script>
 (function () {
   var params = new URLSearchParams(window.location.search);
@@ -391,6 +360,14 @@ Space to work and rest.
   var gallery = room.gallery || [];
 
   document.title = room.name + " | Silkwood Hotel";
+  var bookUrl = room.bookUrl || "https://app.stayeazi.com/reservation/silkwood-hotels";
+  ["room-book-hero", "room-book-subnav", "room-book-cta", "room-book-mobile"].forEach(function (id) {
+    var el = document.getElementById(id);
+    if (el) el.setAttribute("href", bookUrl);
+  });
+  var widget = document.getElementById("stayeazi-widget-room-details");
+  if (widget) widget.setAttribute("data-booking-url", bookUrl);
+
   var heroImg = document.getElementById("room-hero-img");
   if (heroImg) { heroImg.src = room.cover; heroImg.alt = room.name + " at Silkwood Hotel"; }
   var ctaImg = document.getElementById("room-cta-img");
@@ -401,7 +378,7 @@ Space to work and rest.
   setText("room-hero-intro", room.intro);
   setText("room-about-lead", room.intro);
   setText("lightbox-caption", room.name);
-  var reserveBtn = document.querySelector("section.relative.h-\\[70vh\\] [data-booking-pending]");
+  var reserveBtn = document.getElementById("room-book-cta");
   if (reserveBtn) reserveBtn.textContent = "Reserve " + room.name;
 
   var about = document.getElementById("room-about-copy");

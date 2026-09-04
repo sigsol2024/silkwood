@@ -25,6 +25,7 @@
       name: "Classic Room",
       countLabel: "42 rooms",
       href: "/room-details?room=classic",
+      bookUrl: "https://app.stayeazi.com/reservation/silkwood-hotels/classic-room",
       cover: path("rooms/classic", "silkwood-4.jpg"),
       gallery: imgs(
         "rooms/classic",
@@ -58,6 +59,7 @@
       name: "Deluxe Room",
       countLabel: "30 rooms",
       href: "/room-details?room=deluxe",
+      bookUrl: "https://app.stayeazi.com/reservation/silkwood-hotels/deluxe-room",
       cover: path("rooms/deluxe", "silkwood-11.jpg"),
       gallery: imgs(
         "rooms/deluxe",
@@ -91,6 +93,7 @@
       name: "Premium Room",
       countLabel: "24 rooms",
       href: "/room-details?room=premium",
+      bookUrl: "https://app.stayeazi.com/reservation/silkwood-hotels/premium-room",
       cover: path("rooms/premium", "silkwood-22.jpg"),
       gallery: imgs(
         "rooms/premium",
@@ -124,6 +127,7 @@
       name: "Executive Room",
       countLabel: "6 rooms",
       href: "/room-details?room=executive",
+      bookUrl: "https://app.stayeazi.com/reservation/silkwood-hotels/executive-room",
       cover: path("rooms/executive", "silkwood-171.jpg"),
       gallery: imgs(
         "rooms/executive",
@@ -157,6 +161,7 @@
       name: "Diplomatic Suite",
       countLabel: "4 suites",
       href: "/room-details?room=diplomatic",
+      bookUrl: "https://app.stayeazi.com/reservation/silkwood-hotels/diplomatic-suite",
       cover: path("rooms/diplomatic-suite", "silkwood-201.jpg"),
       gallery: imgs(
         "rooms/diplomatic-suite",
@@ -316,17 +321,28 @@
       rooms.diplomatic.gallery[0],
       rooms.diplomatic.gallery[2] || rooms.diplomatic.gallery[1]
     ].filter(Boolean),
+    /** Facilities page hero — rotate one of these on each load */
+    facilitiesPageHero: [
+      poolBar[0],
+      poolBar[2] || poolBar[1],
+      gym[0],
+      gym[1] || gym[0],
+      outdoor[0],
+      outdoor[1] || outdoor[0],
+      outdoor[2] || outdoor[0],
+      reception[0],
+      reception[2] || reception[1],
+      reception[4] || reception[3] || reception[1]
+    ].filter(Boolean),
     facilities: {
       poolBar: poolBar,
       gym: gym,
-      // Temporary stand-in until dedicated spa photography exists
-      spa: outdoor.slice(0, 5).map(function (item, i) {
-        return {
-          src: item.src,
-          alt: "Strands Spa at Silkwood Hotel — view " + (i + 1)
-        };
-      }),
-      meetingSpace: meetingSpace,
+      reception: reception,
+      restaurant: imgs(
+        "restaurant",
+        ["silkwood-55.jpg", "silkwood-60.jpg", "silkwood-67.jpg", "silkwood-73.jpg"],
+        "Silkwood Hotel restaurant"
+      ),
       hero: poolBar.slice(0, 4),
       intro: reception.slice(0, 1)
     },
@@ -468,8 +484,7 @@
       gym: false,
       floors: false,
       outdoor: false,
-      // Spa photography still not a dedicated set — outdoor used temporarily on Facilities
-      spa: "temporary-outdoor"
+      spa: false
     },
 
     buildSliderHtml: function (items, options) {
