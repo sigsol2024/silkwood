@@ -49,7 +49,7 @@
       ],
       amenities: {
         inRoom: ["Air-conditioning", "Work desk", "In-room safe", "Satellite TV"],
-        bathroom: ["Hairdryer"],
+        bathroom: ["Hairdryer", "Bathrobes", "Bathroom slippers", "Toiletries"],
         services: ["Wi-Fi", "Mini bar", "Tea & coffee", "24-hour room service"]
       }
     },
@@ -82,7 +82,7 @@
       ],
       amenities: {
         inRoom: ["Air-conditioning", "Work desk", "In-room safe", "Satellite TV"],
-        bathroom: ["Hairdryer"],
+        bathroom: ["Hairdryer", "Bathrobes", "Bathroom slippers", "Toiletries"],
         services: ["Wi-Fi", "Mini bar", "Tea & coffee", "24-hour room service"]
       }
     },
@@ -115,7 +115,7 @@
       ],
       amenities: {
         inRoom: ["Air-conditioning", "Work desk", "In-room safe", "Satellite TV"],
-        bathroom: ["Hairdryer"],
+        bathroom: ["Hairdryer", "Bathrobes", "Bathroom slippers", "Toiletries"],
         services: ["Wi-Fi", "Mini bar", "Tea & coffee", "24-hour room service"]
       }
     },
@@ -148,7 +148,7 @@
       ],
       amenities: {
         inRoom: ["Air-conditioning", "Work desk", "In-room safe", "Satellite TV"],
-        bathroom: ["Hairdryer"],
+        bathroom: ["Hairdryer", "Bathrobes", "Bathroom slippers", "Toiletries"],
         services: ["Wi-Fi", "Mini bar", "Tea & coffee", "24-hour room service"]
       }
     },
@@ -181,7 +181,7 @@
       ],
       amenities: {
         inRoom: ["Air-conditioning", "Work desk", "In-room safe", "Satellite TV"],
-        bathroom: ["Hairdryer"],
+        bathroom: ["Hairdryer", "Bathrobes", "Bathroom slippers", "Toiletries"],
         services: ["Wi-Fi", "Mini bar", "Tea & coffee", "24-hour room service"]
       }
     }

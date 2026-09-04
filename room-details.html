@@ -149,7 +149,6 @@ body.silkwood-loading>*:not(#silkwood-loader){visibility:hidden!important}
 <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors uppercase tracking-widest pb-1" href="#booking">Booking</a>
 </nav>
 <div class="flex items-center gap-6">
-<p class="font-body-md text-sm text-on-surface-variant"><span class="font-headline-sm text-primary">Enquire</span></p>
 <button type="button" data-booking-pending class="bg-primary text-on-primary px-6 py-2.5 font-label-caps text-[10px] uppercase tracking-widest hover:bg-ink transition-colors">
                     Check Availability
                 </button>
@@ -161,7 +160,10 @@ body.silkwood-loading>*:not(#silkwood-loader){visibility:hidden!important}
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
 <div class="lg:col-span-5 fade-in-up">
 <p class="font-label-caps text-label-caps text-tertiary-container uppercase tracking-widest mb-4">About the Room</p>
-<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-ink leading-tight sticky top-32">Space to work and rest.</h2>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-ink leading-tight sticky top-32">
+Space to work and rest.
+<span id="room-about-lead" class="block mt-4 font-body-md text-body-md text-on-surface-variant font-normal tracking-normal normal-case"></span>
+</h2>
 </div>
 <div id="room-about-copy" class="lg:col-span-6 lg:col-start-7 fade-in-up mt-8 lg:mt-0 space-y-8">
 </div>
@@ -208,6 +210,18 @@ body.silkwood-loading>*:not(#silkwood-loader){visibility:hidden!important}
 <span class="material-symbols-outlined text-secondary text-sm mt-1">dry</span>
 <span class="font-body-md text-on-surface">Hairdryer</span>
 </li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-sm mt-1">bathrobe</span>
+<span class="font-body-md text-on-surface">Bathrobes</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-sm mt-1">steps</span>
+<span class="font-body-md text-on-surface">Bathroom slippers</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-sm mt-1">soap</span>
+<span class="font-body-md text-on-surface">Toiletries</span>
+</li>
 </ul>
 </div>
 <!-- Category 3 -->
@@ -239,46 +253,23 @@ body.silkwood-loading>*:not(#silkwood-loader){visibility:hidden!important}
 </ul>
 </div>
 </div>
-<!-- Included & Dimensions -->
-<div class="bg-surface-container-low p-8 md:p-12 border-[0.5px] border-outline-variant/30 grid grid-cols-1 md:grid-cols-2 gap-12 fade-in-up">
-<div>
-<h4 class="font-headline-sm text-ink mb-6">Included With Your Stay</h4>
-<ul class="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8">
-<li class="flex items-center gap-2 text-on-surface-variant font-body-md">
-<span class="material-symbols-outlined text-primary text-sm">check</span>
-                        Wi-Fi
-                    </li>
-<li class="flex items-center gap-2 text-on-surface-variant font-body-md">
-<span class="material-symbols-outlined text-primary text-sm">check</span>
-                        24-hour room service
-                    </li>
-<li class="flex items-center gap-2 text-on-surface-variant font-body-md">
-<span class="material-symbols-outlined text-primary text-sm">check</span>
-                        In-room safe
-                    </li>
-<li class="flex items-center gap-2 text-on-surface-variant font-body-md">
-<span class="material-symbols-outlined text-primary text-sm">check</span>
-                        Mini bar
-                    </li>
-</ul>
-</div>
-<div class="border-t-[0.5px] border-outline-variant/30 md:border-t-0 md:border-l-[0.5px] md:pl-12 pt-8 md:pt-0">
+<!-- This room type -->
+<div class="bg-surface-container-low p-8 md:p-12 border-[0.5px] border-outline-variant/30 fade-in-up max-w-xl">
 <h4 class="font-headline-sm text-ink mb-6">This room type</h4>
 <div class="flex items-center gap-8 mb-6">
 <div>
 <p class="font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest mb-1">Count</p>
-<p class="font-body-md text-primary font-medium">6 Executive Rooms</p>
+<p id="room-type-count" class="font-body-md text-primary font-medium">6 Executive Rooms</p>
 </div>
 <div>
 <p class="font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest mb-1">Rates</p>
-<p class="font-body-md text-primary font-medium">Enquire</p>
+<p class="font-body-md text-primary font-medium">On request</p>
 </div>
 </div>
 <button type="button" data-booking-pending class="text-primary border-b border-primary pb-1 font-label-caps text-xs uppercase tracking-widest hover:text-primary-container transition-colors inline-flex items-center gap-2 bg-transparent cursor-pointer">
 <span class="material-symbols-outlined text-sm">mail</span>
                      Contact reservations
                  </button>
-</div>
 </div>
 </section>
 <!-- 7. Refined Booking Experience -->
@@ -320,7 +311,7 @@ body.silkwood-loading>*:not(#silkwood-loader){visibility:hidden!important}
                     Check Availability
                 </button>
 </div>
-<p class="font-body-md text-sm text-on-surface-variant mt-6 text-center">Enquire for rates. Check-in from 14:00; check-out by 11:00.</p>
+<p class="font-body-md text-sm text-on-surface-variant mt-6 text-center">Rates on request. Check-in from 14:00; check-out by 11:00.</p>
 </div>
 </section>
 <!-- 8. Discovery & Cross-sell -->
@@ -396,16 +387,13 @@ body.silkwood-loading>*:not(#silkwood-loader){visibility:hidden!important}
 </div>
 </div>
 <!-- Mobile Sticky Booking CTA -->
-<div class="md:hidden fixed bottom-0 left-0 w-full bg-surface border-t border-outline-variant/30 p-4 z-40 flex justify-between items-center shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]">
-<div>
-<p class="font-body-md text-sm font-medium text-primary">Enquire</p>
-</div>
+<div class="md:hidden fixed bottom-0 left-0 w-full bg-surface border-t border-outline-variant/30 p-4 z-40 flex justify-end items-center shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]">
 <button type="button" data-booking-pending class="bg-primary text-on-primary px-6 py-3 font-label-caps text-xs uppercase tracking-widest hover:bg-ink transition-colors">
         Book Room
     </button>
 </div>
 <div id="site-footer-root"></div>
-<script src="/js/hotel-images.js?v=c070f64480"></script>
+<script src="/js/hotel-images.js?v=e13dc03785"></script>
 <script src="/js/site-chrome.js?v=c731bf70bd"></script>
 <script>
 (function () {
@@ -425,6 +413,8 @@ body.silkwood-loading>*:not(#silkwood-loader){visibility:hidden!important}
   setText("room-hero-count", room.countLabel);
   setText("room-hero-title", room.name);
   setText("room-hero-intro", room.intro);
+  setText("room-about-lead", room.intro);
+  setText("room-type-count", room.name + " · " + room.countLabel);
   setText("lightbox-caption", room.name);
   var reserveBtn = document.querySelector("section.relative.h-\\[70vh\\] [data-booking-pending]");
   if (reserveBtn) reserveBtn.textContent = "Reserve " + room.name;
@@ -450,7 +440,6 @@ body.silkwood-loading>*:not(#silkwood-loader){visibility:hidden!important}
         '<div class="aspect-[4/3] overflow-hidden mb-6 bg-surface-container-high relative"><img alt="' + r.name + '" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="' + r.cover + '" loading="lazy"/></div>' +
         '<p class="font-label-caps text-[10px] text-tertiary-container uppercase tracking-widest mb-2">' + r.countLabel + '</p>' +
         '<h3 class="font-headline-sm text-xl text-ink mb-2">' + r.name + '</h3>' +
-        '<p class="font-body-md text-sm text-on-surface-variant mb-4">Enquire</p>' +
         '<a class="font-label-caps text-xs text-primary uppercase tracking-widest border-b border-primary pb-1 inline-block" href="' + r.href + '">View Room</a></div>';
     }).join("");
   }
