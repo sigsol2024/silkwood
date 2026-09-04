@@ -979,9 +979,47 @@
     );
     if (!containers.length) return;
 
+    function applyGuestDefaults(container) {
+      const adults = container.querySelector("#stayeazi-adults");
+      const children = container.querySelector("#stayeazi-children");
+      if (!adults) return false;
+      // StayEazi default should be 2 adults / 0 children (never leave a high leftover value)
+      adults.value = "2";
+      Array.prototype.forEach.call(adults.options, function (opt) {
+        opt.selected = opt.value === "2";
+      });
+      if (children) {
+        children.value = "0";
+        Array.prototype.forEach.call(children.options, function (opt) {
+          opt.selected = opt.value === "0";
+        });
+      }
+      return true;
+    }
+
+    function watchDefaults(container) {
+      if (applyGuestDefaults(container)) return;
+      const observer = new MutationObserver(function () {
+        if (applyGuestDefaults(container)) observer.disconnect();
+      });
+      observer.observe(container, { childList: true, subtree: true });
+      window.setTimeout(function () {
+        applyGuestDefaults(container);
+      }, 400);
+      window.setTimeout(function () {
+        applyGuestDefaults(container);
+      }, 1200);
+      window.setTimeout(function () {
+        applyGuestDefaults(container);
+        observer.disconnect();
+      }, 3500);
+    }
+
     containers.forEach(function (container) {
       const token = container.getAttribute("data-widget-token");
       if (!token) return;
+      watchDefaults(container);
+
       const scriptId = "stayeazi-widget-script-" + token;
       if (document.getElementById(scriptId)) return;
 
@@ -989,6 +1027,12 @@
       script.id = scriptId;
       script.src = "https://app.stayeazi.com/widget/load/" + token;
       script.async = true;
+      script.onload = function () {
+        watchDefaults(container);
+        window.setTimeout(function () {
+          applyGuestDefaults(container);
+        }, 200);
+      };
       document.head.appendChild(script);
     });
   }
