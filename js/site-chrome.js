@@ -97,12 +97,37 @@
 <button type="button" class="silkwood-scroll-top" id="silkwood-scroll-top" aria-label="Scroll to top">
   <span class="material-symbols-outlined" aria-hidden="true">arrow_upward</span>
 </button>
-<a class="silkwood-whatsapp" id="silkwood-whatsapp" href="${WHATSAPP_URL}" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
-  <svg class="silkwood-whatsapp__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-    <path fill="currentColor" d="M17.47 14.38c-.28-.14-1.64-.81-1.9-.9-.25-.1-.44-.14-.62.14-.18.27-.71.9-.87 1.08-.16.18-.32.2-.6.07-.28-.14-1.17-.43-2.23-1.37-.82-.73-1.38-1.64-1.54-1.92-.16-.27-.02-.42.12-.55.13-.13.28-.32.42-.48.14-.16.18-.27.28-.45.09-.18.05-.34-.02-.48-.07-.14-.62-1.49-.85-2.04-.22-.53-.45-.46-.62-.47h-.53c-.18 0-.48.07-.73.34-.25.27-.96.94-.96 2.3s.98 2.67 1.12 2.85c.14.18 1.93 2.95 4.68 4.13.65.28 1.16.45 1.56.58.65.21 1.25.18 1.72.11.53-.08 1.64-.67 1.87-1.32.23-.65.23-1.2.16-1.32-.07-.11-.25-.18-.53-.32z"/>
-    <path fill="currentColor" d="M12.04 2C6.5 2 2.02 6.48 2.02 12c0 1.77.46 3.45 1.28 4.91L2 22l5.25-1.38A9.96 9.96 0 0 0 12.04 22C17.56 22 22 17.52 22 12S17.56 2 12.04 2zm0 18.15c-1.6 0-3.1-.43-4.4-1.18l-.32-.19-3.11.82.83-3.04-.2-.33A8.12 8.12 0 0 1 3.9 12c0-4.48 3.65-8.12 8.14-8.12 4.48 0 8.12 3.64 8.12 8.12 0 4.49-3.64 8.15-8.12 8.15z"/>
-  </svg>
-</a>`;
+<div class="silkwood-wa" id="silkwood-whatsapp" data-wa-url="${WHATSAPP_URL}">
+  <div class="silkwood-wa__panel" id="silkwood-wa-panel" hidden>
+    <div class="silkwood-wa__panel-head">
+      <div>
+        <p class="silkwood-wa__panel-title">Silkwood Hotel</p>
+        <p class="silkwood-wa__panel-sub">Typically replies soon</p>
+      </div>
+      <button type="button" class="silkwood-wa__close" data-wa-close aria-label="Close chat">
+        <span class="material-symbols-outlined" aria-hidden="true">close</span>
+      </button>
+    </div>
+    <p class="silkwood-wa__bubble">Hello — how can we help with your stay in Ikeja GRA?</p>
+    <form class="silkwood-wa__form" data-wa-form>
+      <label class="sr-only" for="silkwood-wa-message">Your message</label>
+      <textarea id="silkwood-wa-message" class="silkwood-wa__input" name="message" rows="3" maxlength="500" placeholder="Type your message…" required></textarea>
+      <button type="submit" class="silkwood-wa__send">
+        Send on WhatsApp
+        <span class="material-symbols-outlined" aria-hidden="true">send</span>
+      </button>
+    </form>
+  </div>
+  <button type="button" class="silkwood-wa__launcher" data-wa-toggle aria-expanded="false" aria-controls="silkwood-wa-panel">
+    <span class="silkwood-wa__label">Get in touch</span>
+    <span class="silkwood-wa__fab" aria-hidden="true">
+      <svg class="silkwood-wa__icon" viewBox="0 0 24 24" focusable="false">
+        <path fill="currentColor" d="M17.47 14.38c-.28-.14-1.64-.81-1.9-.9-.25-.1-.44-.14-.62.14-.18.27-.71.9-.87 1.08-.16.18-.32.2-.6.07-.28-.14-1.17-.43-2.23-1.37-.82-.73-1.38-1.64-1.54-1.92-.16-.27-.02-.42.12-.55.13-.13.28-.32.42-.48.14-.16.18-.27.28-.45.09-.18.05-.34-.02-.48-.07-.14-.62-1.49-.85-2.04-.22-.53-.45-.46-.62-.47h-.53c-.18 0-.48.07-.73.34-.25.27-.96.94-.96 2.3s.98 2.67 1.12 2.85c.14.18 1.93 2.95 4.68 4.13.65.28 1.16.45 1.56.58.65.21 1.25.18 1.72.11.53-.08 1.64-.67 1.87-1.32.23-.65.23-1.2.16-1.32-.07-.11-.25-.18-.53-.32z"/>
+        <path fill="currentColor" d="M12.04 2C6.5 2 2.02 6.48 2.02 12c0 1.77.46 3.45 1.28 4.91L2 22l5.25-1.38A9.96 9.96 0 0 0 12.04 22C17.56 22 22 17.52 22 12S17.56 2 12.04 2zm0 18.15c-1.6 0-3.1-.43-4.4-1.18l-.32-.19-3.11.82.83-3.04-.2-.33A8.12 8.12 0 0 1 3.9 12c0-4.48 3.65-8.12 8.14-8.12 4.48 0 8.12 3.64 8.12 8.12 0 4.49-3.64 8.15-8.12 8.15z"/>
+      </svg>
+    </span>
+  </button>
+</div>`;
   }
 
   function renderFooter() {
@@ -1105,6 +1130,82 @@
     updateVisibility();
   }
 
+  function initWhatsAppWidget() {
+    const root = document.getElementById("silkwood-whatsapp");
+    if (!root) return;
+
+    const panel = root.querySelector("#silkwood-wa-panel");
+    const toggle = root.querySelector("[data-wa-toggle]");
+    const closeBtn = root.querySelector("[data-wa-close]");
+    const form = root.querySelector("[data-wa-form]");
+    const input = root.querySelector("#silkwood-wa-message");
+    const baseUrl = root.getAttribute("data-wa-url") || WHATSAPP_URL;
+
+    function setOpen(open) {
+      root.classList.toggle("is-open", open);
+      if (panel) {
+        if (open) panel.removeAttribute("hidden");
+        else panel.setAttribute("hidden", "");
+      }
+      if (toggle) toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      if (open && input) {
+        window.setTimeout(function () {
+          input.focus();
+        }, 180);
+      }
+    }
+
+    // Fade-up + label entrance after page settles
+    window.setTimeout(function () {
+      root.classList.add("is-ready");
+    }, 480);
+
+    if (toggle) {
+      toggle.addEventListener("click", function () {
+        setOpen(!root.classList.contains("is-open"));
+      });
+    }
+    if (closeBtn) {
+      closeBtn.addEventListener("click", function () {
+        setOpen(false);
+      });
+    }
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && root.classList.contains("is-open")) {
+        setOpen(false);
+      }
+    });
+
+    document.addEventListener(
+      "click",
+      function (e) {
+        if (!root.classList.contains("is-open")) return;
+        if (root.contains(e.target)) return;
+        setOpen(false);
+      },
+      true
+    );
+
+    if (form) {
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const message = ((input && input.value) || "").trim();
+        if (!message) {
+          if (input) input.focus();
+          return;
+        }
+        const url =
+          baseUrl +
+          (baseUrl.indexOf("?") >= 0 ? "&" : "?") +
+          "text=" +
+          encodeURIComponent(message);
+        window.open(url, "_blank", "noopener,noreferrer");
+        setOpen(false);
+      });
+    }
+  }
+
   function initStayEaziWidgets() {
     const containers = document.querySelectorAll(
       ".stayeazi-booking-widget[data-widget-token]"
@@ -1319,6 +1420,7 @@
     bindInstantNavLoader();
     initSilkwoodSliders();
     initScrollTop();
+    initWhatsAppWidget();
     initStayEaziWidgets();
 
     if (!document.getElementById("silkwood-loader")) {
