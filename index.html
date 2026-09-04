@@ -13,7 +13,7 @@ body.silkwood-loading>*:not(#silkwood-loader){visibility:hidden!important}
 #silkwood-loader .silkwood-loader__ring{position:absolute;inset:10px;border-radius:50%;border:1px solid rgba(26,12,4,.07)}
 #silkwood-loader .silkwood-loader__canvas{display:block;width:88px;height:88px}
 </style>
-<link rel="stylesheet" href="/css/silkwood.css?v=496ba1aaaa" />
+<link rel="stylesheet" href="/css/silkwood.css?v=11c44691ff" />
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Silkwood Hotel | Ikeja GRA, Lagos</title>
@@ -93,37 +93,9 @@ body.silkwood-loading>*:not(#silkwood-loader){visibility:hidden!important}
 </div>
 </div>
 </section>
-<!-- Booking Bar -->
-<section class="home-booking-bar reveal-up relative z-20 mt-4 md:-mt-8 max-w-6xl mx-auto px-4 md:px-6">
-<div class="bg-white shadow-xl flex flex-wrap md:flex-nowrap items-center p-2">
-<div class="flex-1 min-w-[200px] border-r border-gray-200 p-4">
-<label class="block font-label-caps text-xs text-gray-500 mb-1">Check-in</label>
-<input class="w-full border-none p-0 focus:ring-0 text-on-surface font-body-md" type="date"/>
-</div>
-<div class="flex-1 min-w-[200px] border-r border-gray-200 p-4">
-<label class="block font-label-caps text-xs text-gray-500 mb-1">Check-out</label>
-<input class="w-full border-none p-0 focus:ring-0 text-on-surface font-body-md" type="date"/>
-</div>
-<div class="flex-1 min-w-[150px] border-r border-gray-200 p-4">
-<label class="block font-label-caps text-xs text-gray-500 mb-1">Guests</label>
-<select class="w-full border-none p-0 focus:ring-0 text-on-surface font-body-md bg-transparent">
-<option>2 Adults</option>
-<option>1 Adult</option>
-<option>2 Adults, 1 Child</option>
-</select>
-</div>
-<div class="flex-1 min-w-[150px] p-4">
-<label class="block font-label-caps text-xs text-gray-500 mb-1">Rooms</label>
-<select class="w-full border-none p-0 focus:ring-0 text-on-surface font-body-md bg-transparent">
-<option>1 Room</option>
-<option>2 Rooms</option>
-<option>3+ Rooms</option>
-</select>
-</div>
-<a href="/rooms" class="btn-interact w-full md:w-auto bg-warm-copper text-white px-8 py-6 font-label-caps uppercase tracking-widest m-2 md:m-0 text-center">
-            Check Availability
-        </a>
-</div>
+<!-- Booking Bar (StayEazi) -->
+<section class="home-booking-bar reveal-up relative z-20 mt-4 md:-mt-8 max-w-6xl mx-auto px-4 md:px-6" aria-label="Check availability">
+<div id="stayeazi-widget-silkwood-hotels" class="stayeazi-booking-widget" data-widget-token="zf21Fo8LYm0jHYRP91grvJZnBqG4yktO"></div>
 </section>
 <!-- Introduction Section -->
 <section class="py-section-gap max-w-container-max mx-auto px-margin-mobile lg:px-margin-desktop grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -306,7 +278,7 @@ body.silkwood-loading>*:not(#silkwood-loader){visibility:hidden!important}
 </main>
 <div id="site-footer-root"></div>
 <script src="/js/hotel-images.js?v=c070f64480"></script>
-<script src="/js/site-chrome.js?v=c731bf70bd"></script>
+<script src="/js/site-chrome.js?v=1cf156e9d9"></script>
 <script>
 (function () {
   var images = window.SilkwoodImages;

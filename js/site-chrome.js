@@ -973,6 +973,26 @@
     updateVisibility();
   }
 
+  function initStayEaziWidgets() {
+    const containers = document.querySelectorAll(
+      ".stayeazi-booking-widget[data-widget-token]"
+    );
+    if (!containers.length) return;
+
+    containers.forEach(function (container) {
+      const token = container.getAttribute("data-widget-token");
+      if (!token) return;
+      const scriptId = "stayeazi-widget-script-" + token;
+      if (document.getElementById(scriptId)) return;
+
+      const script = document.createElement("script");
+      script.id = scriptId;
+      script.src = "https://app.stayeazi.com/widget/load/" + token;
+      script.async = true;
+      document.head.appendChild(script);
+    });
+  }
+
   function initChrome() {
     try {
       initLoader();
@@ -1044,6 +1064,7 @@
     bindInstantNavLoader();
     initSilkwoodSliders();
     initScrollTop();
+    initStayEaziWidgets();
 
     if (!document.getElementById("silkwood-loader")) {
       onLoaderComplete("no-loader");

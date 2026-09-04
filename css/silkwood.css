@@ -1208,3 +1208,196 @@ body.silkwood-logo-intro-active {
     transition-duration: 0.01ms;
   }
 }
+
+/* —— StayEazi booking widget — Silkwood shell overrides —— */
+.home-booking-bar .stayeazi-booking-widget {
+  font-family: Montserrat, system-ui, sans-serif !important;
+  background: #ffffff !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0.5rem !important;
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  box-shadow: 0 20px 40px rgba(27, 48, 34, 0.12) !important;
+  box-sizing: border-box !important;
+}
+
+.home-booking-bar .stayeazi-booking-widget .widget-header {
+  display: none !important;
+}
+
+.home-booking-bar .stayeazi-booking-widget .widget-form-container {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: stretch !important;
+  gap: 0 !important;
+  width: 100% !important;
+}
+
+.home-booking-bar .stayeazi-booking-widget .form-fields-group {
+  display: flex !important;
+  flex: 1 1 auto !important;
+  flex-wrap: wrap !important;
+  gap: 0 !important;
+  min-width: 0 !important;
+  overflow: visible !important;
+}
+
+.home-booking-bar .stayeazi-booking-widget .secondary-fields-container {
+  display: flex !important;
+  flex: 1 1 auto !important;
+  flex-wrap: wrap !important;
+  gap: 0 !important;
+  min-width: 0 !important;
+}
+
+.home-booking-bar .stayeazi-booking-widget .form-group,
+.home-booking-bar .stayeazi-booking-widget .form-group-primary,
+.home-booking-bar .stayeazi-booking-widget .form-group-secondary {
+  flex: 1 1 140px !important;
+  min-width: 140px !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 1rem !important;
+  border-right: 1px solid #e5e7eb !important;
+  box-sizing: border-box !important;
+}
+
+.home-booking-bar .stayeazi-booking-widget label {
+  display: block !important;
+  margin-bottom: 0.25rem !important;
+  font-family: Montserrat, system-ui, sans-serif !important;
+  font-size: 0.7rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  color: #6b7280 !important;
+}
+
+.home-booking-bar .stayeazi-booking-widget input,
+.home-booking-bar .stayeazi-booking-widget select {
+  width: 100% !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  font-family: Montserrat, system-ui, sans-serif !important;
+  font-size: 0.95rem !important;
+  color: #1a0c04 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.home-booking-bar .stayeazi-booking-widget input:focus,
+.home-booking-bar .stayeazi-booking-widget select:focus {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.home-booking-bar .stayeazi-booking-widget .widget-button-row {
+  display: flex !important;
+  align-items: stretch !important;
+  flex: 0 0 auto !important;
+  margin: 0.5rem !important;
+  gap: 0 !important;
+}
+
+.home-booking-bar .stayeazi-booking-widget .widget-submit-btn {
+  background: #994e14 !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 1.35rem 2rem !important;
+  min-width: 11rem !important;
+  max-width: none !important;
+  height: auto !important;
+  width: 100% !important;
+  font-family: Montserrat, system-ui, sans-serif !important;
+  font-size: 0.7rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+  cursor: pointer !important;
+  transition: background-color 0.3s ease !important;
+}
+
+.home-booking-bar .stayeazi-booking-widget .widget-submit-btn:hover {
+  background: #c79242 !important;
+  opacity: 1 !important;
+}
+
+.home-booking-bar .stayeazi-booking-widget .widget-toggle-btn,
+.home-booking-bar .stayeazi-booking-widget .field-toggle-btn {
+  display: none !important;
+}
+
+.home-booking-bar .stayeazi-booking-widget .promo-field {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  .home-booking-bar .stayeazi-booking-widget {
+    padding: 0.75rem !important;
+  }
+
+  .home-booking-bar .stayeazi-booking-widget .widget-form-container,
+  .home-booking-bar .stayeazi-booking-widget .form-fields-group,
+  .home-booking-bar .stayeazi-booking-widget .secondary-fields-container {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0 !important;
+  }
+
+  .home-booking-bar .stayeazi-booking-widget .form-fields-group,
+  .home-booking-bar .stayeazi-booking-widget .secondary-fields-container,
+  .home-booking-bar .stayeazi-booking-widget .widget-button-row {
+    grid-column: 1 / -1 !important;
+  }
+
+  .home-booking-bar .stayeazi-booking-widget .form-group,
+  .home-booking-bar .stayeazi-booking-widget .form-group-primary,
+  .home-booking-bar .stayeazi-booking-widget .form-group-secondary {
+    border-right: none !important;
+    border-bottom: 1px solid #e5e7eb !important;
+    min-width: 0 !important;
+    padding: 0.85rem 0.75rem !important;
+  }
+
+  .home-booking-bar .stayeazi-booking-widget .widget-button-row {
+    margin: 0.75rem 0 0 !important;
+    display: block !important;
+  }
+
+  .home-booking-bar .stayeazi-booking-widget .widget-submit-btn {
+    width: 100% !important;
+    padding: 1rem 1.25rem !important;
+  }
+}
+
+/* jQuery UI datepicker over Silkwood booking bar */
+.ui-datepicker {
+  z-index: 80 !important;
+  font-family: Montserrat, system-ui, sans-serif !important;
+  border: 1px solid #e5e7eb !important;
+  box-shadow: 0 12px 28px rgba(26, 12, 4, 0.14) !important;
+}
+
+.ui-datepicker .ui-widget-header {
+  background: #fff1db !important;
+  border: none !important;
+  color: #1a0c04 !important;
+}
+
+.ui-datepicker .ui-state-default {
+  background: #fff !important;
+  border: none !important;
+  color: #1a0c04 !important;
+  text-align: center !important;
+}
+
+.ui-datepicker .ui-state-highlight,
+.ui-datepicker .ui-state-active {
+  background: #994e14 !important;
+  color: #fff1db !important;
+}
