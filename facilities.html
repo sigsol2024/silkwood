@@ -80,7 +80,7 @@ Restaurant, pool, Strands Bar, gym, and reception — everything you need during
 </div>
 <div class="md:col-start-7 md:col-span-6 relative">
 <div class="bg-secondary-container absolute -inset-4 -z-10 translate-x-8 translate-y-8"></div>
-<img alt="Reception lobby at Silkwood Hotel" class="image-reveal w-full aspect-[4/5] object-cover shadow-2xl" src="/images/hotel/reception/silkwood-78.jpg"/>
+<img alt="Reception lobby at Silkwood Hotel" class="image-reveal w-full aspect-[4/5] md:aspect-[4/4] lg:aspect-[5/4] object-cover shadow-2xl" src="/images/hotel/reception/silkwood-78.jpg"/>
 </div>
 </section>
 
@@ -221,8 +221,8 @@ Check-in from 14:00; check-out by 11:00. The front desk can help with dining, fa
 </section>
 </main>
 <div id="site-footer-root"></div>
-<script src="/js/hotel-images.js?v=5cf7b0ca59"></script>
-<script src="/js/site-chrome.js?v=c734d35449"></script>
+<script src="/js/hotel-images.js?v=53456c0e4d"></script>
+<script src="/js/site-chrome.js?v=baee40bf36"></script>
 <script>
 (function () {
   var images = window.SilkwoodImages;
@@ -247,11 +247,9 @@ Check-in from 14:00; check-out by 11:00. The front desk can help with dining, fa
     el.innerHTML = images.buildSliderHtml(items, { label: label || "Gallery" });
   }
 
-  var poolBar = fac.poolBar || [];
-  var poolMid = Math.ceil(poolBar.length / 2);
   fill("restaurant-slider", fac.restaurant, "Restaurant at Silkwood Hotel");
-  fill("pool-slider", poolBar.slice(0, poolMid), "Pool at Silkwood Hotel");
-  fill("bar-slider", poolBar.slice(poolMid), "Strands Bar at Silkwood Hotel");
+  fill("pool-slider", fac.pool || fac.poolBar, "Pool at Silkwood Hotel");
+  fill("bar-slider", fac.strandsBar || fac.poolBar, "Strands Bar at Silkwood Hotel");
   fill("gym-slider", fac.gym, "Gym at Silkwood Hotel");
   fill("reception-slider", (fac.reception || []).slice(0, 6), "Reception at Silkwood Hotel");
 

@@ -840,6 +840,7 @@
     const reduceMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
+    const AUTO_MS = 5500;
 
     scope.querySelectorAll("[data-silkwood-slider]").forEach(function (slider) {
       if (slider.dataset.sliderReady === "1") return;
@@ -860,6 +861,9 @@
       if (index < 0) index = 0;
       let touchStartX = 0;
       let touchDeltaX = 0;
+      let timer = 0;
+      let inView = false;
+      let paused = false;
 
       function goTo(next) {
         const len = slides.length;
@@ -875,20 +879,39 @@
         });
       }
 
+      function stopAuto() {
+        if (timer) {
+          window.clearInterval(timer);
+          timer = 0;
+        }
+      }
+
+      function startAuto() {
+        if (reduceMotion || slider.hasAttribute("data-slider-no-autoplay")) return;
+        if (!inView || paused) return;
+        stopAuto();
+        timer = window.setInterval(function () {
+          goTo(index + 1);
+        }, AUTO_MS);
+      }
+
       if (prevBtn) {
         prevBtn.addEventListener("click", function () {
           goTo(index - 1);
+          startAuto();
         });
       }
       if (nextBtn) {
         nextBtn.addEventListener("click", function () {
           goTo(index + 1);
+          startAuto();
         });
       }
       dots.forEach(function (dot) {
         dot.addEventListener("click", function () {
           const i = parseInt(dot.getAttribute("data-slider-dot"), 10);
           if (!isNaN(i)) goTo(i);
+          startAuto();
         });
       });
 
@@ -896,9 +919,11 @@
         if (e.key === "ArrowLeft") {
           e.preventDefault();
           goTo(index - 1);
+          startAuto();
         } else if (e.key === "ArrowRight") {
           e.preventDefault();
           goTo(index + 1);
+          startAuto();
         }
       });
       if (!slider.hasAttribute("tabindex")) slider.setAttribute("tabindex", "0");
@@ -911,6 +936,8 @@
           if (!e.touches || !e.touches.length) return;
           touchStartX = e.touches[0].clientX;
           touchDeltaX = 0;
+          paused = true;
+          stopAuto();
         },
         { passive: true }
       );
@@ -923,26 +950,42 @@
         { passive: true }
       );
       swipeTarget.addEventListener("touchend", function () {
-        if (Math.abs(touchDeltaX) < 40) return;
-        if (touchDeltaX > 0) goTo(index - 1);
-        else goTo(index + 1);
+        if (Math.abs(touchDeltaX) >= 40) {
+          if (touchDeltaX > 0) goTo(index - 1);
+          else goTo(index + 1);
+        }
         touchDeltaX = 0;
+        paused = false;
+        startAuto();
       });
 
-      if (!reduceMotion && slider.hasAttribute("data-slider-autoplay")) {
-        let timer = window.setInterval(function () {
-          goTo(index + 1);
-        }, 6000);
+      // Auto-advance while in viewport (all sliders, mobile + desktop)
+      if (!reduceMotion && !slider.hasAttribute("data-slider-no-autoplay")) {
         slider.addEventListener("pointerenter", function () {
-          window.clearInterval(timer);
-          timer = 0;
+          paused = true;
+          stopAuto();
         });
         slider.addEventListener("pointerleave", function () {
-          if (timer) return;
-          timer = window.setInterval(function () {
-            goTo(index + 1);
-          }, 6000);
+          paused = false;
+          startAuto();
         });
+
+        if ("IntersectionObserver" in window) {
+          const io = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (entry) {
+                inView = entry.isIntersecting && entry.intersectionRatio >= 0.35;
+                if (inView) startAuto();
+                else stopAuto();
+              });
+            },
+            { threshold: [0, 0.35, 0.6] }
+          );
+          io.observe(slider);
+        } else {
+          inView = true;
+          startAuto();
+        }
       }
 
       slider.dataset.sliderReady = "1";

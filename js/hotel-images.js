@@ -197,14 +197,48 @@
     [
       "silkwood-110.jpg",
       "silkwood-103.jpg",
+      "silkwood-104.jpg",
       "silkwood-105.jpg",
+      "silkwood-111.jpg",
       "silkwood-112.jpg",
+      "silkwood-113.jpg",
       "silkwood-114.jpg",
+      "silkwood-115.jpg",
       "silkwood-116.jpg",
+      "silkwood-117.jpg",
       "silkwood-118.jpg",
+      "silkwood-119.jpg",
       "silkwood-120.jpg"
     ],
     "Pool and Strands Bar at Silkwood Hotel"
+  );
+
+  const pool = imgs(
+    "pool-bar",
+    [
+      "silkwood-118.jpg",
+      "silkwood-119.jpg",
+      "silkwood-114.jpg",
+      "silkwood-113.jpg",
+      "silkwood-104.jpg"
+    ],
+    "Pool at Silkwood Hotel"
+  );
+
+  const strandsBar = imgs(
+    "pool-bar",
+    [
+      "silkwood-110.jpg",
+      "silkwood-103.jpg",
+      "silkwood-105.jpg",
+      "silkwood-111.jpg",
+      "silkwood-112.jpg",
+      "silkwood-115.jpg",
+      "silkwood-116.jpg",
+      "silkwood-117.jpg",
+      "silkwood-120.jpg"
+    ],
+    "Strands Bar at Silkwood Hotel"
   );
 
   const gym = imgs(
@@ -336,6 +370,8 @@
     ].filter(Boolean),
     facilities: {
       poolBar: poolBar,
+      pool: pool,
+      strandsBar: strandsBar,
       gym: gym,
       reception: reception,
       restaurant: imgs(
@@ -343,7 +379,7 @@
         ["silkwood-55.jpg", "silkwood-60.jpg", "silkwood-67.jpg", "silkwood-73.jpg"],
         "Silkwood Hotel restaurant"
       ),
-      hero: poolBar.slice(0, 4),
+      hero: pool.slice(0, 4),
       intro: reception.slice(0, 1)
     },
     conference: {
@@ -352,6 +388,15 @@
       meetingSpace: meetingSpace,
       hero: conferenceHall[0]
     },
+    /** Conference page hero — rotate one of these on each load (all three spaces) */
+    conferencePageHero: [
+      conferenceHall[0],
+      conferenceHall[3] || conferenceHall[1],
+      mainHall[0],
+      mainHall[2] || mainHall[1],
+      meetingSpace[0],
+      meetingSpace[2] || meetingSpace[1]
+    ].filter(Boolean),
     dining: {
       restaurant: imgs(
         "restaurant",

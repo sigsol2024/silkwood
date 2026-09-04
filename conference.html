@@ -38,6 +38,22 @@ body.silkwood-loading>*:not(#silkwood-loader){visibility:hidden!important}
         .hero-scrim {
             background: linear-gradient(to bottom, rgba(26, 12, 4, 0.4) 0%, rgba(26, 12, 4, 0) 40%, rgba(26, 12, 4, 0.4) 100%);
         }
+        #conference-lightbox.hidden { display: none !important; }
+        #conference-lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            color: #fff;
+        }
+        #conference-hall-slider .silkwood-slider__slide img,
+        #main-hall-slider .silkwood-slider__slide img,
+        #meeting-space-slider .silkwood-slider__slide img {
+            cursor: pointer;
+        }
     </style>
 </head>
 <body data-page="conference" class="font-body-md text-on-surface silkwood-loading">
@@ -55,7 +71,7 @@ body.silkwood-loading>*:not(#silkwood-loader){visibility:hidden!important}
 <main id="main">
 <!-- Hero Section -->
 <section class="page-hero page-hero--bottom hero-enter relative w-full overflow-hidden" data-hero>
-<img alt="Conference hall at Silkwood Hotel" class="hero-enter__media parallax-subtle absolute inset-0 w-full h-full object-cover" data-parallax="6" src="/images/hotel/conference-hall/silkwood-121.jpg"/>
+<img id="conference-hero-img" alt="Conference hall at Silkwood Hotel" class="hero-enter__media parallax-subtle absolute inset-0 w-full h-full object-cover" data-parallax="6" src="/images/hotel/conference-hall/silkwood-121.jpg"/>
 <div class="absolute inset-0 hero-scrim"></div>
 <div class="page-hero-inner relative z-10 px-margin-mobile lg:px-margin-desktop max-w-container-max mx-auto w-full">
 <div class="max-w-2xl">
@@ -146,29 +162,143 @@ body.silkwood-loading>*:not(#silkwood-loader){visibility:hidden!important}
 </div>
 </section>
 </main>
+<!-- Conference lightbox -->
+<div id="conference-lightbox" class="hidden" role="dialog" aria-modal="true" aria-label="Conference photo">
+<div class="flex justify-between items-center p-6 text-on-primary">
+<div class="font-label-caps text-xs tracking-widest"><span id="conference-lightbox-current">1</span> / <span id="conference-lightbox-total">1</span></div>
+<button type="button" class="hover:text-on-primary/70 transition-colors p-1" id="conference-lightbox-close" aria-label="Close">
+<span class="material-symbols-outlined text-3xl font-light">close</span>
+</button>
+</div>
+<div class="flex-grow flex items-center justify-center relative px-4 md:px-12" id="conference-lightbox-stage">
+<button type="button" class="absolute left-2 md:left-6 text-on-primary hover:text-on-primary/70 transition-colors z-10 p-2" id="conference-lightbox-prev" aria-label="Previous image">
+<span class="material-symbols-outlined text-4xl font-light">chevron_left</span>
+</button>
+<img alt="" class="max-h-[70vh] md:max-h-[80vh] max-w-full object-contain select-none" id="conference-lightbox-img" src="" draggable="false"/>
+<button type="button" class="absolute right-2 md:right-6 text-on-primary hover:text-on-primary/70 transition-colors z-10 p-2" id="conference-lightbox-next" aria-label="Next image">
+<span class="material-symbols-outlined text-4xl font-light">chevron_right</span>
+</button>
+</div>
+<div class="p-6 text-center text-on-primary/80 font-body-md text-sm">
+<p id="conference-lightbox-caption"></p>
+</div>
+</div>
 <div id="site-footer-root"></div>
-<script src="/js/hotel-images.js?v=c070f64480"></script>
-<script src="/js/site-chrome.js?v=c734d35449"></script>
+<script src="/js/hotel-images.js?v=53456c0e4d"></script>
+<script src="/js/site-chrome.js?v=baee40bf36"></script>
 <script>
 (function () {
   var images = window.SilkwoodImages;
   if (!images || !images.conference) return;
 
   var conf = images.conference;
+  var heroImg = document.getElementById("conference-hero-img");
+  if (heroImg && images.conferencePageHero && images.conferencePageHero.length) {
+    var pool = images.conferencePageHero;
+    var pick = pool[Math.floor(Math.random() * pool.length)];
+    if (pick && pick.src) {
+      heroImg.src = pick.src;
+      if (pick.alt) heroImg.alt = pick.alt;
+    }
+  }
+
   var map = [
     { id: "conference-hall-slider", items: conf.hall, label: "Conference hall gallery" },
     { id: "main-hall-slider", items: conf.mainHall, label: "Main hall gallery" },
     { id: "meeting-space-slider", items: conf.meetingSpace, label: "Meeting space gallery" }
   ];
 
+  var lightboxItems = [];
   map.forEach(function (entry) {
     var el = document.getElementById(entry.id);
-    if (!el) return;
+    if (!el || !entry.items || !entry.items.length) return;
     el.innerHTML = images.buildSliderHtml(entry.items, { label: entry.label });
+    var base = lightboxItems.length;
+    entry.items.forEach(function (item) {
+      lightboxItems.push(item);
+    });
+    el.querySelectorAll(".silkwood-slider__slide img").forEach(function (img, i) {
+      img.setAttribute("data-lb-index", String(base + i));
+      img.style.cursor = "pointer";
+    });
   });
 
   if (window.SilkwoodChrome && typeof window.SilkwoodChrome.initSliders === "function") {
     window.SilkwoodChrome.initSliders();
+  }
+
+  var lightbox = document.getElementById("conference-lightbox");
+  var lightboxImg = document.getElementById("conference-lightbox-img");
+  var lightboxCaption = document.getElementById("conference-lightbox-caption");
+  var lightboxCurrent = document.getElementById("conference-lightbox-current");
+  var lightboxTotal = document.getElementById("conference-lightbox-total");
+  var lightboxStage = document.getElementById("conference-lightbox-stage");
+  var lbIndex = 0;
+  if (lightboxTotal) lightboxTotal.textContent = String(lightboxItems.length || 1);
+
+  function openLb(i) {
+    if (!lightboxItems.length || !lightbox || !lightboxImg) return;
+    lbIndex = ((i % lightboxItems.length) + lightboxItems.length) % lightboxItems.length;
+    var item = lightboxItems[lbIndex];
+    lightboxImg.src = item.src;
+    lightboxImg.alt = item.alt || "";
+    if (lightboxCaption) lightboxCaption.textContent = item.alt || "Silkwood Hotel";
+    if (lightboxCurrent) lightboxCurrent.textContent = String(lbIndex + 1);
+    lightbox.classList.remove("hidden");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeLb() {
+    if (!lightbox) return;
+    lightbox.classList.add("hidden");
+    document.body.style.overflow = "";
+  }
+
+  document.querySelectorAll("[data-lb-index]").forEach(function (img) {
+    img.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      openLb(parseInt(img.getAttribute("data-lb-index"), 10) || 0);
+    });
+  });
+
+  var closeBtn = document.getElementById("conference-lightbox-close");
+  var prevBtn = document.getElementById("conference-lightbox-prev");
+  var nextBtn = document.getElementById("conference-lightbox-next");
+  if (closeBtn) closeBtn.addEventListener("click", closeLb);
+  if (prevBtn) prevBtn.addEventListener("click", function (e) { e.stopPropagation(); openLb(lbIndex - 1); });
+  if (nextBtn) nextBtn.addEventListener("click", function (e) { e.stopPropagation(); openLb(lbIndex + 1); });
+  if (lightbox) {
+    lightbox.addEventListener("click", function (e) {
+      if (e.target === lightbox || e.target === lightboxStage) closeLb();
+    });
+  }
+
+  document.addEventListener("keydown", function (e) {
+    if (!lightbox || lightbox.classList.contains("hidden")) return;
+    if (e.key === "Escape") closeLb();
+    if (e.key === "ArrowLeft") openLb(lbIndex - 1);
+    if (e.key === "ArrowRight") openLb(lbIndex + 1);
+  });
+
+  var touchStartX = 0;
+  var touchStartY = 0;
+  var swipeTarget = lightboxStage || lightboxImg;
+  if (swipeTarget) {
+    swipeTarget.addEventListener("touchstart", function (e) {
+      if (!e.changedTouches || !e.changedTouches[0]) return;
+      touchStartX = e.changedTouches[0].clientX;
+      touchStartY = e.changedTouches[0].clientY;
+    }, { passive: true });
+    swipeTarget.addEventListener("touchend", function (e) {
+      if (!e.changedTouches || !e.changedTouches[0]) return;
+      if (!lightbox || lightbox.classList.contains("hidden")) return;
+      var dx = e.changedTouches[0].clientX - touchStartX;
+      var dy = e.changedTouches[0].clientY - touchStartY;
+      if (Math.abs(dx) < 45 || Math.abs(dx) < Math.abs(dy)) return;
+      if (dx < 0) openLb(lbIndex + 1);
+      else openLb(lbIndex - 1);
+    }, { passive: true });
   }
 })();
 </script>
